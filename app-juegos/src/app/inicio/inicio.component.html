@@ -1,0 +1,23 @@
+<br>
+<div class="container py-5">
+  <h1 class="bg-dark p-3 rounded text-white text-center">Gran Variedad de juegos de mesa Ahora en tu Ordenador</h1>
+
+  <div class="container mt-5">
+    <div class="row">
+      @for(juego of juegos; track $index){
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="mb-4">
+             
+                <img [src]="'data:image;base64,' + juego.imagen" alt="{{ juego.nombre }}" class="img-fluid" width="120px" height="120px">
+                <h3>{{ juego.nombre }}</h3>
+                <p>{{ juego.descripcion }}</p>
+              </div>  
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
