@@ -10,10 +10,41 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\DBAL\Types\Types;
 
 #[Route('/juegos')]
 class JuegosController extends AbstractController
 {
+    #[Route('/todos', name: 'app_juegos_todos', methods: ['GET'])]
+    public function todosj(JuegosRepository $juegosRepository, Request $request): Response
+    {
+        $juegos=$juegosRepository->findAll();
+        $juegosArray=[];
+        foreach($juegos as $juego){
+            if($juego->getImagen()!==null){
+                $juegosArray[]=[
+                    'nombre' => $juego->getNombre(),
+                    'descripcion' => $juego->getDescripcion(),
+                    'imagen' => base64_encode(stream_get_contents($juego->getImagen())),
+                ];
+            }
+            else{
+                $juegosArray[]=[
+                    'nombre' => $juego->getNombre(),
+                    'descripcion' => $juego->getDescripcion(),
+                    'imagen'=>null
+                ];
+            }
+        }
+            $response = new JsonResponse();
+            $response->setData(
+                $juegosArray
+            );
+            return $response;
+    
+}
+
     #[Route('/', name: 'app_juegos_index', methods: ['GET'])]
     public function index(JuegosRepository $juegosRepository): Response
     {
@@ -30,6 +61,11 @@ class JuegosController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imagenFile = $form->get('imagen')->getData();
+            if ($imagenFile) {
+                $imagenData = file_get_contents($imagenFile->getPathname());
+                $juego->setImagen($imagenData);
+            }
             $entityManager->persist($juego);
             $entityManager->flush();
 
@@ -57,6 +93,11 @@ class JuegosController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imagenFile = $form->get('imagen')->getData();
+            if ($imagenFile) {
+                $imagenData = file_get_contents($imagenFile->getPathname());
+                $juego->setImagen($imagenData);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_juegos_index', [], Response::HTTP_SEE_OTHER);

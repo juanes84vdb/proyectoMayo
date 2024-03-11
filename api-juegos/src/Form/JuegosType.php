@@ -6,6 +6,8 @@ use App\Entity\Juegos;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class JuegosType extends AbstractType
 {
@@ -14,7 +16,11 @@ class JuegosType extends AbstractType
         $builder
             ->add('Nombre')
             ->add('descripcion')
-            ->add('imagen')
+            ->add('imagen', FileType::class, [
+                'data_class' => null,
+                'required' => false,
+                'attr' => ['class' => 'form-control']
+            ])
         ;
     }
 
