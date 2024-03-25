@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CabezeraComponent } from './componentes/cabezera/cabezera.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
+import { AjedrezComponent } from './componentes/ajedrez/ajedrez.component';
 
 
 
@@ -16,7 +17,8 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
   declarations: [
     AppComponent,
     CabezeraComponent,
-    InicioComponent
+    InicioComponent,
+    AjedrezComponent
   ],
   imports: [
     BrowserModule,
