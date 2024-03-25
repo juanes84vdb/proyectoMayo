@@ -40,7 +40,6 @@ export class AjedrezComponent {
     this.coronado = false;
     this.ganador = false;
     this.piezas = 30;
-    let tabla: any = ""
     const seccion = this.renderer.createElement("tr");
     seccion.innerHTML = '<th></th>';
     for (let i = 0; i < 8; i++) {
