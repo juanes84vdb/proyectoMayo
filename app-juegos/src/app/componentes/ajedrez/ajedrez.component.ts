@@ -42,7 +42,7 @@ export class AjedrezComponent {
     this.piezas = 30;
     let tabla: any = ""
     const seccion = this.renderer.createElement("tr");
-    seccion.innerHTML = "<th><button (click)=\"empate(true)\">Pedir tablas </button></th>";
+    seccion.innerHTML = '<th></th>';
     for (let i = 0; i < 8; i++) {
       seccion.innerHTML += "<th>" + i + "</th>";
     }

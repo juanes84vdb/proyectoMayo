@@ -8,10 +8,14 @@ import { JuegosService } from '../../servicios/juegos.service';
 })
 export class InicioComponent {
     juegos: any[] = []; 
+    load=false;
 
     constructor( 
       private juegosService:JuegosService) {
         this.recuperarJuegos();
+        setTimeout(() => {
+          this.load = true;
+      }, 5000); 
       }
 
     recuperarJuegos() {
