@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { CabezeraComponent } from './componentes/cabezera/cabezera.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { AjedrezComponent } from './componentes/ajedrez/ajedrez.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 
 
@@ -18,7 +19,8 @@ import { AjedrezComponent } from './componentes/ajedrez/ajedrez.component';
     AppComponent,
     CabezeraComponent,
     InicioComponent,
-    AjedrezComponent
+    AjedrezComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

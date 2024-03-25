@@ -1,10 +1,11 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
-import { ViewChild } from '@angular/core';
+import { ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-ajedrez',
   templateUrl: './ajedrez.component.html',
-  styleUrls: ['./ajedrez.component.css']
+  styleUrls: ['./ajedrez.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AjedrezComponent {
   @ViewChild('tablero') tablerohtml!:ElementRef;
@@ -163,14 +164,14 @@ export class AjedrezComponent {
   comido(cambiar: HTMLElement) {
     this.piezas = this.piezas - 1;
     if (!this.turno) {
-      const cementerio = document.getElementsByTagName("div")[1];
+      const cementerio = document.getElementsByTagName("article")[0];
       if (cambiar.innerHTML === "♙") {
         cementerio.innerHTML = cambiar.innerHTML + " " + cementerio.innerHTML;
       } else {
         cementerio.innerHTML = cementerio.innerHTML + " " + cambiar.innerHTML;
       }
     } else {
-      const cementerio = document.getElementsByTagName("div")[2];
+      const cementerio = document.getElementsByTagName("article")[1];
       if (cambiar.innerHTML === "♟") {
         cementerio.innerHTML = cambiar.innerHTML + " " + cementerio.innerHTML;
       } else {

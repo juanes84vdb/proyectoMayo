@@ -1,92 +1,14 @@
-section{
-    max-width: fit-content;
-    position: relative;
-    padding: 10px;
-    margin-top: 10px;
-}
-table {
-    border-collapse: collapse;
-    margin: 10px 16px;
-    border: 1px solid black;
+html {
+    margin: 0px;
 }
 
-tr td {
-    text-align: center;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-tr td {
-    cursor: grab;
-}
-
-tr td:active {
-    cursor: grabbing;
-}
-
-tr td:empty {
-    cursor: auto;
-}
-
-table tr:nth-child(2n+1) td:nth-child(2n) {
-    background-color: lightgray;
-}
-
-table tr:nth-child(2n) td:nth-child(2n+1) {
-    background-color: lightgray;
-}
-
-th {
-    font-size: 33px;
-    border: 1px solid black;
-    text-align: center;
-    padding: 10px 30px;
-    background-color: white;
-    cursor: default;
-}
-
-.eleccion {
-    position: relative;
-    cursor: crosshair;
-    width: 400px;
-}
-
-td {
-    font-size: 30px;
-}
-
-.valida {
-    background-color: red !important;
-}
-
-td.valida:empty {
-    background-color: blue !important;
-}
-
-.enroque{
-    background-color: green !important;
-}
-
-div:empty{
-    border: none !important;
-}
-
-app-ajedrez div:nth-child(2){
-    top: 100;
-    right: 0;
-    position: absolute;
-    border: 1px black dashed;
-    font-size: 15px;
-    width: fit-content;
-    cursor: default;
-}
-
-app-ajedrez div:nth-child(3){
-    top: 0;
-    right: 0;
-    position: absolute;
-    border: 1px black double;
-    font-size:15px;
-    width: fit-content;
-    cursor: default;
+body {
+    font-family: Arial;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    background-image: url("assets/img/wood.jpg");
+    width: 100%;
+    height: 100%;
+    margin: 0px;
 }

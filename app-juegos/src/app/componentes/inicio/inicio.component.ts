@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { JuegosService } from '../../servicios/juegos.service';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class InicioComponent {
     juegos: any[] = []; 
