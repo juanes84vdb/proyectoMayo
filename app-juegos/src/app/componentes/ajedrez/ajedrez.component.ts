@@ -62,7 +62,7 @@ export class AjedrezComponent {
         this.id=response[0].id
         this.valores=response
         //  console.log(response[0].id)
-          console.log(this.valores)
+        //  console.log(this.valores)
       } else {
         console.error('Los datos recibidos no son un array:', response);
       }
@@ -213,7 +213,7 @@ export class AjedrezComponent {
     this.valores[0].filas=this.tablero
     this.valores[0].turno=this.turno
     this.partdasServices.updatePartida(this.valores).subscribe();
-      console.log(this.valores)
+    //  console.log(this.valores)
   }
 
   comido(cambiar: HTMLElement) {

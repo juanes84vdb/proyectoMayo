@@ -16,7 +16,7 @@ use Doctrine\DBAL\Types\Types;
 #[Route('/partidas')]
 class PartidasController extends AbstractController
 {
-    #[Route('/partida', name: 'app_partidas_todos', methods: ['GET'])]
+    #[Route('/partida', name: 'app_partidas_partida', methods: ['GET'])]
     public function todosj(PartidasRepository $partidasrepository, Request $request): Response
     {
         $partidas=$partidasrepository->findAll();
@@ -36,7 +36,34 @@ class PartidasController extends AbstractController
             return $response;
 }
 
+    #[Route('/partidaupdate', name: 'app_partidas_update', methods: ['POST', 'PUT'])]
+    public function updatepartida(Request $request, 
+    EntityManagerInterface $entityManager): Response
+    {
+        $data = json_decode($request->getContent(), true);
 
+        $id = $data[0]['id'];
+        $acabada= $data[0]["ganador"];
+        $turno=$data[0]["turno"];
+        $filas=$data[0]["filas"];
+
+        $partida=$entityManager->getRepository(Partidas::class)->find($id);
+
+        $partida->setAcabada($acabada);
+        $partida->setTurno($turno);
+        $partida->setFilas($filas);
+        $partida->setTurno($turno);
+        $entityManager->flush();
+
+        $responseData = [
+            'mensaje' => 'Datos actualizados correctamente'
+        ];
+        $jsonResponse = json_encode($responseData);
+        $response = new Response($jsonResponse, Response::HTTP_OK);
+        $response->headers->set('Content-Type', 'application/json');
+ 
+        return $response;
+    }
 
     #[Route('/', name: 'app_partidas_index', methods: ['GET'])]
     public function index(PartidasRepository $partidasRepository): Response
