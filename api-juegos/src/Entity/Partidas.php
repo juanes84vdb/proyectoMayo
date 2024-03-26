@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PartidasRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[ORM\Entity(repositoryClass: PartidasRepository::class)]
 class Partidas
@@ -31,6 +32,10 @@ class Partidas
 
     #[ORM\Column]
     private ?bool $turno = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?array $filas = null;
+
 
 
     public function getId(): ?int
@@ -61,7 +66,6 @@ class Partidas
 
         return $this;
     }
-
 
     public function isAcabada(): ?bool
     {
@@ -98,4 +102,17 @@ class Partidas
 
         return $this;
     }
+
+    public function getFilas(): ?array
+    {
+        return $this->filas;
+    }
+
+    public function setFilas(?array $filas): static
+    {
+        $this->filas = $filas;
+
+        return $this;
+    }
+
 }

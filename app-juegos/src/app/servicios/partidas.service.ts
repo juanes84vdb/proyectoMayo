@@ -4,14 +4,12 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class JuegosService {
-
-  private urlApi = "http://127.0.0.1:8000/juegos/todos";
+export class PartidasService {
+  private urlApiP ="http://localhost:8000/partidas/todos";
 
   constructor(private http: HttpClient) { }
 
-  retornar() {
-    return this.http.get<any[]>(this.urlApi);
+  retornarTablero() {
+    return this.http.get<any[]>(this.urlApiP);
   }
-
 }

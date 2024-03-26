@@ -26,8 +26,8 @@ export class LoginComponent {
         window.location.pathname=""
       },
       (error) => {
-        console.log(this.credentials);
-        console.log('Error', error);
+        console.log(error)
+        alert('Error '+ error.error.message);
       }
     );
   }

@@ -1,5 +1,7 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { ViewChild, ViewEncapsulation } from '@angular/core';
+import { } from '../../servicios/juegos.service';
+import { PartidasService } from 'src/app/servicios/partidas.service';
 
 @Component({
   selector: 'app-ajedrez',
@@ -8,19 +10,9 @@ import { ViewChild, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AjedrezComponent {
-  @ViewChild('tablero') tablerohtml!:ElementRef;
-  @ViewChild('cblancas') cementeriob!:ElementRef;
-  @ViewChild('cnegras') cementerion!:ElementRef;
-  tablero: any[][] = [
-    ["♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"],
-    ["♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟"],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙"],
-    ["♖", "♘", "♗", "♔", "♕", "♗", "♘", "♖"]
-  ];
+  @ViewChild('tablero') tablerohtml!: ElementRef;
+  tablero: any[][] = [];
+  segundosTranscurridos = 0;
   blancas: any[] = ["♖", "♘", "♗", "♕", "♔", "♙"];
   negras: any[] = ["♜", "♞", "♝", "♛", "♚", "♟"];
   turno: boolean = true;
@@ -28,19 +20,62 @@ export class AjedrezComponent {
   coronado: boolean = false;
   ganador: boolean = false;
   piezas: any = 30;
-  colort: string ="Blancas"
+  colort: string = ""
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,
+    private partdasServices: PartidasService) {
+    this.recuperarJuegos();
   }
   ngAfterViewInit(): void {
-    this.dibujarTabla(this.tablero);
+    const intervalo = setInterval(() => {
+      this.segundosTranscurridos++;
+      if (this.tablero.length > 0) {
+        this.dibujarTabla(this.tablero);
+        clearInterval(intervalo);
+      }
+      if (this.segundosTranscurridos >= 10) {
+        clearInterval(intervalo);
+      }
+    }, 1000);
   }
 
+  recuperarJuegos() {
+    this.partdasServices.retornarTablero().subscribe(response => {
+      if (Array.isArray(response)) {
+        if (response[0].filas.length > 0) {
+          this.tablero = response[0].filas;
+        }
+        else {
+          this.tablero = [
+            ["♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"],
+            ["♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟"],
+            ["", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", ""],
+            ["♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙"],
+            ["♖", "♘", "♗", "♔", "♕", "♗", "♘", "♖"]
+          ]
+        }
+        //  console.log(response[0].turno)
+        this.turno = response[0].turno
+        this.ganador = response[0].ganador
+        //  console.log(response[0].filas)
+        //  console.log(this.tablero)
+      } else {
+        console.error('Los datos recibidos no son un array:', response);
+      }
+    });
+  }
   dibujarTabla(tablero: any[][]) {
-    this.turno = true;
+    if (this.turno === true) {
+      this.colort = "Blancas"
+    }
+    else {
+      this.colort = "Negras"
+    }
     this.color = null;
     this.coronado = false;
-    this.ganador = false;
     this.piezas = 30;
     const seccion = this.renderer.createElement("tr");
     seccion.innerHTML = '<th></th>';
@@ -57,10 +92,10 @@ export class AjedrezComponent {
         celda.className = "f" + fila;
         celda.classList.add("c" + columna);
         celda.draggable = true;
-        celda.addEventListener('dragover', (e:any) => {
+        celda.addEventListener('dragover', (e: any) => {
           e.preventDefault();
         });
-        celda.addEventListener('dragstart', (e:any) => {
+        celda.addEventListener('dragstart', (e: any) => {
           if (!this.ganador) {
             for (let i = 0; i < this.negras.length; i++) {
               if (celda.innerHTML == this.negras[i]) {
@@ -138,13 +173,13 @@ export class AjedrezComponent {
             valida[0].classList.remove("valida");
           }
         });
-        celda.addEventListener("dragenter", function (e:any) {
+        celda.addEventListener("dragenter", function (e: any) {
           e.preventDefault();
           if (celda.classList.contains("valida") || celda.classList.contains("enroque")) {
             celda.classList.add("cambiar");
           }
         });
-        celda.addEventListener("dragleave", function (e:any) {
+        celda.addEventListener("dragleave", function (e: any) {
           e.preventDefault();
           celda.classList.remove("cambiar");
         });
@@ -160,22 +195,21 @@ export class AjedrezComponent {
     cambiar.innerHTML = celda.innerHTML;
     celda.innerHTML = "";
     this.turno = !this.turno;
-    if (this.turno===true){
-      this.colort="Blancas"
+    if (this.turno === true) {
+      this.colort = "Blancas"
     }
-    else{
-      this.colort="Negras"
+    else {
+      this.colort = "Negras"
     }
-    const casiilas=document.getElementsByTagName("td")
-    
-      for(let j=0; j<=7; j++){
-        let x=0
-          for(let i=j*8; i<j*8+8; i++, x++){
-            console.log(i+" i "+j+" j "+x+" x ")
-          this.tablero[j][x]=casiilas[i].innerHTML
-        }
+    const casiilas = document.getElementsByTagName("td")
+
+    for (let j = 0; j <= 7; j++) {
+      let x = 0
+      for (let i = j * 8; i < j * 8 + 8; i++, x++) {
+        this.tablero[j][x] = casiilas[i].innerHTML
+      }
     }
-    console.log(this.tablero)
+    //  console.log(this.tablero)
   }
 
   comido(cambiar: HTMLElement) {

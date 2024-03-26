@@ -11,6 +11,13 @@
                 <th>Id</th>
                 <th>Acabada</th>
                 <th>Turno</th>
+                <th>Fila1</th>
+                <th>Fila2</th>
+                <th>Fila3</th>
+                <th>Fila4</th>
+                <th>Fila5</th>
+                <th>Fila6</th>
+                <th>Fila7</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +27,13 @@
                 <td>{{ partida.id }}</td>
                 <td>{{ partida.acabada ? 'Yes' : 'No' }}</td>
                 <td>{{ partida.turno ? 'Yes' : 'No' }}</td>
+                <td>{{ partida.fila1 ? partida.fila1|join(', ') : '' }}</td>
+                <td>{{ partida.fila2 ? partida.fila2|join(', ') : '' }}</td>
+                <td>{{ partida.fila3 ? partida.fila3|join(', ') : '' }}</td>
+                <td>{{ partida.fila4 ? partida.fila4|join(', ') : '' }}</td>
+                <td>{{ partida.fila5 ? partida.fila5|join(', ') : '' }}</td>
+                <td>{{ partida.fila6 ? partida.fila6|join(', ') : '' }}</td>
+                <td>{{ partida.fila7 ? partida.fila7|join(', ') : '' }}</td>
                 <td>
                     <a href="{{ path('app_partidas_show', {'id': partida.id}) }}">show</a>
                     <a href="{{ path('app_partidas_edit', {'id': partida.id}) }}">edit</a>
@@ -27,7 +41,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

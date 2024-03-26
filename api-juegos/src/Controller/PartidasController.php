@@ -10,10 +10,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\DBAL\Types\Types;
 
 #[Route('/partidas')]
 class PartidasController extends AbstractController
 {
+    #[Route('/todos', name: 'app_partidas_todos', methods: ['GET'])]
+    public function todosj(PartidasRepository $partidasrepository, Request $request): Response
+    {
+        $partidas=$partidasrepository->findAll();
+        $partidasArray=[];
+        foreach($partidas as $partida){
+                $partidasArray[]=[
+                    'filas' =>$partida->getFilas(),
+                    'ganador' =>$partida->isAcabada(),
+                    'turno'=>$partida->isTurno(),
+                ];
+        }
+            $response = new JsonResponse();
+            $response->setData(
+                $partidasArray
+            );
+            return $response;
+}
+
+
+
     #[Route('/', name: 'app_partidas_index', methods: ['GET'])]
     public function index(PartidasRepository $partidasRepository): Response
     {

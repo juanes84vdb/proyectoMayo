@@ -16,6 +16,13 @@ class PartidasType extends AbstractType
         $builder
             ->add('acabada')
             ->add('turno')
+            ->add('fila1')
+            ->add('fila2')
+            ->add('fila3')
+            ->add('fila4')
+            ->add('fila5')
+            ->add('fila6')
+            ->add('fila7')
             ->add('jugador1', EntityType::class, [
                 'class' => User::class,
 'choice_label' => 'id',
