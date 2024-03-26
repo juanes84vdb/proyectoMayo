@@ -23,6 +23,7 @@ export class LoginComponent {
       (response) => {
         console.log('Succes', response);
         localStorage.setItem('loggedInKey', response.token);
+        window.location.pathname=""
       },
       (error) => {
         console.log(this.credentials);

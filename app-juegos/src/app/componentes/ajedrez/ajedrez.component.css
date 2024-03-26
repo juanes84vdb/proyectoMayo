@@ -2,8 +2,8 @@ section {
     max-width: fit-content;
     max-height: 70%;
     position: relative;
-    padding: 10px;
     margin-top: 10px;
+    padding: 30px;
 }
 
 table {
@@ -76,10 +76,17 @@ table tr:nth-child(2n) td:nth-child(2n+1) {
 }
 
 table tr th{
-    font-size: 33px;
+    font-size: 27px;
     border: 1px solid black;
     text-align: center;
-    padding: 10px 30px;
+    padding: 10px 22px;
     background-color: rgb(255, 255, 255, 0.2);
     cursor: default;
+}
+
+#cajatabla{
+    display: flex;
+}
+button{
+    max-height: 40px
 }

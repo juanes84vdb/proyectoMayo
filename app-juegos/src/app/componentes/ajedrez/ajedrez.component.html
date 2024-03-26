@@ -1,9 +1,13 @@
 <section>
 
-<div>
+<div id="cajatabla">
+    <span>
     <button (click)="empate(true)">Pedir tablas </button>
+    <p>Turno de {{colort}}</p>
+    </span>
     <table #tablero>
     </table>
+    
 </div>
 <article #cnegras></article>
 <article #cblancas></article>

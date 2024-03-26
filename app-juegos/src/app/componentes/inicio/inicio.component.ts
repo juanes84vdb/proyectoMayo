@@ -16,7 +16,7 @@ export class InicioComponent {
         this.recuperarJuegos();
         setTimeout(() => {
           this.load = true;
-      }, 5000); 
+      }, 7500); 
       }
 
     recuperarJuegos() {

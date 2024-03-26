@@ -28,6 +28,7 @@ export class AjedrezComponent {
   coronado: boolean = false;
   ganador: boolean = false;
   piezas: any = 30;
+  colort: string ="Blancas"
 
   constructor(private renderer: Renderer2) {
   }
@@ -159,6 +160,22 @@ export class AjedrezComponent {
     cambiar.innerHTML = celda.innerHTML;
     celda.innerHTML = "";
     this.turno = !this.turno;
+    if (this.turno===true){
+      this.colort="Blancas"
+    }
+    else{
+      this.colort="Negras"
+    }
+    const casiilas=document.getElementsByTagName("td")
+    
+      for(let j=0; j<=7; j++){
+        let x=0
+          for(let i=j*8; i<j*8+8; i++, x++){
+            console.log(i+" i "+j+" j "+x+" x ")
+          this.tablero[j][x]=casiilas[i].innerHTML
+        }
+    }
+    console.log(this.tablero)
   }
 
   comido(cambiar: HTMLElement) {
