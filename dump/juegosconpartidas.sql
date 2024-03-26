@@ -36,7 +36,7 @@ CREATE TABLE `doctrine_migration_versions` (
 
 LOCK TABLES `doctrine_migration_versions` WRITE;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
-INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20240307122612','2024-03-07 13:26:22',43),('DoctrineMigrations\\Version20240325115837','2024-03-25 12:58:45',165),('DoctrineMigrations\\Version20240325120338','2024-03-25 13:03:44',17),('DoctrineMigrations\\Version20240325121005','2024-03-25 13:10:23',14),('DoctrineMigrations\\Version20240325121202','2024-03-25 13:12:08',39),('DoctrineMigrations\\Version20240325121528','2024-03-25 13:15:31',23);
+INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20240307122612','2024-03-07 13:26:22',43),('DoctrineMigrations\\Version20240325115837','2024-03-25 12:58:45',165),('DoctrineMigrations\\Version20240325120338','2024-03-25 13:03:44',17),('DoctrineMigrations\\Version20240325121005','2024-03-25 13:10:23',14),('DoctrineMigrations\\Version20240325121202','2024-03-25 13:12:08',39),('DoctrineMigrations\\Version20240325121528','2024-03-25 13:15:31',23),('DoctrineMigrations\\Version20240326083604','2024-03-26 09:36:11',25),('DoctrineMigrations\\Version20240326084428','2024-03-26 09:44:35',40),('DoctrineMigrations\\Version20240326092019','2024-03-26 10:20:24',17);
 /*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,8 +109,9 @@ CREATE TABLE `partidas` (
   `jugador1_id` int(11) NOT NULL,
   `jugador2_id` int(11) NOT NULL,
   `ganador_id` int(11) DEFAULT NULL,
-  `acabada` tinyint(1) NOT NULL,
-  `turno` tinyint(1) NOT NULL,
+  `acabada` tinyint(1) NOT NULL DEFAULT 0,
+  `turno` tinyint(1) NOT NULL DEFAULT 1,
+  `filas` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`filas`)),
   PRIMARY KEY (`id`),
   KEY `IDX_12114278390198F4` (`jugador1_id`),
   KEY `IDX_121142782BB4371A` (`jugador2_id`),
@@ -118,7 +119,7 @@ CREATE TABLE `partidas` (
   CONSTRAINT `FK_121142782BB4371A` FOREIGN KEY (`jugador2_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_12114278390198F4` FOREIGN KEY (`jugador1_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_12114278A338CEA5` FOREIGN KEY (`ganador_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,6 +128,7 @@ CREATE TABLE `partidas` (
 
 LOCK TABLES `partidas` WRITE;
 /*!40000 ALTER TABLE `partidas` DISABLE KEYS */;
+INSERT INTO `partidas` VALUES (1,1,4,NULL,0,1,'[			[\"♜\",\"♞\",\"♝\",\"♛\",\"♚\",\"♝\",\"♞\",\"♜\"],\r\n          	[\"♟\",\"♟\",\"♟\",\"♟\",\"♟\",\"♟\",\"♟\",\"♟\"],\r\n            [\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],\r\n            [\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],\r\n            [\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],\r\n            [\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],\r\n            [\"♙\",\"♙\",\"♙\",\"♙\",\"♙\",\"♙\",\"♙\",\"♙\"],\r\n            [\"♖\",\"♘\",\"♗\",\"♔\",\"♕\",\"♗\",\"♘\",\"♖\"]]');
 /*!40000 ALTER TABLE `partidas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +146,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_IDENTIFIER_USERNAME` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +155,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Mario','[]','$2y$13$pdICLJX3Ft8dws.5JbL7nO9syf/ubehXOebqJzXJCB2ZohFzODF/q');
+INSERT INTO `user` VALUES (1,'Mario','[]','$2y$13$pdICLJX3Ft8dws.5JbL7nO9syf/ubehXOebqJzXJCB2ZohFzODF/q'),(4,'mario2','[]','$2y$13$Qt8FP9gqFaNgcHLmxvPhfOv/.PqgxfJDDdhGq79ioBj5jBoTMcrfS');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-26  9:23:12
+-- Dump completed on 2024-03-26 11:47:52

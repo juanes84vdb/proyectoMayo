@@ -1,6 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { ViewChild, ViewEncapsulation } from '@angular/core';
-import { } from '../../servicios/juegos.service';
 import { PartidasService } from 'src/app/servicios/partidas.service';
 
 @Component({
@@ -11,6 +10,7 @@ import { PartidasService } from 'src/app/servicios/partidas.service';
 })
 export class AjedrezComponent {
   @ViewChild('tablero') tablerohtml!: ElementRef;
+  id:number|null=null;
   tablero: any[][] = [];
   segundosTranscurridos = 0;
   blancas: any[] = ["♖", "♘", "♗", "♕", "♔", "♙"];
@@ -21,7 +21,7 @@ export class AjedrezComponent {
   ganador: boolean = false;
   piezas: any = 30;
   colort: string = ""
-
+  valores:any
   constructor(private renderer: Renderer2,
     private partdasServices: PartidasService) {
     this.recuperarJuegos();
@@ -57,11 +57,12 @@ export class AjedrezComponent {
             ["♖", "♘", "♗", "♔", "♕", "♗", "♘", "♖"]
           ]
         }
-        //  console.log(response[0].turno)
         this.turno = response[0].turno
         this.ganador = response[0].ganador
-        //  console.log(response[0].filas)
-        //  console.log(this.tablero)
+        this.id=response[0].id
+        this.valores=response
+        //  console.log(response[0].id)
+          console.log(this.valores)
       } else {
         console.error('Los datos recibidos no son un array:', response);
       }
@@ -209,7 +210,10 @@ export class AjedrezComponent {
         this.tablero[j][x] = casiilas[i].innerHTML
       }
     }
-    //  console.log(this.tablero)
+    this.valores[0].filas=this.tablero
+    this.valores[0].turno=this.turno
+    this.partdasServices.updatePartida(this.valores).subscribe();
+      console.log(this.valores)
   }
 
   comido(cambiar: HTMLElement) {

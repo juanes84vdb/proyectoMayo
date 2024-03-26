@@ -16,7 +16,7 @@ use Doctrine\DBAL\Types\Types;
 #[Route('/partidas')]
 class PartidasController extends AbstractController
 {
-    #[Route('/todos', name: 'app_partidas_todos', methods: ['GET'])]
+    #[Route('/partida', name: 'app_partidas_todos', methods: ['GET'])]
     public function todosj(PartidasRepository $partidasrepository, Request $request): Response
     {
         $partidas=$partidasrepository->findAll();
@@ -26,6 +26,7 @@ class PartidasController extends AbstractController
                     'filas' =>$partida->getFilas(),
                     'ganador' =>$partida->isAcabada(),
                     'turno'=>$partida->isTurno(),
+                    'id'=>$partida->getId(),
                 ];
         }
             $response = new JsonResponse();
