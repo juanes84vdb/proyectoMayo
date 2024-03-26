@@ -36,6 +36,13 @@ class Partidas
     #[ORM\Column(nullable: true)]
     private ?array $filas = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $fichas = null;
+
+    #[ORM\ManyToOne(inversedBy: 'partidas')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Juegos $tipo = null;
+
 
 
     public function getId(): ?int
@@ -111,6 +118,30 @@ class Partidas
     public function setFilas(?array $filas): static
     {
         $this->filas = $filas;
+
+        return $this;
+    }
+
+    public function getFichas(): ?int
+    {
+        return $this->fichas;
+    }
+
+    public function setFichas(?int $fichas): static
+    {
+        $this->fichas = $fichas;
+
+        return $this;
+    }
+
+    public function getTipo(): ?Juegos
+    {
+        return $this->tipo;
+    }
+
+    public function setTipo(?Juegos $tipo): static
+    {
+        $this->tipo = $tipo;
 
         return $this;
     }

@@ -27,6 +27,7 @@ class PartidasController extends AbstractController
                     'ganador' =>$partida->isAcabada(),
                     'turno'=>$partida->isTurno(),
                     'id'=>$partida->getId(),
+                    'fichas'=>$partida->getFichas()
                 ];
         }
             $response = new JsonResponse();
@@ -46,13 +47,16 @@ class PartidasController extends AbstractController
         $acabada= $data[0]["ganador"];
         $turno=$data[0]["turno"];
         $filas=$data[0]["filas"];
+        $fichas=$data[0]["fichas"];
+        $acabada=$data[0]["ganador"];
 
         $partida=$entityManager->getRepository(Partidas::class)->find($id);
 
         $partida->setAcabada($acabada);
         $partida->setTurno($turno);
         $partida->setFilas($filas);
-        $partida->setTurno($turno);
+        $partida->setFichas($fichas);
+        $partida->setAcabada($acabada);
         $entityManager->flush();
 
         $responseData = [

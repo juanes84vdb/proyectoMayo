@@ -11,6 +11,7 @@ import { CabezeraComponent } from './componentes/cabezera/cabezera.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { AjedrezComponent } from './componentes/ajedrez/ajedrez.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { NuevaComponent } from './componentes/nueva/nueva.component';
 
 
 
@@ -20,7 +21,8 @@ import { LoginComponent } from './componentes/login/login.component';
     CabezeraComponent,
     InicioComponent,
     AjedrezComponent,
-    LoginComponent
+    LoginComponent,
+    NuevaComponent
   ],
   imports: [
     BrowserModule,

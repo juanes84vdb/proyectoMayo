@@ -7,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./cabezera.component.css'],
 })
 export class CabezeraComponent {
-
+  inicio:boolean=false;
+  constructor(){
+    if(localStorage.getItem('loggedInKey')){
+      this.inicio=true;
+    }
+  }
+  cerrarSesion(){
+    localStorage.removeItem('loggedInKey');
+    window.location.reload()
+  }
 }

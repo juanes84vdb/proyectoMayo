@@ -24,6 +24,7 @@ class JuegosController extends AbstractController
         foreach($juegos as $juego){
             if($juego->getImagen()!==null){
                 $juegosArray[]=[
+                    'id'=>$juego->getId(),
                     'nombre' => $juego->getNombre(),
                     'descripcion' => $juego->getDescripcion(),
                     'imagen' => base64_encode(stream_get_contents($juego->getImagen())),
@@ -31,6 +32,7 @@ class JuegosController extends AbstractController
             }
             else{
                 $juegosArray[]=[
+                    'id'=>$juego->getId(),
                     'nombre' => $juego->getNombre(),
                     'descripcion' => $juego->getDescripcion(),
                     'imagen'=>null

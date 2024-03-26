@@ -19,7 +19,7 @@ export class AjedrezComponent {
   color: any | null = null;
   coronado: boolean = false;
   ganador: boolean = false;
-  piezas: any = 30;
+  fichas: any
   colort: string = ""
   valores:any
   constructor(private renderer: Renderer2,
@@ -60,6 +60,7 @@ export class AjedrezComponent {
         this.turno = response[0].turno
         this.ganador = response[0].ganador
         this.id=response[0].id
+        this.fichas=response[0].fichas
         this.valores=response
         //  console.log(response[0].id)
         //  console.log(this.valores)
@@ -77,7 +78,6 @@ export class AjedrezComponent {
     }
     this.color = null;
     this.coronado = false;
-    this.piezas = 30;
     const seccion = this.renderer.createElement("tr");
     seccion.innerHTML = '<th></th>';
     for (let i = 0; i < 8; i++) {
@@ -212,12 +212,14 @@ export class AjedrezComponent {
     }
     this.valores[0].filas=this.tablero
     this.valores[0].turno=this.turno
+    this.valores[0].fichas=this.fichas
+    this.valores[0].ganador=this.ganador
     this.partdasServices.updatePartida(this.valores).subscribe();
     //  console.log(this.valores)
   }
 
   comido(cambiar: HTMLElement) {
-    this.piezas = this.piezas - 1;
+    this.fichas = this.fichas - 1;
     if (!this.turno) {
       const cementerio = document.getElementsByTagName("article")[0];
       if (cambiar.innerHTML === "♙") {
@@ -233,7 +235,7 @@ export class AjedrezComponent {
         cementerio.innerHTML = cementerio.innerHTML + " " + cambiar.innerHTML;
       }
     }
-    if (this.piezas === 0) {
+    if (this.fichas === 0) {
       this.empate();
     }
   }
