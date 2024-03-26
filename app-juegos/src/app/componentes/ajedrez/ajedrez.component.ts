@@ -58,7 +58,7 @@ export class AjedrezComponent {
           ]
         }
         this.turno = response[0].turno
-        this.ganador = response[0].ganador
+        this.ganador = response[0].acabado
         this.id=response[0].id
         this.fichas=response[0].fichas
         this.valores=response
@@ -213,7 +213,7 @@ export class AjedrezComponent {
     this.valores[0].filas=this.tablero
     this.valores[0].turno=this.turno
     this.valores[0].fichas=this.fichas
-    this.valores[0].ganador=this.ganador
+    this.valores[0].acabado=this.ganador
     this.partdasServices.updatePartida(this.valores).subscribe();
     //  console.log(this.valores)
   }

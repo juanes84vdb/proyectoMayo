@@ -24,7 +24,7 @@ class PartidasController extends AbstractController
         foreach($partidas as $partida){
                 $partidasArray[]=[
                     'filas' =>$partida->getFilas(),
-                    'ganador' =>$partida->isAcabada(),
+                    'acabado' =>$partida->isAcabada(),
                     'turno'=>$partida->isTurno(),
                     'id'=>$partida->getId(),
                     'fichas'=>$partida->getFichas()
@@ -44,11 +44,10 @@ class PartidasController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         $id = $data[0]['id'];
-        $acabada= $data[0]["ganador"];
         $turno=$data[0]["turno"];
         $filas=$data[0]["filas"];
         $fichas=$data[0]["fichas"];
-        $acabada=$data[0]["ganador"];
+        $acabada=$data[0]["acabado"];
 
         $partida=$entityManager->getRepository(Partidas::class)->find($id);
 

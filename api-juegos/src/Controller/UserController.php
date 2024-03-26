@@ -34,14 +34,15 @@ class UserController extends AbstractController
     #[Route('/perfil', name: 'app_perfil')]
         public function index(): Response
         {
-        $user=$this->getUser();
-        $usuario[]=[
-            'usuario' => $user->getUserIdentifier()
-        ];
-        $response = new JsonResponse();
-        $response->setData(
-            $usuario
-        );
-        return $response;
+            $user=$this->getUser();
+            $usuario[]=[
+                'usuario' => $user->getUserIdentifier(),
+                'id'=> $user->getId()
+            ];
+            $response = new JsonResponse();
+            $response->setData(
+                $usuario
+            );
+            return $response;
         }
 }
