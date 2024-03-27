@@ -7,7 +7,7 @@
           <li class="list-inline-item" *ngIf="!inicio"><a routerLink="/login" class="text-light">Inicio de sesion</a></li>
           <li class="list-inline-item" *ngIf="inicio"><a routerLink="/partidas" class="text-light">Tus Partidas</a></li>
           <li class="list-inline-item" *ngIf="inicio"><a routerLink="/nuevo" class="text-light">Nueva Partida</a></li>
-          <li class="list-inline-item" *ngIf="inicio"><a (click)="cerrarSesion()" class="text-light">Cerrar sesion</a></li>
+          <li class="list-inline-item" *ngIf="inicio"><a (click)="cerrarSesion()" routerLink="" class="text-light">Cerrar sesion</a></li>
         </ul>
       </nav>
       <img src="" alt="Logo2" width="100px">
