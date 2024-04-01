@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { ViewChild, ViewEncapsulation } from '@angular/core';
 import { PartidasService } from 'src/app/servicios/partidas.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-ajedrez',
@@ -10,7 +11,7 @@ import { PartidasService } from 'src/app/servicios/partidas.service';
 })
 export class AjedrezComponent {
   @ViewChild('tablero') tablerohtml!: ElementRef;
-  id:number|null=null;
+  id:any|null=null;
   tablero: any[][] = [];
   segundosTranscurridos = 0;
   blancas: any[] = ["♖", "♘", "♗", "♕", "♔", "♙"];
@@ -23,8 +24,15 @@ export class AjedrezComponent {
   colort: string = ""
   valores:any
   constructor(private renderer: Renderer2,
-    private partidasServices: PartidasService) {
-    this.recuperarJuegos();
+    private partidasServices: PartidasService,
+    private activatedRoute: ActivatedRoute) {
+      this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
+        this.id = param.get('partida')!;
+      });
+      const data = {
+        id : this.id
+      };
+    this.recuperarJuegos(data);
   }
   ngAfterViewInit(): void {
     const intervalo = setInterval(() => {
@@ -39,8 +47,8 @@ export class AjedrezComponent {
     }, 1000);
   }
 
-  recuperarJuegos() {
-    this.partidasServices.retornarTablero().subscribe(response => {
+  recuperarJuegos(id:any) {
+    this.partidasServices.retornarTablero(id).subscribe(response => {
       if (Array.isArray(response)) {
         if (response[0].filas.length > 0) {
           this.tablero = response[0].filas;
@@ -171,7 +179,9 @@ export class AjedrezComponent {
             enrocar[0].classList.remove("enroque");
           }
           for (let i = 0; i < 64; i++) {
+            if(valida[0]) {
             valida[0].classList.remove("valida");
+            }
           }
         });
         celda.addEventListener("dragenter", function (e: any) {

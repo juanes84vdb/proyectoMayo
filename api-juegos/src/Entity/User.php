@@ -39,6 +39,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Partidas::class, mappedBy: 'ganador')]
     private Collection $ganadas;
 
+    #[ORM\Column]
+    private ?int $partidas_totales = null;
+
+    #[ORM\Column]
+    private ?int $partidas_ganadas = null;
+
+    #[ORM\Column]
+    private ?int $partidas_perdidos = null;
+
+    #[ORM\Column]
+    private ?int $partidas_terminadas = null;
+
     public function __construct()
     {
         $this->partidas = new ArrayCollection();
@@ -175,6 +187,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $ganada->setGanador(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPartidasTotales(): ?int
+    {
+        return $this->partidas_totales;
+    }
+
+    public function setPartidasTotales(int $partidas_totales): static
+    {
+        $this->partidas_totales = $partidas_totales;
+
+        return $this;
+    }
+
+    public function getPartidasGanadas(): ?int
+    {
+        return $this->partidas_ganadas;
+    }
+
+    public function setPartidasGanadas(int $partidas_ganadas): static
+    {
+        $this->partidas_ganadas = $partidas_ganadas;
+
+        return $this;
+    }
+
+    public function getPartidasPerdidos(): ?int
+    {
+        return $this->partidas_perdidos;
+    }
+
+    public function setPartidasPerdidos(int $partidas_perdidos): static
+    {
+        $this->partidas_perdidos = $partidas_perdidos;
+
+        return $this;
+    }
+
+    public function getPartidasTerminadas(): ?int
+    {
+        return $this->partidas_terminadas;
+    }
+
+    public function setPartidasTerminadas(int $partidas_terminadas): static
+    {
+        $this->partidas_terminadas = $partidas_terminadas;
 
         return $this;
     }

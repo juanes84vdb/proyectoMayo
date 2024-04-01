@@ -14,6 +14,7 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'registro', component:RegistroComponent},
 { path: 'Ajedrez', component: AjedrezComponent, canActivate: [loginGuard] },
+{ path: 'Ajedrez/:partida', component: AjedrezComponent, canActivate: [loginGuard] },
 { path: 'nuevo', component: NuevaComponent, canActivate: [loginGuard] },
 { path: 'partidas', component:PartidasComponent , canActivate: [loginGuard] },
 { path: 'partidas/:juego', component:PartidasComponent , canActivate: [loginGuard] },

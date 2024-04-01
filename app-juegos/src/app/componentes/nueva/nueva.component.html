@@ -2,9 +2,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form  class="mt-4">
+            <form (submit)="onSubmit()" class="mt-4">
                 <div class="form-group">
-                    <select  class="menu-select">
+                    <select  class="menu-select" class="form-control" [(ngModel)]="rival" name="rival">
                         <option disabled="disabled" selected>Elija su adversario</option>
                         <ng-container *ngFor="let usuario of usuarios">
                             <option  [value]="usuario.id" *ngIf="usuario.nombre!==yo"> {{ usuario.nombre }}</option>
@@ -12,7 +12,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="menu-select">
+                    <select class="menu-select" class="form-control" [(ngModel)]="juego" name="juego">
                         <option disabled="disabled" selected>Elija el juego</option>
                         <option  *ngFor="let juego of juegos" [value]="juego.id">{{ juego.nombre }}</option>
                     </select>

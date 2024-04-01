@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Partidas;
+use App\Entity\Juegos;
+use App\Entity\User;
 use App\Form\PartidasType;
 use App\Repository\PartidasRepository;
+use App\Repository\UserRepository;
+use App\Repository\JuegosRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,23 +20,25 @@ use Doctrine\DBAL\Types\Types;
 #[Route('/partidas')]
 class PartidasController extends AbstractController
 {
-    #[Route('/partida', name: 'app_partidas_partida', methods: ['GET'])]
-    public function todosj(PartidasRepository $partidasrepository, Request $request): Response
+    #[Route('/partida', name: 'app_partidas_partida', methods: ['GET', 'POST', 'PUT'])]
+    public function todosj(PartidasRepository $partidasrepository, 
+    Request $request,
+    EntityManagerInterface $entityManager): Response
     {
-        $partidas=$partidasrepository->findAll();
-        $partidasArray=[];
-        foreach($partidas as $partida){
-                $partidasArray[]=[
+        $data = json_decode($request->getContent(), true);
+        $id = $data['id'];
+        $partida=$entityManager->getRepository(Partidas::class)->find($id);
+        $partidaArray=[];
+                $partidaArray[]=[
                     'filas' =>$partida->getFilas(),
                     'acabado' =>$partida->isAcabada(),
                     'turno'=>$partida->isTurno(),
                     'id'=>$partida->getId(),
                     'fichas'=>$partida->getFichas()
                 ];
-        }
             $response = new JsonResponse();
             $response->setData(
-                $partidasArray
+                $partidaArray
             );
             return $response;
 }
@@ -73,7 +79,43 @@ class PartidasController extends AbstractController
         $jsonResponse = json_encode($responseData);
         $response = new Response($jsonResponse, Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/json');
- 
+
+        return $response;
+    }
+
+    #[Route('/partidanew', name: 'app_partidas_new', methods: ['POST', 'PUT'])]
+    public function newpartida(Request $request,
+    EntityManagerInterface $entityManager,
+    UserRepository $usuariosRepository,
+    JuegosRepository $juegosRepository): Response
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $jugador1 =$entityManager->getRepository(User::class)->find($data['jugador1']);
+        $jugador2 = $entityManager->getRepository(User::class)->find($data['jugador2']);
+        $tipo = $entityManager->getRepository(Juegos::class)->find($data['tipo']) ;
+        if($tipo->getNombre() == "Ajedrez"){
+            $fichas=30;
+        }
+        $partida=new Partidas();
+
+        $partida->setJugador1($jugador1);
+        $partida->setJugador2($jugador2);
+        $partida->setTipo($tipo);
+        $partida->setAcabada(false);
+        $partida->setTurno(true);
+        $partida->setFichas($fichas);
+        $partida->setFilas([]);
+        $entityManager->persist($partida);
+        $entityManager->flush();
+
+        $responseData = [
+            'mensaje' => 'Datos actualizados correctamente'
+        ];
+        $jsonResponse = json_encode($responseData);
+        $response = new Response($jsonResponse, Response::HTTP_OK);
+        $response->headers->set('Content-Type', 'application/json');
+
         return $response;
     }
 
@@ -85,7 +127,7 @@ class PartidasController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_partidas_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_partidas_newF', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $partida = new Partidas();

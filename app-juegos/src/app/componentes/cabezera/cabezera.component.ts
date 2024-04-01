@@ -18,14 +18,15 @@ export class CabezeraComponent {
   }
   cerrarSesion(){
     localStorage.removeItem('loggedInKey');
-    window.location.reload()
+    window.location.pathname="";
+   // window.location.reload()
   }
 
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(response => {
       if (Array.isArray(response)) {
         this.yo=response[0].usuario;
-        console.log(this.yo)
+      //  console.log(this.yo)
       } else {
         console.error('Los datos recibidos no son un array:', response);
       }
