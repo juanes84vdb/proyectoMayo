@@ -51,6 +51,15 @@ class PartidasController extends AbstractController
 
         $partida=$entityManager->getRepository(Partidas::class)->find($id);
 
+        if($acabada==true){
+            if(!$turno){
+                $partida->setGanador($partida->getJugador1());
+            }
+            else{
+                $partida->setGanador($partida->getJugador2());
+            }
+        }
+
         $partida->setAcabada($acabada);
         $partida->setTurno($turno);
         $partida->setFilas($filas);
@@ -125,7 +134,7 @@ class PartidasController extends AbstractController
     #[Route('/{id}', name: 'app_partidas_delete', methods: ['POST'])]
     public function delete(Request $request, Partidas $partida, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$partida->getId(), $request->getPayload()->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$partida, $request->getPayload()->get('_token'))) {
             $entityManager->remove($partida);
             $entityManager->flush();
         }

@@ -44,7 +44,6 @@ class JuegosController extends AbstractController
                 $juegosArray
             );
             return $response;
-    
 }
 
     #[Route('/', name: 'app_juegos_index', methods: ['GET'])]

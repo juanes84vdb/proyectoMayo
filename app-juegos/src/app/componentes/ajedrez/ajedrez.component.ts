@@ -23,7 +23,7 @@ export class AjedrezComponent {
   colort: string = ""
   valores:any
   constructor(private renderer: Renderer2,
-    private partdasServices: PartidasService) {
+    private partidasServices: PartidasService) {
     this.recuperarJuegos();
   }
   ngAfterViewInit(): void {
@@ -40,7 +40,7 @@ export class AjedrezComponent {
   }
 
   recuperarJuegos() {
-    this.partdasServices.retornarTablero().subscribe(response => {
+    this.partidasServices.retornarTablero().subscribe(response => {
       if (Array.isArray(response)) {
         if (response[0].filas.length > 0) {
           this.tablero = response[0].filas;
@@ -62,8 +62,8 @@ export class AjedrezComponent {
         this.id=response[0].id
         this.fichas=response[0].fichas
         this.valores=response
-        //  console.log(response[0].id)
-        //  console.log(this.valores)
+        console.log(response[0].id)
+        console.log(this.valores)
       } else {
         console.error('Los datos recibidos no son un array:', response);
       }
@@ -214,8 +214,8 @@ export class AjedrezComponent {
     this.valores[0].turno=this.turno
     this.valores[0].fichas=this.fichas
     this.valores[0].acabado=this.ganador
-    this.partdasServices.updatePartida(this.valores).subscribe();
-    //  console.log(this.valores)
+    this.partidasServices.updatePartida(this.valores).subscribe();
+    console.log(this.valores)
   }
 
   comido(cambiar: HTMLElement) {

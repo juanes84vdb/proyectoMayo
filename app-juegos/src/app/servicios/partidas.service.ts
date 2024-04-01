@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class PartidasService {
   private urlApiP ="http://localhost:8000/partidas/partida";
   private updateUrl ="http://localhost:8000/partidas/partidaupdate";
+  private userPartidas ="http://127.0.0.1:8000/usuarios/partidas";
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +18,12 @@ export class PartidasService {
 
   updatePartida(partida: any[]): Observable<any> {
     let jsonData = JSON.stringify(partida);
-    console.log(jsonData)
     return this.http.put<any>(this.updateUrl, jsonData);
+  }
+
+  PartidasUsuario(filtro: any[]): Observable<any> {
+    let jsonData = JSON.stringify(filtro);
+    console.log(jsonData);
+    return this.http.put<any>(this.userPartidas, jsonData);
   }
 }

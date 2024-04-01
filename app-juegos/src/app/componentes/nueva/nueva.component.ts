@@ -38,7 +38,7 @@ export class NuevaComponent {
       } else {
         console.error('Los datos recibidos no son un array:', response);
       }
-    });
+    }); 
   }
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(response => {
