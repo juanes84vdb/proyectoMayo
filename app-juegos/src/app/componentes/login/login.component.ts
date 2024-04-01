@@ -21,7 +21,7 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.credentials).subscribe(
       (response) => {
-        console.log('Succes', response);
+      //  console.log('Succes', response);
         localStorage.setItem('loggedInKey', response.token);
         window.location.pathname=""
       },

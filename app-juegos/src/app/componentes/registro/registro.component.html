@@ -1,1 +1,19 @@
-<p>registro works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form (submit)="onSubmit()" class="mt-4">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" id="username" [(ngModel)]="credentials.username" name="username" class="form-control" placeholder="Ingresa tu nombre de usuario">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" [(ngModel)]="credentials.password" name="password" class="form-control" placeholder="Ingresa tu contraseña">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <button routerLink="/login" class="btn btn-success">Ya tengo Cuenta</button>
+            </form>
+        </div>
+    </div>
+</div>

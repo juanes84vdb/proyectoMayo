@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 
 @Component({
@@ -8,7 +9,9 @@ import { Component } from '@angular/core';
 })
 export class CabezeraComponent {
   inicio:boolean=false;
-  constructor(){
+  yo:string="";
+  constructor(private usuariosService:UsuariosService){
+    this.recuperarYo();
     if(localStorage.getItem('loggedInKey')){
       this.inicio=true;
     }
@@ -17,4 +20,16 @@ export class CabezeraComponent {
     localStorage.removeItem('loggedInKey');
     window.location.reload()
   }
+
+  recuperarYo() {
+    this.usuariosService.retornarYo().subscribe(response => {
+      if (Array.isArray(response)) {
+        this.yo=response[0].usuario;
+        console.log(this.yo)
+      } else {
+        console.error('Los datos recibidos no son un array:', response);
+      }
+    });
+  }
+  
 }
