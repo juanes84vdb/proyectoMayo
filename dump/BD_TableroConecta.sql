@@ -123,7 +123,7 @@ CREATE TABLE `partidas` (
   CONSTRAINT `FK_12114278390198F4` FOREIGN KEY (`jugador1_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_12114278A338CEA5` FOREIGN KEY (`ganador_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_12114278A9276E6C` FOREIGN KEY (`tipo_id`) REFERENCES `juegos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `partidas` (
 
 LOCK TABLES `partidas` WRITE;
 /*!40000 ALTER TABLE `partidas` DISABLE KEYS */;
-INSERT INTO `partidas` VALUES (2,1,4,NULL,0,0,'[[\"\\u265c\",\"\\u265e\",\"\\u265d\",\"\\u265b\",\"\\u265a\",\"\\u265d\",\"\\u265e\",\"\\u265c\"],[\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"\",\"\",\"\",\"\",\"\",\"\\u2658\",\"\",\"\"],[\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\"],[\"\\u2656\",\"\\u2658\",\"\\u2657\",\"\\u2654\",\"\\u2655\",\"\\u2657\",\"\",\"\\u2656\"]]',30,1),(4,1,4,NULL,0,1,'[]',30,1);
+INSERT INTO `partidas` VALUES (2,1,4,NULL,0,1,'[[\"\\u265c\",\"\\u265e\",\"\\u265d\",\"\\u265b\",\"\\u265a\",\"\\u265d\",\"\\u265e\",\"\\u265c\"],[\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\",\"\\u265f\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],[\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\",\"\\u2659\"],[\"\\u2656\",\"\\u2658\",\"\\u2657\",\"\\u2654\",\"\\u2655\",\"\\u2657\",\"\\u2658\",\"\\u2656\"]]',30,1);
 /*!40000 ALTER TABLE `partidas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +154,7 @@ CREATE TABLE `user` (
   `partidas_terminadas` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_IDENTIFIER_USERNAME` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Mario','[]','$2y$13$pdICLJX3Ft8dws.5JbL7nO9syf/ubehXOebqJzXJCB2ZohFzODF/q',0,0,0,0),(4,'mario2','[]','$2y$13$Qt8FP9gqFaNgcHLmxvPhfOv/.PqgxfJDDdhGq79ioBj5jBoTMcrfS',0,0,0,0),(7,'pepe','[]','$2y$13$sN9Fw.978EYQp9crTp7SUO6vg5dn5dsRsFhvc2o6FR./AlYxZZLUS',0,0,0,0);
+INSERT INTO `user` VALUES (1,'Mario','[]','$2y$13$pdICLJX3Ft8dws.5JbL7nO9syf/ubehXOebqJzXJCB2ZohFzODF/q',1,0,0,0),(4,'mario2','[]','$2y$13$Qt8FP9gqFaNgcHLmxvPhfOv/.PqgxfJDDdhGq79ioBj5jBoTMcrfS',1,0,0,0),(7,'pepe','[]','$2y$13$sN9Fw.978EYQp9crTp7SUO6vg5dn5dsRsFhvc2o6FR./AlYxZZLUS',0,0,0,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,4 +180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-01 16:15:08
+-- Dump completed on 2024-04-02 10:40:59

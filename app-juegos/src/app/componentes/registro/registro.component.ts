@@ -13,12 +13,10 @@ export class RegistroComponent {
   onSubmit() {
     this.authService.register(this.credentials).subscribe(
       (response) => {
-      //  console.log(this.credentials)
-      //  console.log('Succes', response);
         this.login()
       },
       (error) => {
-      //  console.log(error)
+      //  console.error(error)
         alert('Error ' + error.error.message);
       }
     );
@@ -27,12 +25,11 @@ export class RegistroComponent {
   login() {
     this.authService.login(this.credentials).subscribe(
       (response) => {
-      //  console.log('Succes', response);
         localStorage.setItem('loggedInKey', response.token);
         window.location.pathname = ""
       },
       (error) => {
-      //  console.log(error)
+      //  console.error(error)
         alert('Error ' + error.error.message);
       }
     );

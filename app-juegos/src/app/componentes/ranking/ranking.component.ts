@@ -22,7 +22,7 @@ export class RankingComponent {
       if (Array.isArray(response)) {
         this.usuarios=response;
       } else {
-        console.error('Los datos recibidos no son un array:', response);
+      //  console.error('Los datos recibidos no son un array:', response);
       }
     });
   }

@@ -1,35 +1,28 @@
 import { Component } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
-
 @Component({
-  selector: 'app-cabezera',
-  templateUrl: './cabezera.component.html',
-  styleUrls: ['./cabezera.component.css'],
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.css']
 })
-export class CabezeraComponent {
-  inicio:boolean=false;
-  yo:string="";
+export class PerfilComponent {
+  perfil:any[]=[]
+  load=false;
   constructor(private usuariosService:UsuariosService){
     this.recuperarYo();
-    if(localStorage.getItem('loggedInKey')){
-      this.inicio=true;
-    }
-  }
-  cerrarSesion(){
-    localStorage.removeItem('loggedInKey');
-    window.location.pathname="";
-   // window.location.reload()
+    setTimeout(() => {
+      this.load = true;
+  }, 7500); 
   }
 
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(response => {
       if (Array.isArray(response)) {
-        this.yo=response[0].usuario;
+        this.perfil=response;
       } else {
       //  console.error('Los datos recibidos no son un array:', response);
       }
     });
   }
-  
 }

@@ -37,7 +37,11 @@ class UserController extends AbstractController
             $user=$this->getUser();
             $usuario[]=[
                 'usuario' => $user->getUserIdentifier(),
-                'id'=> $user->getId()
+                'id'=> $user->getId(),
+                'ganadas'=>$user->getPartidasGanadas(),
+                'perdidas'=>$user->getPartidasPerdidos(),
+                'empezadas'=>$user->getPartidasTotales(),
+                'terminadas'=>$user->getPartidasTerminadas()
             ];
             $response = new JsonResponse();
             $response->setData(

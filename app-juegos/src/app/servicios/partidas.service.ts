@@ -15,7 +15,6 @@ export class PartidasService {
 
   retornarTablero(id: any[]) {
     let jsonData = JSON.stringify(id);
-    //  console.log(jsonData);
     return this.http.put<any[]>(this.urlApiP, jsonData);
   }
 
@@ -25,12 +24,10 @@ export class PartidasService {
   }
   newPartida(data: any[]): Observable<any> {
     let jsonData = JSON.stringify(data);
-    //  console.log(jsonData);
     return this.http.put<any>(this.newUrl, jsonData);
   }
   PartidasUsuario(filtro: any[]): Observable<any> {
     let jsonData = JSON.stringify(filtro);
-    //  console.log(jsonData);
     return this.http.put<any>(this.userPartidas, jsonData);
   }
 }

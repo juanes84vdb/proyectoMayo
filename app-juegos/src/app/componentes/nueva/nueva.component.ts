@@ -34,7 +34,7 @@ export class NuevaComponent {
       if (Array.isArray(response)) {
         this.juegos=response;
       } else {
-        console.error('Los datos recibidos no son un array:', response);
+      //  console.error('Los datos recibidos no son un array:', response);
       }
     });
   }
@@ -43,7 +43,7 @@ export class NuevaComponent {
       if (Array.isArray(response)) {
         this.usuarios=response;
       } else {
-        console.error('Los datos recibidos no son un array:', response);
+      //  console.error('Los datos recibidos no son un array:', response);
       }
     }); 
   }
@@ -52,9 +52,8 @@ export class NuevaComponent {
       if (Array.isArray(response)) {
         this.yo=response[0].usuario;
         this.yoId=response[0].id;
-      //  console.log(this.yo)
       } else {
-        console.error('Los datos recibidos no son un array:', response);
+      //  console.error('Los datos recibidos no son un array:', response);
       }
     });
   }

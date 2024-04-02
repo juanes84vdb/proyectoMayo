@@ -71,10 +71,8 @@ export class AjedrezComponent {
         this.id=response[0].id
         this.fichas=response[0].fichas
         this.valores=response
-      //  console.log(response[0].id)
-      //  console.log(this.valores)
       } else {
-        console.error('Los datos recibidos no son un array:', response);
+      //  console.error('Los datos recibidos no son un array:', response);
       }
     });
   }
@@ -227,7 +225,6 @@ export class AjedrezComponent {
     this.valores[0].acabado=this.ganador;
     this.valores[0].tablas=this.tablas;
     this.partidasServices.updatePartida(this.valores).subscribe();
-  //  console.log(this.valores)
   }
 
   comido(cambiar: HTMLElement) {

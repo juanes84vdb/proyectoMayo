@@ -53,6 +53,17 @@ class JuegosPartidasController extends AbstractController
                                 $ganado=null;
                             }
                         }
+                        if($juego->getImagen()!==null){
+                            $partidasArray[]=[
+                                'acabado' => $partida->isAcabada(),
+                                'ganado'=> $ganado,
+                                'tipo'=> $juego->getNombre(),
+                                'imagen' => base64_encode(stream_get_contents($juego->getImagen())),
+                                'partida'=>$partida->getId(),
+                                'rival'=>$rival
+                            ];
+                        }
+                        else{
                             $partidasArray[]=[
                                 'acabado' => $partida->isAcabada(),
                                 'ganado'=> $ganado,
@@ -60,29 +71,55 @@ class JuegosPartidasController extends AbstractController
                                 'partida'=>$partida->getId(),
                                 'rival'=>$rival
                             ];
+                        }
                     }
                 }
             }
         }
         else{
-            $juego = $entityManager->getRepository(Juegos::class)->find($id_juego);
-            $partidas=$juego->getPartidas();
-            foreach($partidas as $partida){  
-                if($partida->getJugador1()->getId()==$id_usuario || $partida->getJugador2()->getId()==$id_usuario){
-                    if($partida->getGanador()){
-                        if($partida->getGanador()->getId()==$id_usuario){
-                            $ganado=true;
+            if($juego = $entityManager->getRepository(Juegos::class)->find($id_juego)){
+                $partidas=$juego->getPartidas();
+                foreach($partidas as $partida){
+                    if($partida->getJugador1()->getId()==$id_usuario || $partida->getJugador2()->getId()==$id_usuario){
+                        if($partida->getJugador1()->getId()==$id_usuario){
+                            $rival=$partida->getJugador2()->getUsername();
+                            $rivalId=$partida->getJugador2()->getId();
                         }
                         else{
-                            $ganado=false;
-                        }   
+                            $rival=$partida->getJugador1()->getUsername();
+                            $rivalId=$partida->getJugador1()->getId();
+                        }
+                        if($partida->getGanador()!=null){
+                            if($partida->getGanador()->getId()==$id_usuario){
+                                    $ganado=true;
+                                }
+                            else if($partida->getGanador()->getId()==$rivalId){
+                                    $ganado=false;
+                            }   
+                            else{
+                                $ganado=null;
+                            }
+                        }
+                        if($juego->getImagen()!==null){
+                            $partidasArray[]=[
+                                'acabado' => $partida->isAcabada(),
+                                'ganado'=> $ganado,
+                                'tipo'=> $juego->getNombre(),
+                                'imagen' => base64_encode(stream_get_contents($juego->getImagen())),
+                                'partida'=>$partida->getId(),
+                                'rival'=>$rival
+                            ];
+                        }
+                        else{
+                            $partidasArray[]=[
+                                'acabado' => $partida->isAcabada(),
+                                'ganado'=> $ganado,
+                                'tipo'=> $juego->getNombre(),
+                                'partida'=>$partida->getId(),
+                                'rival'=>$rival
+                            ];
+                        }
                     }
-                    $partidasArray[]=[
-                        'acabado' => $partida->isAcabada(),
-                        'ganado'=> $ganado,
-                        'tipo'=> $juego->getNombre(),
-                        'partida'=>$partida->getId(),
-                    ];
                 }
             }
         }

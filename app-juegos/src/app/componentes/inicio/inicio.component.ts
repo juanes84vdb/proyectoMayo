@@ -24,7 +24,7 @@ export class InicioComponent {
         if (Array.isArray(response)) {
           this.juegos=response;
         } else {
-          console.error('Los datos recibidos no son un array:', response);
+        //  console.error('Los datos recibidos no son un array:', response);
         }
       });
     }

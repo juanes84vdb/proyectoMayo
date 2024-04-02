@@ -8,6 +8,7 @@ import { NuevaComponent } from './componentes/nueva/nueva.component';
 import { PartidasComponent } from './componentes/partidas/partidas.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { RankingComponent } from './componentes/ranking/ranking.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'nuevo', component: NuevaComponent, canActivate: [loginGuard] },
   { path: 'partidas', component: PartidasComponent, canActivate: [loginGuard] },
   { path: 'partidas/:juego', component: PartidasComponent, canActivate: [loginGuard] },
-
+  { path: 'perfil', component: PerfilComponent, canActivate: [loginGuard] },
 ];
 
 @NgModule({

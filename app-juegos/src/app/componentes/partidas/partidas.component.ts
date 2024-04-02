@@ -27,7 +27,7 @@ export class PartidasComponent {
       if (Array.isArray(response)) {
         this.partidas=response;
       } else {
-        console.error('Los datos recibidos no son un array:', response);
+      //  console.error('Los datos recibidos no son un array:', response);
       }
     });
   }
@@ -41,9 +41,8 @@ export class PartidasComponent {
           usuario: this.yo
         };
       this.recuperarPartidas(data);
-      //  console.log(this.yo)
       } else {
-        console.error('Los datos recibidos no son un array:', response);
+      //  console.error('Los datos recibidos no son un array:', response);
       }
     });
   }

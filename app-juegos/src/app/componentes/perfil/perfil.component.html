@@ -1,17 +1,20 @@
 <br>
 
-<h1 class="bg-dark p-3 rounded text-white text-center d-flex justify-content-center">Gran Variedad de juegos de mesa
+<h1 class="bg-dark p-3 rounded text-white text-center d-flex justify-content-center">Gran Variedad de perfil de mesa
   Ahora en tu Ordenador</h1>
 <div class="container py-2 text-center d-flex justify-content-center">
-  <ng-container *ngIf="juegos && juegos.length > 0; else noJuegos">
+  <ng-container *ngIf="perfil && perfil.length > 0; else noperfil">
     <div class="container mt-5">
-      <div *ngFor="let juego of juegos" class="col text-center d-flex justify-content-center">
+      <div *ngFor="let usuario of perfil" class="col text-center d-flex justify-content-center">
         <div class="col-6 py-2">
-          <div class="card h-100" id="foto" routerLink="/partidas/{{ juego.nombre }}" [ngStyle]="{'background-image': 'url( '+'data:image;base64,' + juego.imagen +')'}">
+          <div class="card h-100">
             <div class="card-body d-flex flex-column justify-content-between">
-              <div class="m-4 text-light">
-                <h3>{{ juego.nombre }}</h3>
-                <p>{{ juego.descripcion }}</p>
+              <div class="m-4">
+                <h1>{{ usuario.usuario }}</h1>
+                <h2>{{ usuario.empezadas }}</h2>
+                <p>{{ usuario.ganadas }}</p>
+                <p>{{ usuario.perdidas }}</p>
+                <p>{{ usuario.terminadas }}</p>
               </div>
             </div>
           </div>
@@ -20,10 +23,10 @@
     </div>
   </ng-container>
 
-  <ng-template #noJuegos>
-    <p *ngIf="load==true">No hay Juegos disponibles ahora mismo</p>
+  <ng-template #noperfil>
+    <p *ngIf="load==true">El perfil no esta disponibles ahora mismo</p>
     <span *ngIf="load == false">
-      <p>Cargando Juegos</p>
+      <p>Cargando perfil</p>
       <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
         <div class="wheel"></div>
         <div class="hamster">
