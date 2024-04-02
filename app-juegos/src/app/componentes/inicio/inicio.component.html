@@ -1,8 +1,9 @@
 <br>
 
-    <h1 class="bg-dark p-3 rounded text-white text-center d-flex justify-content-center">Gran Variedad de juegos de mesa Ahora en tu Ordenador</h1>
-    <div class="container py-2 text-center d-flex justify-content-center">
-    <ng-container *ngIf="juegos && juegos.length > 0; else noJuegos">
+<h1 class="bg-dark p-3 rounded text-white text-center d-flex justify-content-center">Gran Variedad de juegos de mesa
+  Ahora en tu Ordenador</h1>
+<div class="container py-2 text-center d-flex justify-content-center">
+  <ng-container *ngIf="juegos && juegos.length > 0; else noJuegos">
     <div class="container mt-5">
       <div *ngFor="let juego of juegos" class="col text-center d-flex justify-content-center">
         <div class="col-6 py-2">
@@ -44,5 +45,5 @@
         <div class="spoke"></div>
       </div>
     </span>
-</ng-template>
+  </ng-template>
 </div>

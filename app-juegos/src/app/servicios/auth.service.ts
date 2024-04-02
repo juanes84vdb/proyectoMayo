@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private loginUrl = 'http://localhost:8000/login_check';
   private registerUrl = 'http://localhost:8000/register';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * Logs a user in with the given credentials.

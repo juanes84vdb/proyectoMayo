@@ -26,7 +26,7 @@ export class LoginComponent {
         window.location.pathname=""
       },
       (error) => {
-        console.log(error)
+      //  console.log(error)
         alert('Error '+ error.error.message);
       }
     );

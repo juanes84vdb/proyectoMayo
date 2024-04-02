@@ -1,5 +1,5 @@
 <div class="container py-2 text-center d-flex justify-content-center">
-    <ng-container *ngIf="partidas && partidas.length > 0; else nopartidas">
+  <ng-container *ngIf="partidas && partidas.length > 0; else nopartidas">
     <div class="container mt-5">
       <div *ngFor="let partida of partidas" class="col text-center d-flex justify-content-center">
         <div class="col-6 py-2">
@@ -8,15 +8,15 @@
               <div class="mb-4">
                 <h2>Partida de {{partida.tipo}}</h2>
                 <ng-container *ngIf="partida.acabado">
-                <h3> La partida ha terminado </h3>
-                <p *ngIf="partida.ganado==true"> Has ganado </p>
-                <p *ngIf="partida.ganado==false"> Has Perdido </p>
-                <p *ngIf="partida.ganado==null"> Ha terminado en Tablas </p>
-              </ng-container>
-              <ng-container *ngIf="!partida.acabado">
-                <h3> La partida Sigue en Juego </h3>
-              </ng-container>
-              <p>Contra: {{ partida.rival }}</p>
+                  <h3> La partida ha terminado </h3>
+                  <p *ngIf="partida.ganado==true"> Has ganado </p>
+                  <p *ngIf="partida.ganado==false"> Has Perdido </p>
+                  <p *ngIf="partida.ganado==null"> Ha terminado en Tablas </p>
+                </ng-container>
+                <ng-container *ngIf="!partida.acabado">
+                  <h3> La partida Sigue en Juego </h3>
+                </ng-container>
+                <p>Contra: {{ partida.rival }}</p>
               </div>
             </div>
           </div>
@@ -48,5 +48,5 @@
         <div class="spoke"></div>
       </div>
     </span>
-</ng-template>
+  </ng-template>
 </div>

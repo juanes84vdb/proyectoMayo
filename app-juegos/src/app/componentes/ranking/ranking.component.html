@@ -1,1 +1,46 @@
-<p>ranking works!</p>
+<div class="container py-2 text-center d-flex justify-content-center">
+  <ng-container *ngIf="usuarios && usuarios.length > 0; else nousuarios">
+    <div class="container mt-5">
+      <div *ngFor="let usuario of usuarios" class="col text-center d-flex justify-content-center">
+        <div class="col-6 py-2">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="mb-4">
+                <h2> {{ usuario.nombre | uppercase }} </h2>
+                <p> Partidas que ha empezado: {{ usuario.empezadas }} </p>
+                <p> Partidas que ha terminado: {{ usuario.terminadas }} </p>
+                <p> De las que ha Ganado: {{ usuario.ganadas }} </p>
+                <p> Y ha perdido: {{ usuario.perdidas }} </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #nousuarios>
+    <p *ngIf="load==true">No se ha podido consultar el Ranking ahora mismo</p>
+    <span *ngIf="load == false">
+      <p>Cargando Ranking</p>
+      <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+        <div class="wheel"></div>
+        <div class="hamster">
+          <div class="hamster__body">
+            <div class="hamster__head">
+              <div class="hamster__ear"></div>
+              <div class="hamster__eye"></div>
+              <div class="hamster__nose"></div>
+            </div>
+            <div class="hamster__limb hamster__limb--fr"></div>
+            <div class="hamster__limb hamster__limb--fl"></div>
+            <div class="hamster__limb hamster__limb--br"></div>
+            <div class="hamster__limb hamster__limb--bl"></div>
+            <div class="hamster__tail"></div>
+          </div>
+        </div>
+        <div class="spoke"></div>
+      </div>
+    </span>
+  </ng-template>
+</div>

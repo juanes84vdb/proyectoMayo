@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UsuariosService {
-  
+
   private urlApi = "http://127.0.0.1:8000/usuarios/todos";
   private urlYo = "http://localhost:8000/usuarios/perfil";
-  private urlRanking="http://localhost:8000/usuarios/ranking";
+  private urlRanking = "http://localhost:8000/usuarios/ranking";
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class UsuariosService {
     });
     return this.http.get<any[]>(this.urlYo, { headers });
   }
-  ranking(){
+  ranking() {
     return this.http.get<any[]>(this.urlRanking);
   }
 }
