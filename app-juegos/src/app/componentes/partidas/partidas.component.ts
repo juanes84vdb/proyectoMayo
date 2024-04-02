@@ -18,6 +18,7 @@ export class PartidasComponent {
   //  const interval = Rx.Observable.interval(100).mapTo(this.recuperarYo()).take(3);
     this.recuperarYo();
     setTimeout(() => {
+      console.log(this.partidas)
       this.load = true;
   }, 7500); 
   }

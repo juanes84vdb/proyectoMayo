@@ -34,7 +34,8 @@ class PartidasController extends AbstractController
                     'acabado' =>$partida->isAcabada(),
                     'turno'=>$partida->isTurno(),
                     'id'=>$partida->getId(),
-                    'fichas'=>$partida->getFichas()
+                    'fichas'=>$partida->getFichas(),
+                    'tablas'=>false
                 ];
             $response = new JsonResponse();
             $response->setData(
@@ -54,16 +55,30 @@ class PartidasController extends AbstractController
         $filas=$data[0]["filas"];
         $fichas=$data[0]["fichas"];
         $acabada=$data[0]["acabado"];
+        $tablas=$data[0]["tablas"];
 
         $partida=$entityManager->getRepository(Partidas::class)->find($id);
 
+        $jugador1 =$entityManager->getRepository(User::class)->find($partida->getJugador1()->getId());
+        $jugador2 = $entityManager->getRepository(User::class)->find($partida->getJugador2()->getId());
+
         if($acabada==true){
-            if(!$turno){
-                $partida->setGanador($partida->getJugador1());
+            if($tablas==false){
+                if(!$turno){
+                    $partida->setGanador($partida->getJugador1());
+
+                    $jugador1->setPartidasGanadas($jugador1->getPartidasGanadas()+1);
+                    $jugador2->setPartidasPerdidos($jugador2->getPartidasPerdidos()+1);
+                }
+                else{
+                    $partida->setGanador($partida->getJugador2());
+
+                    $jugador2->setPartidasGanadas($jugador2->getPartidasGanadas()+1);
+                    $jugador1->setPartidasPerdidos($jugador1->getPartidasPerdidos()+1);
+                }
             }
-            else{
-                $partida->setGanador($partida->getJugador2());
-            }
+            $jugador1->setPartidasTerminadas($jugador1->getPartidasTerminadas()+1);
+            $jugador2->setPartidasTerminadas($jugador2->getPartidasTerminadas()+1);
         }
 
         $partida->setAcabada($acabada);
@@ -106,7 +121,13 @@ class PartidasController extends AbstractController
         $partida->setTurno(true);
         $partida->setFichas($fichas);
         $partida->setFilas([]);
+        $jugador1->setPartidasTotales($jugador1->getPartidasTotales()+1);
+        $jugador2->setPartidasTotales($jugador2->getPartidasTotales()+1);
         $entityManager->persist($partida);
+        $entityManager->flush();
+        $entityManager->persist($jugador1);
+        $entityManager->flush();
+        $entityManager->persist($jugador2);
         $entityManager->flush();
 
         $responseData = [

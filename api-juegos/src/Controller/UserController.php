@@ -45,4 +45,23 @@ class UserController extends AbstractController
             );
             return $response;
         }
+        #[Route('/ranking', name: 'app_ranking')]
+        public function ranking(UserRepository $usuariosRepository, Request $request): Response
+        { $usuarios=$usuariosRepository->findAll();
+            $usuariosArray=[];
+            foreach($usuarios as $usuario){
+                $usuariosArray[]=[
+                    'nombre'=>$usuario->getUsername(),
+                    'ganadas'=>$usuario->getPartidasGanadas(),
+                    'perdidas'=>$usuario->getPartidasPerdidos(),
+                    'empezadas'=>$usuario->getPartidasTotales(),
+                    'terminadas'=>$usuario->getPartidasTerminadas()
+                ];
+            }
+            $response = new JsonResponse();
+            $response->setData(
+                $usuariosArray
+            );
+            return $response;
+        }
 }

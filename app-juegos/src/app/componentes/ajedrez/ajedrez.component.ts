@@ -20,6 +20,7 @@ export class AjedrezComponent {
   color: any | null = null;
   coronado: boolean = false;
   ganador: boolean = false;
+  tablas: boolean = false;
   fichas: any
   colort: string = ""
   valores:any
@@ -220,10 +221,11 @@ export class AjedrezComponent {
         this.tablero[j][x] = casiilas[i].innerHTML
       }
     }
-    this.valores[0].filas=this.tablero
-    this.valores[0].turno=this.turno
-    this.valores[0].fichas=this.fichas
-    this.valores[0].acabado=this.ganador
+    this.valores[0].filas=this.tablero;
+    this.valores[0].turno=this.turno;
+    this.valores[0].fichas=this.fichas;
+    this.valores[0].acabado=this.ganador;
+    this.valores[0].tablas=this.tablas;
     this.partidasServices.updatePartida(this.valores).subscribe();
     console.log(this.valores)
   }
@@ -347,6 +349,7 @@ export class AjedrezComponent {
         }
       } else {
         this.ganador = true;
+        this.tablas=true;
         alert("La partida ha acabado en tablas");
       }
     }

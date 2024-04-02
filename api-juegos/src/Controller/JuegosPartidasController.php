@@ -36,17 +36,22 @@ class JuegosPartidasController extends AbstractController
                     if($partida->getJugador1()->getId()==$id_usuario || $partida->getJugador2()->getId()==$id_usuario){
                         if($partida->getJugador1()->getId()==$id_usuario){
                             $rival=$partida->getJugador2()->getUsername();
+                            $rivalId=$partida->getJugador2()->getId();
                         }
                         else{
                             $rival=$partida->getJugador1()->getUsername();
+                            $rivalId=$partida->getJugador1()->getId();
                         }
-                        if($partida->getGanador()){
+                        if($partida->getGanador()!=null){
                             if($partida->getGanador()->getId()==$id_usuario){
                                     $ganado=true;
                                 }
-                                else{
+                            else if($partida->getGanador()->getId()==$rivalId){
                                     $ganado=false;
-                                }   
+                            }   
+                            else{
+                                $ganado=null;
+                            }
                         }
                             $partidasArray[]=[
                                 'acabado' => $partida->isAcabada(),

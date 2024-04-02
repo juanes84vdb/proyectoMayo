@@ -14,6 +14,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { NuevaComponent } from './componentes/nueva/nueva.component';
 import { PartidasComponent } from './componentes/partidas/partidas.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { RankingComponent } from './componentes/ranking/ranking.component';
 
 
 
@@ -26,7 +27,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     LoginComponent,
     NuevaComponent,
     PartidasComponent,
-    RegistroComponent
+    RegistroComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
