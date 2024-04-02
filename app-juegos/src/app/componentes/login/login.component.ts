@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,6 @@ import { AuthService } from '../../servicios/auth.service';
 })
 export class LoginComponent {
   credentials = { username: '', password: '' };
-
   constructor(private authService: AuthService) {}
 
   /**
@@ -19,15 +19,24 @@ export class LoginComponent {
    * or rejects with an error.
    */
   onSubmit() {
-    this.authService.login(this.credentials).subscribe(
-      (response) => {
-        localStorage.setItem('loggedInKey', response.token);
-        window.location.pathname=""
-      },
-      (error) => {
-      //  console.error(error)
-        alert('Error '+ error.error.message);
-      }
-    );
+    if(this.credentials.username.length>0 && this.credentials.password.length>0){
+      this.authService.login(this.credentials).subscribe(
+        (response) => {
+          localStorage.setItem('loggedInKey', response.token);
+          window.location.pathname=""
+        },
+        (error) => {
+          if( error.error.message.includes('Too many failed login attempts')){
+            alert('Excidido el limite de intentos, intantalo en '+error.error.message.substring(52,54)+' minutos');
+          }
+          else{
+            alert('Parece que las credenciales no son correctas');
+          }
+        }
+      );
+    }
+    else{
+      alert('Debes ingresar un usuario y una contraseña');
+    }
   }
 }

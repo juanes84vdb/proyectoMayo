@@ -1,4 +1,4 @@
-<ng-container *ngIf="load; else noJuegos">
+<ng-container *ngIf="load && !malLogin; else noJuegos">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -28,6 +28,12 @@
 
 <ng-template #noJuegos>
   <div class="container py-2 text-center d-flex justify-content-center">
+    <ng-container *ngIf="load==true">
+      <span >No se pueden crear partidas<br>
+        La sesion puede haber expirado <br>
+        <button routerLink="/login" class="btn btn-success">Iniciar Sesión</button>
+      </span>
+      </ng-container>
     <span *ngIf="load == false">
       <p>Espere un segundo</p>
       <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">

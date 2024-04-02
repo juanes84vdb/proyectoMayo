@@ -2,6 +2,7 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { ViewChild, ViewEncapsulation } from '@angular/core';
 import { PartidasService } from 'src/app/servicios/partidas.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
   selector: 'app-ajedrez',
@@ -26,7 +27,9 @@ export class AjedrezComponent {
   valores:any
   constructor(private renderer: Renderer2,
     private partidasServices: PartidasService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private usuariosService:UsuariosService) {
+      this.recuperarYo()
       this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
         this.id = param.get('partida')!;
       });
@@ -34,6 +37,16 @@ export class AjedrezComponent {
         id : this.id
       };
     this.recuperarJuegos(data);
+  }
+
+  recuperarYo() {
+    this.usuariosService.retornarYo().subscribe(
+      (response) => {
+      },
+      (error)=> {
+        alert("La sesion ha caducado, Vuelva a iniciar sesion")
+        window.location.pathname = "/login"
+    });
   }
   ngAfterViewInit(): void {
     const intervalo = setInterval(() => {
@@ -49,8 +62,8 @@ export class AjedrezComponent {
   }
 
   recuperarJuegos(id:any) {
-    this.partidasServices.retornarTablero(id).subscribe(response => {
-      if (Array.isArray(response)) {
+    this.partidasServices.retornarTablero(id).subscribe(
+      (response) => {
         if (response[0].filas.length > 0) {
           this.tablero = response[0].filas;
         }
@@ -71,10 +84,12 @@ export class AjedrezComponent {
         this.id=response[0].id
         this.fichas=response[0].fichas
         this.valores=response
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
-      }
-    });
+    },
+    (error)=>{
+      alert("No se ha podido recuperar la partida intentelo mas tarde")
+      window.location.pathname = ""
+    }
+    );
   }
   dibujarTabla(tablero: any[][]) {
     if (this.turno === true) {

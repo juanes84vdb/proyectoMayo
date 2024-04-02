@@ -9,9 +9,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 })
 export class CabezeraComponent {
   inicio:boolean=false;
-  yo:string="";
   constructor(private usuariosService:UsuariosService){
-    this.recuperarYo();
     if(localStorage.getItem('loggedInKey')){
       this.inicio=true;
     }
@@ -19,17 +17,5 @@ export class CabezeraComponent {
   cerrarSesion(){
     localStorage.removeItem('loggedInKey');
     window.location.pathname="";
-   // window.location.reload()
   }
-
-  recuperarYo() {
-    this.usuariosService.retornarYo().subscribe(response => {
-      if (Array.isArray(response)) {
-        this.yo=response[0].usuario;
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
-      }
-    });
-  }
-  
 }

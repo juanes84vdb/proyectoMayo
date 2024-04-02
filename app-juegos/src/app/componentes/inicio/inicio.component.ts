@@ -9,23 +9,21 @@ import { JuegosService } from '../../servicios/juegos.service';
 })
 export class InicioComponent {
     juegos: any[] = []; 
-    load=false;
 
     constructor( 
       private juegosService:JuegosService) {
         this.recuperarJuegos();
-        setTimeout(() => {
-          this.load = true;
-      }, 7500); 
       }
 
     recuperarJuegos() {
-      this.juegosService.retornar().subscribe(response => {
-        if (Array.isArray(response)) {
+      this.juegosService.retornar().subscribe(
+        (response) => {
+        
           this.juegos=response;
-        } else {
-        //  console.error('Los datos recibidos no son un array:', response);
-        }
-      });
+      },
+      (error)=>{
+        alert("No se ha podido Conectar al servidor intentelo mas tarde")
+      }
+      );
     }
 }

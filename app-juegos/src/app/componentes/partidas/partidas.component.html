@@ -26,7 +26,12 @@
   </ng-container>
 
   <ng-template #nopartidas>
-    <p *ngIf="load==true">No hay partidas disponibles ahora mismo</p>
+  <ng-container *ngIf="load==true">
+    <span >No hay partidas disponibles ahora mismo <br>
+      La sesion puede haber expirado <br>
+      <button routerLink="/login" class="btn btn-success">Iniciar Sesión</button>
+    </span>
+    </ng-container>
     <span *ngIf="load == false">
       <p>Cargando partidas</p>
       <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">

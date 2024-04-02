@@ -1,14 +1,16 @@
 #foto {
   width: 100%;
+  text-shadow: black 1px 0 3px;
   height: 100%;
   margin: 0px;
   padding: 0px;
-  background-repeat: repeat-x;
+  background-repeat: repeat;
   opacity: 90%;
   border-radius: 10px;
   transition: transform 0.5s ease-in-out,
     box-shadow 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 #foto:hover {

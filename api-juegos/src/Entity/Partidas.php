@@ -43,6 +43,12 @@ class Partidas
     #[ORM\JoinColumn(nullable: false)]
     private ?Juegos $tipo = null;
 
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $cementerio1 = null;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $cementerio2 = null;
+
 
 
     public function getId(): ?int
@@ -142,6 +148,30 @@ class Partidas
     public function setTipo(?Juegos $tipo): static
     {
         $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    public function getCementerio1(): ?array
+    {
+        return $this->cementerio1;
+    }
+
+    public function setCementerio1(?array $cementerio1): static
+    {
+        $this->cementerio1 = $cementerio1;
+
+        return $this;
+    }
+
+    public function getCementerio2(): ?array
+    {
+        return $this->cementerio2;
+    }
+
+    public function setCementerio2(?array $cementerio2): static
+    {
+        $this->cementerio2 = $cementerio2;
 
         return $this;
     }

@@ -16,6 +16,7 @@ export class NuevaComponent {
   rival:any;
   juego:any;
   load=false;
+  malLogin:boolean=false;
   constructor(private juegosService:JuegosService,
     private usuariosService:UsuariosService,
     private partidasServices: PartidasService
@@ -31,32 +32,32 @@ export class NuevaComponent {
   }
   recuperarJuegos() {
     this.juegosService.retornar().subscribe(response => {
-      if (Array.isArray(response)) {
         this.juegos=response;
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
-      }
     });
   }
   recuperarUsuarios() {
-    this.usuariosService.retornar().subscribe(response => {
-      if (Array.isArray(response)) {
+    this.usuariosService.retornar().subscribe(
+      (response) => {
         this.usuarios=response;
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
-      }
-    }); 
+    },
+    (error)=>{
+      alert("No se ha podido Conectar al servidor intentelo mas tarde")
+      window.location.pathname = ""
+    }
+    ); 
   }
   recuperarYo() {
-    this.usuariosService.retornarYo().subscribe(response => {
-      if (Array.isArray(response)) {
+    this.usuariosService.retornarYo().subscribe(
+      (response) => {
+      
         this.yo=response[0].usuario;
         this.yoId=response[0].id;
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
+      },
+      (error) => {
+        this.malLogin = true;
       }
-    });
-  }
+    );
+  };
   onSubmit() {
     if(this.rival=="Elija su adversario" ||
     this.juego=="Elija el juego"){}

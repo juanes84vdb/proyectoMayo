@@ -9,7 +9,6 @@
         <li class="list-inline-item"><a routerLink="/partidas/todas" class="text-light">Tus Partidas</a></li>
         <li class="list-inline-item"><a routerLink="/nuevo" class="text-light">Nueva Partida</a></li>
         <li class="list-inline-item"><a (click)="cerrarSesion()" routerLink="" class="text-light">Cerrar sesion</a></li>
-        <li class="text-light list-inline-item ml-3"><a routerLink="/perfil">{{yo | uppercase }}</a></li>
       </ng-container>
       <ng-template #noLogin>
         <li class="list-inline-item"><a routerLink="/login" class="text-light">Inicio de sesion</a></li>
@@ -17,6 +16,6 @@
       </ng-template>
     </ul>
   </nav>
-  <a routerLink="/perfil" class="text-light"><img *ngIf="inicio" src="" alt="Logo2" width="50px"
+  <a routerLink="/perfil" class="text-light"><img *ngIf="inicio" src="../../../assets/img/perfil.jfif" alt="Logo2" width="50px"
     height="50px" style="border-radius: 50%;" class="text-light"></a>
 </header>

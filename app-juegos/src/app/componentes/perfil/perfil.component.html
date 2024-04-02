@@ -24,7 +24,13 @@
   </ng-container>
 
   <ng-template #noperfil>
-    <p *ngIf="load==true">El perfil no esta disponibles ahora mismo</p>
+    <ng-container *ngIf="load==true">
+      <span >El perfil no esta disponible ahora mismo <br>
+        La sesion puede haber expirado <br>
+        <button routerLink="/login" class="btn btn-success">Iniciar Sesión</button>
+      </span>
+      </ng-container>
+      
     <span *ngIf="load == false">
       <p>Cargando perfil</p>
       <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">

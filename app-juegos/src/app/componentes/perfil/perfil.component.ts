@@ -17,12 +17,13 @@ export class PerfilComponent {
   }
 
   recuperarYo() {
-    this.usuariosService.retornarYo().subscribe(response => {
-      if (Array.isArray(response)) {
+    this.usuariosService.retornarYo().subscribe(
+      (response) => {
         this.perfil=response;
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
+      },
+      (error) => {
+        this.load = true;
       }
-    });
+    );
   }
 }

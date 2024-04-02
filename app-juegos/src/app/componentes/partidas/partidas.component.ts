@@ -23,27 +23,31 @@ export class PartidasComponent {
   }
 
   recuperarPartidas(data:any) {
-    this.partidasServices.PartidasUsuario(data).subscribe(response => {
-      if (Array.isArray(response)) {
+    this.partidasServices.PartidasUsuario(data).subscribe(
+      (response) => {
         this.partidas=response;
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
-      }
+    },
+    (error)=>{
+      alert("No se ha podido Conectar al servidor intentelo mas tarde")
+      window.location.pathname = ""
     });
   }
 
   recuperarYo() {
-    this.usuariosService.retornarYo().subscribe(response => {
-      if (Array.isArray(response)) {
+    this.usuariosService.retornarYo().subscribe(
+      (response) => {
+
         this.yo=response[0].id;
         const data = {
           id: null,
           usuario: this.yo
         };
       this.recuperarPartidas(data);
-      } else {
-      //  console.error('Los datos recibidos no son un array:', response);
-      }
-    });
+    },
+    (error)=>{
+      alert("No se ha podido Conectar al servidor intentelo mas tarde")
+      window.location.pathname = ""
+    }
+    );
   }
 }

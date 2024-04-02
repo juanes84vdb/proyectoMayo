@@ -20,6 +20,9 @@ security:
                 check_path: /login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            login_throttling:
+                max_attempts: 3
+                interval: '10 minutes'
         api:
             pattern:   ^/
             stateless: false
@@ -32,9 +35,6 @@ security:
                 check_path: login
             logout:
                 path: app_logout
-            login_throttling:
-                max_attempts: 3
-                interval: '1 minutes'
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

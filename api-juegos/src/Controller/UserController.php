@@ -59,7 +59,8 @@ class UserController extends AbstractController
                     'ganadas'=>$usuario->getPartidasGanadas(),
                     'perdidas'=>$usuario->getPartidasPerdidos(),
                     'empezadas'=>$usuario->getPartidasTotales(),
-                    'terminadas'=>$usuario->getPartidasTerminadas()
+                    'terminadas'=>$usuario->getPartidasTerminadas(),
+                    'posicion'=>0
                 ];
             }
             $response = new JsonResponse();

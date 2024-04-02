@@ -11,26 +11,37 @@ export class RegistroComponent {
 
   constructor(private authService: AuthService) { }
   onSubmit() {
-    this.authService.register(this.credentials).subscribe(
-      (response) => {
-        this.login()
-      },
-      (error) => {
-      //  console.error(error)
-        alert('Error ' + error.error.message);
+    if(this.credentials.username.length>0 && this.credentials.password.length>0){
+      if(this.credentials.password.length>5){
+        this.authService.register(this.credentials).subscribe(
+          (response) => {
+            this.login()
+          },
+          (error) => {
+            alert('Error ha ocurrido un problema intentelo de nuevo mas tarde');
+            window.location.pathname = ""
+          }
+        );
       }
-    );
+      else{
+        alert('La contraseña debe tener al menos 6 caracteres');
+      }
+    }
+    else{
+      alert('Dees rellenar los dos campos');
+    }
   }
 
   login() {
     this.authService.login(this.credentials).subscribe(
       (response) => {
         localStorage.setItem('loggedInKey', response.token);
+        alert('Registro Exitoso');
         window.location.pathname = ""
       },
       (error) => {
-      //  console.error(error)
-        alert('Error ' + error.error.message);
+        alert('Error ha ocurrido un problema intentelo de nuevo mas tarde');
+        window.location.pathname = ""
       }
     );
   }
