@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class RegistroComponent {
   credentials = { username: '', password: '' };
-
+  ver:boolean=false;
   constructor(private authService: AuthService) { }
   onSubmit() {
     if(this.credentials.username.length>0 && this.credentials.password.length>0){

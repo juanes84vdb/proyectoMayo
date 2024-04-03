@@ -9,6 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   credentials = { username: '', password: '' };
+  ver:boolean=false;
   constructor(private authService: AuthService) {}
 
   /**

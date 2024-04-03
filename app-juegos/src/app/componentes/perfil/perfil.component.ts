@@ -13,9 +13,6 @@ export class PerfilComponent {
   foto:any
   constructor(private usuariosService:UsuariosService){
     this.recuperarYo();
-    setTimeout(() => {
-      this.load = true;
-  }, 7500); 
   }
 
   newcolor() {
