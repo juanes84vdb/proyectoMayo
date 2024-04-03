@@ -26,9 +26,6 @@ export class NuevaComponent {
       this.recuperarJuegos();
       this.recuperarUsuarios();
       this.recuperarYo();
-      setTimeout(() => {
-        this.load = true;
-    }, 4000); 
   }
   recuperarJuegos() {
     this.juegosService.retornar().subscribe(response => {
@@ -41,7 +38,7 @@ export class NuevaComponent {
         this.usuarios=response;
     },
     (error)=>{
-      alert("No se ha podido Conectar al servidor intentelo mas tarde")
+      alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
       window.location.pathname = ""
     }
     ); 
@@ -49,7 +46,7 @@ export class NuevaComponent {
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(
       (response) => {
-      
+        this.load = true;
         this.yo=response[0].usuario;
         this.yoId=response[0].id;
       },

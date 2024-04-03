@@ -22,9 +22,6 @@ class Juegos
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $descripcion = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $imagen = null;
-
     #[ORM\OneToMany(targetEntity: Partidas::class, mappedBy: 'tipo', orphanRemoval: true)]
     private Collection $partidas;
 
@@ -58,18 +55,6 @@ class Juegos
     public function setDescripcion(?string $descripcion): static
     {
         $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    public function getImagen()
-    {
-        return $this->imagen;
-    }
-
-    public function setImagen($imagen): static
-    {
-        $this->imagen = $imagen;
 
         return $this;
     }

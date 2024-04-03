@@ -6,31 +6,55 @@
   <ng-container *ngIf="perfil && perfil.length > 0; else noperfil">
     <div class="container mt-5">
       <div *ngFor="let usuario of perfil" class="col text-center d-flex justify-content-center">
-        <div class="col-6 py-2">
-          <div class="card h-100">
+        <div class="col-lg-8 col-md-12 py-2">
+          <div class="card h-100" id="targeta" [ngStyle]="{'background-color':color}">
             <div class="card-body d-flex flex-column justify-content-between">
               <div class="m-4">
-                <h1>{{ usuario.usuario }}</h1>
-                <h2>{{ usuario.empezadas }}</h2>
-                <p>{{ usuario.ganadas }}</p>
-                <p>{{ usuario.perdidas }}</p>
-                <p>{{ usuario.terminadas }}</p>
+                <h1> {{ usuario.usuario }} <img *ngIf="usuario.perfil" [src]="'data:image;base64,' + usuario.perfil" alt="foto_perfil" width="50px" height="50px" style="border-radius: 50%;"> </h1>
+                <h2> Partidas que has empezado: {{ usuario.empezadas }} </h2>
+                <p> Partidas que has terminado: {{ usuario.terminadas }} </p>
+                <p> De las que has Ganado: {{ usuario.ganadas }} </p>
+                <p> Y has perdido: {{ usuario.perdidas }} </p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </ng-container>
+    <div class="form-group">
+    <form (submit)="newcolor()" class="mt-4">
+      <div class="form-group">
+        <label for="color">Elije tu color</label>
+        <input type="color" value="#ffffff" id="color" (change)="newcolor" [(ngModel)]="color" name="color"
+          class="form-control">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Actualizar Color</button>
+    </form>
+    <br>
+    <form (submit)="newfoto()" class="mt-4">
+      <div class="form-group">
+        <label for="foto">Sube tu Foto de perfil</label>
+        <input type="file" id="username" (change)="newfotopreview($event)" name="foto" class="form-control">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Actualizar Foto</button>
+      </form>
 
+      <p>Preview Nueva Foto</p>
+      <img *ngIf="foto" [src]="foto" alt="previw Cambiada" width="50px" height="50px" style="border-radius: 50%;">
+      <img *ngIf="!foto" src="../../../assets/img/perfil.jfif" alt="previw Cambiada" width="50px" height="50px" style="border-radius: 50%;">
+      <p *ngIf="!foto">La foto actual sera eliminada y no tendras foto</p>
+    </div>
+  </ng-container>
   <ng-template #noperfil>
     <ng-container *ngIf="load==true">
-      <span >El perfil no esta disponible ahora mismo <br>
+      <span>El perfil no esta disponible ahora mismo <br>
         La sesion puede haber expirado <br>
         <button routerLink="/login" class="btn btn-success">Iniciar Sesión</button>
       </span>
-      </ng-container>
-      
+    </ng-container>
+
     <span *ngIf="load == false">
       <p>Cargando perfil</p>
       <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">

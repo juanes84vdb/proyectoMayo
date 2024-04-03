@@ -9,7 +9,9 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 })
 export class CabezeraComponent {
   inicio:boolean=false;
+  yo:any=null;
   constructor(private usuariosService:UsuariosService){
+    this.recuperarYo();
     if(localStorage.getItem('loggedInKey')){
       this.inicio=true;
     }
@@ -18,4 +20,11 @@ export class CabezeraComponent {
     localStorage.removeItem('loggedInKey');
     window.location.pathname="";
   }
+
+  recuperarYo() {
+    if(localStorage.getItem("loggedInKey")!==null){
+    this.usuariosService.retornarYo().subscribe(response => {
+        this.yo=response[0].perfil;
+    });}
+  } 
 }

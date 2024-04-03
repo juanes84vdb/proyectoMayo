@@ -48,6 +48,7 @@ export class AjedrezComponent {
         window.location.pathname = "/login"
     });
   }
+  
   ngAfterViewInit(): void {
     const intervalo = setInterval(() => {
       this.segundosTranscurridos++;
@@ -86,7 +87,7 @@ export class AjedrezComponent {
         this.valores=response
     },
     (error)=>{
-      alert("No se ha podido recuperar la partida intentelo mas tarde")
+      alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
       window.location.pathname = ""
     }
     );

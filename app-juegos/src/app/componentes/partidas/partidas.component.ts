@@ -10,16 +10,12 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 export class PartidasComponent {
   partidas: any[] = []; 
  
-  load=false;
   yo:number = 0;
   constructor(private partidasServices: PartidasService,
     private usuariosService:UsuariosService
     ) {
   //  const interval = Rx.Observable.interval(100).mapTo(this.recuperarYo()).take(3);
     this.recuperarYo();
-    setTimeout(() => {
-      this.load = true;
-  }, 7500); 
   }
 
   recuperarPartidas(data:any) {
@@ -28,7 +24,7 @@ export class PartidasComponent {
         this.partidas=response;
     },
     (error)=>{
-      alert("No se ha podido Conectar al servidor intentelo mas tarde")
+      alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
       window.location.pathname = ""
     });
   }
@@ -45,7 +41,7 @@ export class PartidasComponent {
       this.recuperarPartidas(data);
     },
     (error)=>{
-      alert("No se ha podido Conectar al servidor intentelo mas tarde")
+      alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
       window.location.pathname = ""
     }
     );

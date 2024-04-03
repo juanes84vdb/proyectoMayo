@@ -21,7 +21,9 @@
     box-shadow 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
 }
-
+.Ajedrez{
+  background-image:url("../../../assets/img/tablero_ajedrez.jpg")
+}
 .wheel-and-hamster {
   --dur: 1s;
   position: relative;

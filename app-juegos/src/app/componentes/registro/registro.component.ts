@@ -18,8 +18,7 @@ export class RegistroComponent {
             this.login()
           },
           (error) => {
-            alert('Error ha ocurrido un problema intentelo de nuevo mas tarde');
-            window.location.pathname = ""
+            alert('El usuario ya existe');
           }
         );
       }
@@ -28,7 +27,7 @@ export class RegistroComponent {
       }
     }
     else{
-      alert('Dees rellenar los dos campos');
+      alert('Debes rellenar los dos campos');
     }
   }
 
@@ -40,7 +39,7 @@ export class RegistroComponent {
         window.location.pathname = ""
       },
       (error) => {
-        alert('Error ha ocurrido un problema intentelo de nuevo mas tarde');
+        alert('ha ocurrido un problema intentelo de nuevo mas tarde');
         window.location.pathname = ""
       }
     );

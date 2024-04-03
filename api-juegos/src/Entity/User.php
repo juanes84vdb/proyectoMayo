@@ -55,6 +55,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $fotoPerfil = null;
 
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $color = null;
+
     public function __construct()
     {
         $this->partidas = new ArrayCollection();
@@ -251,6 +254,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFotoPerfil($fotoPerfil): static
     {
         $this->fotoPerfil = $fotoPerfil;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): static
+    {
+        $this->color = $color;
 
         return $this;
     }

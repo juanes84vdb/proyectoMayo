@@ -22,22 +22,11 @@ class JuegosController extends AbstractController
         $juegos=$juegosRepository->findAll();
         $juegosArray=[];
         foreach($juegos as $juego){
-            if($juego->getImagen()!==null){
                 $juegosArray[]=[
                     'id'=>$juego->getId(),
                     'nombre' => $juego->getNombre(),
                     'descripcion' => $juego->getDescripcion(),
-                    'imagen' => base64_encode(stream_get_contents($juego->getImagen())),
                 ];
-            }
-            else{
-                $juegosArray[]=[
-                    'id'=>$juego->getId(),
-                    'nombre' => $juego->getNombre(),
-                    'descripcion' => $juego->getDescripcion(),
-                    'imagen'=>null
-                ];
-            }
         }
             $response = new JsonResponse();
             $response->setData(

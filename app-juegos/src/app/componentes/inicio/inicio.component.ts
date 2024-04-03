@@ -22,7 +22,7 @@ export class InicioComponent {
           this.juegos=response;
       },
       (error)=>{
-        alert("No se ha podido Conectar al servidor intentelo mas tarde")
+        alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
       }
       );
     }

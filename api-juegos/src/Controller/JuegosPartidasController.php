@@ -53,17 +53,6 @@ class JuegosPartidasController extends AbstractController
                                 $ganado=null;
                             }
                         }
-                        if($juego->getImagen()!==null){
-                            $partidasArray[]=[
-                                'acabado' => $partida->isAcabada(),
-                                'ganado'=> $ganado,
-                                'tipo'=> $juego->getNombre(),
-                                'imagen' => base64_encode(stream_get_contents($juego->getImagen())),
-                                'partida'=>$partida->getId(),
-                                'rival'=>$rival
-                            ];
-                        }
-                        else{
                             $partidasArray[]=[
                                 'acabado' => $partida->isAcabada(),
                                 'ganado'=> $ganado,
@@ -71,7 +60,6 @@ class JuegosPartidasController extends AbstractController
                                 'partida'=>$partida->getId(),
                                 'rival'=>$rival
                             ];
-                        }
                     }
                 }
             }
