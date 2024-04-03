@@ -27,16 +27,26 @@ class PartidasController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         $id = $data['id'];
+        $jugador=$data['jugador'];
         $partida=$entityManager->getRepository(Partidas::class)->find($id);
+
+        if ($partida->getJugador1()->getId()==$jugador || $partida->getJugador2()->getId()==$jugador){
         $partidaArray=[];
-                $partidaArray[]=[
-                    'filas' =>$partida->getFilas(),
-                    'acabado' =>$partida->isAcabada(),
-                    'turno'=>$partida->isTurno(),
-                    'id'=>$partida->getId(),
-                    'fichas'=>$partida->getFichas(),
-                    'tablas'=>false
-                ];
+        $partidaArray[]=[
+            'filas' =>$partida->getFilas(),
+            'acabado' =>$partida->isAcabada(),
+            'turno'=>$partida->isTurno(),
+            'id'=>$partida->getId(),
+            'fichas'=>$partida->getFichas(),
+            'tablas'=>false
+        ];
+    $response = new JsonResponse();
+    $response->setData(
+        $partidaArray
+    );
+    return $response;
+        }
+        $partidaArray[]=["error al cargar la partida"];
             $response = new JsonResponse();
             $response->setData(
                 $partidaArray

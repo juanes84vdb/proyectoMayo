@@ -25,6 +25,7 @@ export class AjedrezComponent {
   fichas: any
   colort: string = ""
   valores:any
+  yo:any
   constructor(private renderer: Renderer2,
     private partidasServices: PartidasService,
     private activatedRoute: ActivatedRoute,
@@ -36,12 +37,17 @@ export class AjedrezComponent {
       const data = {
         id : this.id
       };
-    this.recuperarJuegos(data);
   }
 
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(
       (response) => {
+        this.yo=response[0].id;
+        const data = {
+          id : this.id,
+          jugador: this.yo
+        };
+      this.recuperarJuegos(data);
       },
       (error)=> {
         alert("La sesion ha caducado, Vuelva a iniciar sesion")
@@ -65,6 +71,10 @@ export class AjedrezComponent {
   recuperarJuegos(id:any) {
     this.partidasServices.retornarTablero(id).subscribe(
       (response) => {
+        if (response[0]=="error al cargar la partida") {
+          alert("No tienes permiso para jugar esta partida")
+          window.location.pathname = ""
+        }
         if (response[0].filas.length > 0) {
           this.tablero = response[0].filas;
         }

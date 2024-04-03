@@ -35,7 +35,6 @@ export class UsuariosService {
 
   newfoto(foto:any){
     let jsonData = JSON.stringify(foto);
-    console.log(jsonData);
     return this.http.put<any[]>(this.urlFoto, jsonData);
   }
 }
