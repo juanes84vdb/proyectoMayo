@@ -81,6 +81,7 @@ class UserController extends AbstractController
                     'terminadas'=>$usuario->getPartidasTerminadas(),
                     'posicion'=>0,
                     'foto'=>base64_encode(stream_get_contents($usuario->getFotoPerfil())),
+                    'id'=>$usuario->getId(),
                 ];
             }
             else{
@@ -91,7 +92,8 @@ class UserController extends AbstractController
                     'empezadas'=>$usuario->getPartidasTotales(),
                     'terminadas'=>$usuario->getPartidasTerminadas(),
                     'posicion'=>0,
-                    'foto'=>null
+                    'foto'=>null,
+                    'id'=>$usuario->getId(),
                 ];
             }
             }
@@ -141,10 +143,6 @@ class UserController extends AbstractController
             else{
                 $imagenData = null;
             }
-            /*
-            $imagenFile = $foto->getData();
-            $imagenData = file_get_contents($imagenFile->getPathname());
-*/
             $usuario->setFotoPerfil($imagenData);
             $entityManager->flush();
             
@@ -156,4 +154,47 @@ class UserController extends AbstractController
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
+
+        #[Route('/filtro', name: 'app_usuarios_filtro', methods: ['GET', 'POST', 'PUT'])]
+        public function usuario(UserRepository $usuariosRepository, 
+        Request $request,
+        EntityManagerInterface $entityManager): Response
+        {
+            $data = json_decode($request->getContent(), true);
+            $id = $data['id'];
+
+            $usuario=$entityManager->getRepository(User::class)->find($id);
+
+            if($usuario->getFotoPerfil()!==null){
+                $usuariosArray[]=[
+                    'nombre'=>$usuario->getUsername(),
+                    'ganadas'=>$usuario->getPartidasGanadas(),
+                    'perdidas'=>$usuario->getPartidasPerdidos(),
+                    'empezadas'=>$usuario->getPartidasTotales(),
+                    'terminadas'=>$usuario->getPartidasTerminadas(),
+                    'color'=>$usuario->getColor(),
+                    'posicion'=>0,
+                    'foto'=>base64_encode(stream_get_contents($usuario->getFotoPerfil())),
+                    
+                ];
+            }
+            else{
+                $usuariosArray[]=[
+                    'nombre'=>$usuario->getUsername(),
+                    'ganadas'=>$usuario->getPartidasGanadas(),
+                    'perdidas'=>$usuario->getPartidasPerdidos(),
+                    'empezadas'=>$usuario->getPartidasTotales(),
+                    'terminadas'=>$usuario->getPartidasTerminadas(),
+                    'color'=>$usuario->getColor(),
+                    'posicion'=>0,
+                    'foto'=>null
+                ];
+            }
+            $response = new JsonResponse();
+            $response->setData(
+                $usuariosArray
+            );
+            return $response;
+        }
+
 }

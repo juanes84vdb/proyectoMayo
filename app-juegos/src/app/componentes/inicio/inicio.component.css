@@ -24,6 +24,13 @@
 .Ajedrez{
   background-image:url("../../../assets/img/tablero_ajedrez.jpg")
 }
+
+@media (max-width: 800px) {
+  select,input{
+    width: 100%;
+    font-size: 80%;
+  }
+}
 .wheel-and-hamster {
   --dur: 1s;
   position: relative;

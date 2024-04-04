@@ -1,0 +1,57 @@
+<br>
+
+<h1 class="bg-dark p-3 rounded text-white text-center d-flex justify-content-center">Gran Variedad de perfil de mesa
+    Ahora en tu Ordenador</h1>
+<div class="container py-2 text-center d-flex justify-content-center">
+    <ng-container *ngIf="perfil && perfil.length > 0; else noperfil">
+        <div class="container mt-5">
+            <div *ngFor="let usuario of perfil" class="col text-center d-flex justify-content-center">
+                <div class="col-lg-8 col-md-12 py-2">
+                    <div class="card h-100" id="targeta" [ngStyle]="{'background-color':color}">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="m-4">
+                                <h1> {{ usuario.nombre }} <img *ngIf="usuario.foto"
+                                        [src]="'data:image;base64,' + usuario.foto" alt="foto_perfil" width="50px"
+                                        height="50px" style="border-radius: 50%;"> </h1>
+                                <h2> Partidas que ha empezado: {{ usuario.empezadas }} </h2>
+                                <p> Partidas que ha terminado: {{ usuario.terminadas }} </p>
+                                <p> De las que ha Ganado: {{ usuario.ganadas }} </p>
+                                <p> Y ha perdido: {{ usuario.perdidas }} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #noperfil>
+        <ng-container *ngIf="load==true">
+            <span>El perfil no esta disponible ahora mismo <br>
+                La sesion puede haber expirado <br>
+                <button routerLink="/login" class="btn btn-success">Iniciar Sesión</button>
+            </span>
+        </ng-container>
+
+        <span *ngIf="load == false">
+            <p>Cargando perfil</p>
+            <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+                <div class="wheel"></div>
+                <div class="hamster">
+                    <div class="hamster__body">
+                        <div class="hamster__head">
+                            <div class="hamster__ear"></div>
+                            <div class="hamster__eye"></div>
+                            <div class="hamster__nose"></div>
+                        </div>
+                        <div class="hamster__limb hamster__limb--fr"></div>
+                        <div class="hamster__limb hamster__limb--fl"></div>
+                        <div class="hamster__limb hamster__limb--br"></div>
+                        <div class="hamster__limb hamster__limb--bl"></div>
+                        <div class="hamster__tail"></div>
+                    </div>
+                </div>
+                <div class="spoke"></div>
+            </div>
+        </span>
+    </ng-template>
+</div>

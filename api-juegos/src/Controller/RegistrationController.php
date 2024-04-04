@@ -36,6 +36,7 @@ class RegistrationController extends AbstractController
                 $data['password']
             )
         );
+        $user->setColor("#ffffff");
         $entityManager->persist($user);
         $entityManager->flush();
 

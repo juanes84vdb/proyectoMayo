@@ -16,6 +16,7 @@ import { PartidasComponent } from './componentes/partidas/partidas.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { RankingComponent } from './componentes/ranking/ranking.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 
 
 
@@ -30,7 +31,8 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
     PartidasComponent,
     RegistroComponent,
     RankingComponent,
-    PerfilComponent
+    PerfilComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

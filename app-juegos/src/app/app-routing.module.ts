@@ -9,6 +9,7 @@ import { PartidasComponent } from './componentes/partidas/partidas.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { RankingComponent } from './componentes/ranking/ranking.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'ranking', component: RankingComponent },
+  { path: 'usuario/:usuario', component: UsuariosComponent },
   { path: 'Ajedrez', component: AjedrezComponent, canActivate: [loginGuard] },
   { path: 'Ajedrez/:partida', component: AjedrezComponent, canActivate: [loginGuard] },
   { path: 'nuevo', component: NuevaComponent, canActivate: [loginGuard] },

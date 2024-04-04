@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class UsuariosService {
 
   private urlApi = "http://127.0.0.1:8000/usuarios/todos";
+  private urlUsuario = "http://127.0.0.1:8000/usuarios/filtro";
   private urlYo = "http://localhost:8000/usuarios/perfil";
   private urlRanking = "http://localhost:8000/usuarios/ranking";
   private urlColor= "http://localhost:8000/usuarios/newcolor"
@@ -36,5 +37,9 @@ export class UsuariosService {
   newfoto(foto:any){
     let jsonData = JSON.stringify(foto);
     return this.http.put<any[]>(this.urlFoto, jsonData);
+  }
+  usuario(id:any){
+    let jsonData = JSON.stringify(id);
+    return this.http.put<any[]>(this.urlUsuario, jsonData);
   }
 }

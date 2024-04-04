@@ -18,8 +18,18 @@
         </div>
       </div>
     </div>
+    <form class="form-group" (submit)="onSubmit()">
+      <input type="text" name="buscador" id="buscador" [(ngModel)]="buscador" placeholder="Busca perfiles" class="mb-3 mt-5">
+      <select class="menu-select" class="form-control" [(ngModel)]="usuario" name="usuario">
+        <option disabled="disabled" selected>Elige usuario</option>
+        <ng-container *ngFor="let usuario of usuarios">
+          <option [value]="usuario.id" *ngIf="buscado(usuario.nombre)"> {{ usuario.nombre }}</option>
+        </ng-container>
+      </select>
+      <br>
+      <button type="submit" class="btn btn-success form-control">Buscar Usuario</button>
+    </form>
   </ng-container>
-
   <ng-template #noJuegos>
     <span>
       <p>Cargando Juegos</p>
