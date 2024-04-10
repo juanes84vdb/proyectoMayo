@@ -29,6 +29,7 @@ export class InicioComponent {
       },
       (error)=>{
         alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+        localStorage.removeItem('loggedInKey');
       }
       );
     }
@@ -40,6 +41,7 @@ export class InicioComponent {
       },
       (error)=>{
         alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+        localStorage.removeItem('loggedInKey');
         window.location.pathname = ""
       }
       ); 

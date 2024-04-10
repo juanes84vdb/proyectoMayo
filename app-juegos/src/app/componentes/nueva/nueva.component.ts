@@ -39,6 +39,7 @@ export class NuevaComponent {
     },
     (error)=>{
       alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+      localStorage.removeItem('loggedInKey');
       window.location.pathname = ""
     }
     ); 
