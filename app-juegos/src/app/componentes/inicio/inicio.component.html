@@ -19,7 +19,7 @@
       </div>
     </div>
     <form class="form-group" (submit)="onSubmit()">
-      <input type="text" name="buscador" id="buscador" [(ngModel)]="buscador" placeholder="Busca perfiles" class="mb-3 mt-5">
+      <input type="text" name="buscador" id="buscador" [(ngModel)]="buscador" placeholder="Busca perfiles" class="mb-3 mt-5 form-control">
       <select class="menu-select" class="form-control" [(ngModel)]="usuario" name="usuario">
         <option disabled="disabled" selected>Elige usuario</option>
         <ng-container *ngFor="let usuario of usuarios">

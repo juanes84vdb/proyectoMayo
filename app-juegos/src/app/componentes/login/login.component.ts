@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { FormControl, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   credentials = { username: '', password: '' };
@@ -28,7 +29,12 @@ export class LoginComponent {
         },
         (error) => {
           if( error.error.message.includes('Too many failed login attempts')){
-            alert('Excidido el limite de intentos, intantalo en '+error.error.message.substring(52,54)+' minutos');
+            Swal.fire({
+              title: 'Timeout',
+              text: 'Excidido el limite de intentos, intantalo en '+error.error.message.substring(52,54)+' minutos',
+              icon: 'error',
+              confirmButtonText: '¡De acuerdo!'
+            })
           }
           else{
             alert('Parece que las credenciales no son correctas');

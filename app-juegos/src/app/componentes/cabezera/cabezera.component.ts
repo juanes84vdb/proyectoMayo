@@ -5,7 +5,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 @Component({
   selector: 'app-cabezera',
   templateUrl: './cabezera.component.html',
-  styleUrls: ['./cabezera.component.css'],
+  styleUrls: ['./cabezera.component.scss'],
 })
 export class CabezeraComponent {
   inicio:boolean=false;

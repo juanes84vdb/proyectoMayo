@@ -1,11 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { JuegosService } from '../../servicios/juegos.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css'],
+  styleUrls: ['./inicio.component.scss'],
   encapsulation: ViewEncapsulation.Emulated
 })
 export class InicioComponent {
@@ -28,7 +29,12 @@ export class InicioComponent {
           this.juegos=response;
       },
       (error)=>{
-        alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+        Swal.fire({
+          title: 'No ha sido posible establecer la conexion',
+          text: 'No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado',
+          icon: 'warning',
+          confirmButtonText: '¡De acuerdo!'
+        })
         localStorage.removeItem('loggedInKey');
       }
       );
@@ -40,9 +46,13 @@ export class InicioComponent {
           this.usuarios=response;
       },
       (error)=>{
-        alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+        Swal.fire({
+          title: 'Sesion',
+          text: 'La sesion puede haber expirado',
+          icon: 'warning',
+          confirmButtonText: '¡De acuerdo!'
+        })
         localStorage.removeItem('loggedInKey');
-        window.location.pathname = ""
       }
       ); 
     }

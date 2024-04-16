@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent {
   credentials = { username: '', password: '' };
@@ -39,7 +40,12 @@ export class RegistroComponent {
         window.location.pathname = ""
       },
       (error) => {
-        alert('ha ocurrido un problema intentelo de nuevo mas tarde');
+        Swal.fire({
+          title: 'No ha sido posible establecer la conexion',
+          text: 'No se ha podido Conectar al servidor intentelo mas tarde',
+          icon: 'warning',
+          confirmButtonText: '¡De acuerdo!'
+        })
         window.location.pathname = ""
       }
     );

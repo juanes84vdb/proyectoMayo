@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { PartidasService } from 'src/app/servicios/partidas.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-partidas',
   templateUrl: './partidas.component.html',
-  styleUrls: ['./partidas.component.css']
+  styleUrls: ['./partidas.component.scss']
 })
 export class PartidasComponent {
   partidas: any[] = []; 
@@ -24,7 +25,12 @@ export class PartidasComponent {
         this.partidas=response;
     },
     (error)=>{
-      alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+      Swal.fire({
+        title: 'No ha sido posible establecer la conexion',
+        text: 'No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado',
+        icon: 'warning',
+        confirmButtonText: '¡De acuerdo!'
+      })
       localStorage.removeItem('loggedInKey');
       window.location.pathname = ""
     });
@@ -42,7 +48,12 @@ export class PartidasComponent {
       this.recuperarPartidas(data);
     },
     (error)=>{
-      alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+      Swal.fire({
+        title: 'No ha sido posible establecer la conexion',
+        text: 'No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado',
+        icon: 'warning',
+        confirmButtonText: '¡De acuerdo!'
+      })
       localStorage.removeItem('loggedInKey');
       window.location.pathname = ""
     }

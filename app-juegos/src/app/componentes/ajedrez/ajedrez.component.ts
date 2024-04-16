@@ -3,11 +3,12 @@ import { ViewChild, ViewEncapsulation } from '@angular/core';
 import { PartidasService } from 'src/app/servicios/partidas.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ajedrez',
   templateUrl: './ajedrez.component.html',
-  styleUrls: ['./ajedrez.component.css'],
+  styleUrls: ['./ajedrez.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class AjedrezComponent {
@@ -50,7 +51,12 @@ export class AjedrezComponent {
       this.recuperarJuegos(data);
       },
       (error)=> {
-        alert("La sesion ha caducado, Vuelva a iniciar sesion")
+        Swal.fire({
+          title: 'Sesion',
+          text: 'La sesion ha caducado vueve a iniciar sesion',
+          icon: 'warning',
+          confirmButtonText: '¡De acuerdo!'
+        })
         localStorage.removeItem('loggedInKey');
         window.location.pathname = "/login"
     });
@@ -73,8 +79,14 @@ export class AjedrezComponent {
     this.partidasServices.retornarTablero(id).subscribe(
       (response) => {
         if (response[0]=="error al cargar la partida") {
-          alert("No tienes permiso para jugar esta partida")
-          window.location.pathname = ""
+          Swal.fire({
+            title: 'Sin permiso',
+            text: 'No tienes permiso para jugar esta partida',
+            icon: 'error',
+            confirmButtonText: '¡De acuerdo!'
+          }).then((result) => { 
+            window.location.pathname = ""
+          })
         }
         if (response[0].filas.length > 0) {
           this.tablero = response[0].filas;
@@ -98,7 +110,12 @@ export class AjedrezComponent {
         this.valores=response
     },
     (error)=>{
-      alert("No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado")
+      Swal.fire({
+        title: 'No ha sido posible establecer la conexion',
+        text: 'No se ha podido Conectar al servidor intentelo mas tarde, La sesion puede haber expirado',
+        icon: 'warning',
+        confirmButtonText: '¡De acuerdo!'
+      })
       localStorage.removeItem('loggedInKey');
       window.location.pathname = ""
     }
@@ -355,7 +372,12 @@ export class AjedrezComponent {
 
   victoria() {
     this.ganador = true;
-    alert("Han ganado las " + this.color);
+    Swal.fire({
+      title: 'Partida Terminada',
+      text: "Han ganado las " + this.color,
+      icon: 'info',
+      confirmButtonText: '¡De acuerdo!'
+    })
   }
 
   empate(pedido?: boolean) {
