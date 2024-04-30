@@ -23,7 +23,12 @@ export class PerfilComponent {
     }
     this.usuariosService.newcolor(data).subscribe(
       (response) => {
-        alert("Color actualizado correctamente")
+        Swal.fire({
+          title: 'Actualizacion realizada',
+          text: 'Color actualizado correctamente',
+          icon: 'success',
+          confirmButtonText: '¡De acuerdo!'
+        })
       },
       (error) => {
         Swal.fire({
@@ -54,7 +59,12 @@ export class PerfilComponent {
     }
     this.usuariosService.newfoto(data).subscribe(
       (response) => {
-        alert("Foto actualizada correctamente")
+        Swal.fire({
+          title: 'Actualizacion realizada',
+          text: 'Foto actualizado correctamente',
+          icon: 'success',
+          confirmButtonText: '¡De acuerdo!'
+        })
         window.location.reload();
       },
       (error) => {

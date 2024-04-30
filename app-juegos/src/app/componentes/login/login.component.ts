@@ -36,13 +36,23 @@ export class LoginComponent {
             })
           }
           else{
-            alert('Parece que las credenciales no son correctas');
+            Swal.fire({
+              title: 'Error',
+              text: 'Parece que las credenciales no son correctas',
+              icon: 'error',
+              confirmButtonText: '¡De acuerdo!'
+            })
           }
         }
       );
     }
     else{
-      alert('Debes ingresar un usuario y una contraseña');
+      Swal.fire({
+        title: 'Error',
+        text: 'Debes ingresar un usuario y una contraseña',
+        icon: 'error',
+        confirmButtonText: '¡De acuerdo!'
+      })
     }
   }
 }

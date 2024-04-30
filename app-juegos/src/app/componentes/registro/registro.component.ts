@@ -19,16 +19,32 @@ export class RegistroComponent {
             this.login()
           },
           (error) => {
-            alert('El usuario ya existe');
+            Swal.fire({
+              title: 'Usuario no disponible',
+              text: 'El nombre de usuario no es valido',
+              icon: 'success',
+              confirmButtonText: '¡De acuerdo!'
+            })
+
           }
         );
       }
       else{
-        alert('La contraseña debe tener al menos 6 caracteres');
+        Swal.fire({
+          title: 'Error',
+          text: 'La contraseña debe tener al menos 6 caracteres',
+          icon: 'error',
+          confirmButtonText: '¡De acuerdo!'
+        })
       }
     }
     else{
-      alert('Debes rellenar los dos campos');
+      Swal.fire({
+        title: 'Error',
+        text: 'Debes ingresar un usuario y una contraseña',
+        icon: 'error',
+        confirmButtonText: '¡De acuerdo!'
+      })
     }
   }
 
@@ -36,8 +52,14 @@ export class RegistroComponent {
     this.authService.login(this.credentials).subscribe(
       (response) => {
         localStorage.setItem('loggedInKey', response.token);
-        alert('Registro Exitoso');
-        window.location.pathname = ""
+        Swal.fire({
+          title: 'Registro',
+          text: 'Registro Exitoso',
+          icon: 'success',
+          confirmButtonText: '¡De acuerdo!'
+        }).then((result) => { 
+          window.location.pathname = ""
+        })
       },
       (error) => {
         Swal.fire({

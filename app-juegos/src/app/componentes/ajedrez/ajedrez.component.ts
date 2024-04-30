@@ -397,7 +397,12 @@ export class AjedrezComponent {
       } else {
         this.ganador = true;
         this.tablas=true;
-        alert("La partida ha acabado en tablas");
+        Swal.fire({
+          title: 'Terminada',
+          text: 'La partida ha acabado en tablas',
+          icon: 'info',
+          confirmButtonText: '¡De acuerdo!'
+        })
       }
     }
   }

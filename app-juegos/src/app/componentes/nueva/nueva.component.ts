@@ -77,8 +77,14 @@ export class NuevaComponent {
 
   nuevaPartida(data:any) {
     this.partidasServices.newPartida(data).subscribe(response => {
-        alert("Partida Creada Correctamente")
-        window.location.pathname="";
+        Swal.fire({
+          title: 'Ok',
+          text: 'Partida Creada Correctamente',
+          icon: 'success',
+          confirmButtonText: '¡De acuerdo!'
+        }).then((result) => { 
+          window.location.pathname = ""
+        })
     });
   }
 }
