@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
-import { FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({

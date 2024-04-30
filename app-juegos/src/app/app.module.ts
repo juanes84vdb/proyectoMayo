@@ -17,6 +17,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { RankingComponent } from './componentes/ranking/ranking.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { ReportarComponent } from './componentes/reportar/reportar.component';
 
 
 
@@ -32,7 +33,8 @@ import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
     RegistroComponent,
     RankingComponent,
     PerfilComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ReportarComponent
   ],
   imports: [
     BrowserModule,

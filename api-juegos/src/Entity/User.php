@@ -58,10 +58,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $color = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $ban = null;
+
+    #[ORM\OneToMany(targetEntity: Reportes::class, mappedBy: 'reportador')]
+    private Collection $reportes;
+
     public function __construct()
     {
         $this->partidas = new ArrayCollection();
         $this->ganadas = new ArrayCollection();
+        $this->reportes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -269,4 +276,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function isBan(): ?bool
+    {
+        return $this->ban;
+    }
+
+    public function setBan(?bool $ban): static
+    {
+        $this->ban = $ban;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reportes>
+     */
+    public function getReportes(): Collection
+    {
+        return $this->reportes;
+    }
+
+    public function addReporte(Reportes $reporte): static
+    {
+        if (!$this->reportes->contains($reporte)) {
+            $this->reportes->add($reporte);
+            $reporte->setReportador($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReporte(Reportes $reporte): static
+    {
+        if ($this->reportes->removeElement($reporte)) {
+            // set the owning side to null (unless already changed)
+            if ($reporte->getReportador() === $this) {
+                $reporte->setReportador(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
