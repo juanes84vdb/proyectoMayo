@@ -4,19 +4,15 @@
       <div class="col-md-6">
         <form (submit)="onSubmit()" class="mt-4">
           <div class="form-group">
-            <select class="menu-select" class="form-control" [(ngModel)]="rival" name="rival">
-              <option disabled="disabled" selected>Elija su adversario</option>
-              <ng-container *ngFor="let usuario of usuarios">
-                <option [value]="usuario.id" *ngIf="usuario.nombre!==yo"> {{ usuario.nombre }}</option>
-              </ng-container>
-            </select>
+            <p-dropdown [options]="UserInterfece" [(ngModel)]="selectedUsuario" placeholder="Busca Usuario"
+              [editable]="true" optionLabel="name" [ngModelOptions]="{standalone: true}">
+            </p-dropdown>
           </div>
           <br>
           <div class="form-group">
-            <select class="menu-select" class="form-control" [(ngModel)]="juego" name="juego">
-              <option disabled="disabled" selected>Elija el juego</option>
-              <option *ngFor="let juego of juegos" [value]="juego.id">{{ juego.nombre | uppercase }}</option>
-            </select>
+            <p-dropdown [options]="JuegoInterfece" [(ngModel)]="selectedJuego" placeholder="Busca Juego"
+              [editable]="true" optionLabel="name" [ngModelOptions]="{standalone: true}">
+            </p-dropdown>
           </div>
           <br>
           <button type="submit" class="btn btn-primary">Comenzar Partida</button>
@@ -29,11 +25,11 @@
 <ng-template #noJuegos>
   <div class="container py-2 text-center d-flex justify-content-center">
     <ng-container *ngIf="load==true">
-      <span >No se pueden crear partidas<br>
+      <span>No se pueden crear partidas<br>
         La sesion puede haber expirado <br>
         <button routerLink="/login" class="btn btn-success">Iniciar Sesión</button>
       </span>
-      </ng-container>
+    </ng-container>
     <span *ngIf="load == false">
       <p>Espere un segundo</p>
       <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">

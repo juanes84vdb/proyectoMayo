@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +19,12 @@ import { RankingComponent } from './componentes/ranking/ranking.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { ReportarComponent } from './componentes/reportar/reportar.component';
+
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { StyleClassModule as PrimeStyleClassModule } from 'primeng/styleclass';
+import { RippleModule as PrimeRippleModule } from 'primeng/ripple';
 
 
 
@@ -43,6 +50,12 @@ import { ReportarComponent } from './componentes/reportar/reportar.component';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
+    DropdownModule,
+    InputTextModule,
+    PasswordModule,
+    PrimeStyleClassModule,
+    PrimeRippleModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

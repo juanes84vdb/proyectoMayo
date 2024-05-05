@@ -4,6 +4,14 @@ import { PartidasService } from 'src/app/servicios/partidas.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import Swal from 'sweetalert2';
 
+interface usuario {
+  name: string;
+  id: number;
+}
+interface juego {
+  name: string;
+  id: number;
+}
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',
@@ -14,29 +22,37 @@ export class NuevaComponent {
   usuarios: any[]=[];
   yo:string="";
   yoId:number=0;
-  rival:any;
-  juego:any;
   load=false;
+  UserInterfece: usuario[] =[];
+  selectedUsuario: usuario |undefined;
+  JuegoInterfece: juego[] =[];
+  selectedJuego: juego |undefined;
   malLogin:boolean=false;
   constructor(private juegosService:JuegosService,
     private usuariosService:UsuariosService,
     private partidasServices: PartidasService
     ){
-      this.rival="Elija su adversario";
-      this.juego="Elija el juego"
-      this.recuperarJuegos();
-      this.recuperarUsuarios();
       this.recuperarYo();
+      this.recuperarJuegos();
   }
   recuperarJuegos() {
     this.juegosService.retornar().subscribe(response => {
         this.juegos=response;
+        for (let i = 0; i < this.juegos.length; i++){
+          this.JuegoInterfece.push({name: this.juegos[i].nombre, id: this.juegos[i].id})
+        }
+        console.log(this.JuegoInterfece)
     });
   }
   recuperarUsuarios() {
     this.usuariosService.retornar().subscribe(
       (response) => {
         this.usuarios=response;
+        for (let i = 0; i < this.usuarios.length; i++){
+          if(this.usuarios[i].nombre!==this.yo)
+          this.UserInterfece.push({name: this.usuarios[i].nombre, id: this.usuarios[i].id})
+        }
+        this.load = true;
     },
     (error)=>{
       Swal.fire({
@@ -53,9 +69,9 @@ export class NuevaComponent {
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(
       (response) => {
-        this.load = true;
         this.yo=response[0].usuario;
         this.yoId=response[0].id;
+        this.recuperarUsuarios();
       },
       (error) => {
         this.malLogin = true;
@@ -63,13 +79,13 @@ export class NuevaComponent {
     );
   };
   onSubmit() {
-    if(this.rival=="Elija su adversario" ||
-    this.juego=="Elija el juego"){}
-    else{
+    if (this.selectedJuego)
+    console.log(this.selectedJuego.id)
+    if(this.selectedUsuario && this.selectedJuego){
       const data={
         jugador1: this.yoId,
-        jugador2: this.rival,
-        tipo: this.juego
+        jugador2: this.selectedUsuario.id,
+        tipo: this.selectedJuego.id
       }
       this.nuevaPartida(data);
     }

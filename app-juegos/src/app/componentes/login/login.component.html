@@ -1,23 +1,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <br>
+            <h2 class="text-900 font-medium">Login</h2>
+            <br>
             <form (submit)="onSubmit()" class="mt-4">
-                <div class="form-group">
-                    <label for="username">Nombre de usuario</label>
-                    <input type="text" id="username" [(ngModel)]="credentials.username" name="username"
-                        class="form-control" placeholder="Ingresa tu nombre de usuario">
-                </div>
-                <div class="form-group">
-                    <label *ngIf="!ver" for="password">Contraseña 🙈</label>
-                    <input *ngIf="!ver" type="password" id="password" [(ngModel)]="credentials.password" name="password"
-                        class="form-control" placeholder="Ingresa tu contraseña">
-                    <label *ngIf="ver" for="password">Contraseña 🙉</label>
-                    <input *ngIf="ver" type="text" id="password" [(ngModel)]="credentials.password" name="password"
-                        class="form-control" placeholder="Ingresa tu contraseña">
-                </div>
-               <input type="checkbox" name="ver" id="ver" [(ngModel)]="ver">  Ver Contraseña
+                    <span class="p-float-label">
+                        <input pInputText type="text" [(ngModel)]="credentials.username" style="font-size: 18.29px;" [ngModelOptions]="{standalone: true}" id="username" />
+                        <label for="username">Nombre de Usuario</label>
+                    </span>
+                    <br>
+                    <span class=" p-float-label">
+                        <p-password [toggleMask]="true" [(ngModel)]="credentials.password" class="p-inputtext-lg"
+                            [ngModelOptions]="{standalone: true}" id="password" [feedback]="false"></p-password>
+                        <label for="password">Contraseña</label>
+                    </span>
                 <br>
                 <button type="submit" class="btn btn-success">Iniciar Sesión</button>
+                <br><br>
                 <button routerLink="/registro" class="btn btn-primary">No tengo Cuenta</button>
             </form>
         </div>

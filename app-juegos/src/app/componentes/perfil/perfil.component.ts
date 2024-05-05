@@ -64,8 +64,9 @@ export class PerfilComponent {
           text: 'Foto actualizado correctamente',
           icon: 'success',
           confirmButtonText: '¡De acuerdo!'
+        }).then((result) => { 
+          window.location.reload();
         })
-        window.location.reload();
       },
       (error) => {
         Swal.fire({
