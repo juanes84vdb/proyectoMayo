@@ -15,6 +15,19 @@ use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 
 class RegistrationController extends AbstractController
 {
+    /**
+ * Registers a new user.
+ *
+ * @Route("/register", name="app_register", methods={"GET", "POST", "PUT"})
+ *
+ * @param Request $request The request object.
+ * @param UserPasswordHasherInterface $userPasswordHasher The password hasher.
+ * @param EntityManagerInterface $entityManager The entity manager.
+ * @param UserAuthenticatorInterface $userAuthenticator The user authenticator.
+ * @param FormLoginAuthenticator $formLoginAuthenticator The form login authenticator.
+ *
+ * @return Response A JSON response with a success message.
+ */
     #[Route('/register', name: 'app_register', methods: ['GET', 'POST', 'PUT'])]
     public function register(Request $request, 
     UserPasswordHasherInterface $userPasswordHasher, 
@@ -41,12 +54,12 @@ class RegistrationController extends AbstractController
         $entityManager->flush();
 
         $responseData = [
-            'mensaje' => 'Usuario agregado correctamente'
+            'ensaje' => 'Usuario agregado correctamente'
         ];
         $jsonResponse = json_encode($responseData);
         $response = new Response($jsonResponse, Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/json');
-    
+
         return $response;
     }
 }

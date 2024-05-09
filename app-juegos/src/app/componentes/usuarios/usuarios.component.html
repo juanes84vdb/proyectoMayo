@@ -20,14 +20,13 @@
                     </div>
                 </div>
             </div>
-            <button class="btn py-3 mt-4 btn-danger">Reportar Usuario</button>
+            <button class="btn py-3 mt-4 btn-danger" *ngIf="yoId!=id && yoId" (click)="reportar()">Reportar Usuario</button>
         </div>
     </ng-container>
     <ng-template #noperfil>
         <ng-container *ngIf="load==true">
             <span>El perfil no esta disponible ahora mismo <br>
-                La sesion puede haber expirado <br>
-                <button routerLink="/login" class="btn btn-success">Iniciar Sesión</button>
+                <button routerLink="/inicio" class="btn btn-success">Volver Atras</button>
             </span>
         </ng-container>
 

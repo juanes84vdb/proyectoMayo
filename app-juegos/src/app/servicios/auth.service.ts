@@ -19,7 +19,15 @@ export class AuthService {
   login(credentials: { username: string; password: string }): Observable<any> {
     return this.http.post(this.loginUrl, credentials);
   }
-  register(credentials: { username: string; password: string }): Observable<any> {
+  /**
+ * Registers a new user with the given credentials.
+ *
+ * @param credentials - The user's credentials, including their username and password.
+ * @returns An observable that emits the server's response once the registration is successful.
+ *          The response will contain the user's data.
+ * @throws Will throw an error if the registration fails, with the server's error message.
+ */
+register(credentials: { username: string; password: string }): Observable<any> {
     return this.http.post(this.registerUrl, credentials);
-  }
+}
 }

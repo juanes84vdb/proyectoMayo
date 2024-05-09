@@ -18,13 +18,14 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { RankingComponent } from './componentes/ranking/ranking.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
-import { ReportarComponent } from './componentes/reportar/reportar.component';
+
 
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { StyleClassModule as PrimeStyleClassModule } from 'primeng/styleclass';
 import { RippleModule as PrimeRippleModule } from 'primeng/ripple';
+import { AdminComponent } from './componentes/admin/admin.component';
 
 
 
@@ -41,7 +42,7 @@ import { RippleModule as PrimeRippleModule } from 'primeng/ripple';
     RankingComponent,
     PerfilComponent,
     UsuariosComponent,
-    ReportarComponent
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
