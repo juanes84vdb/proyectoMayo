@@ -26,7 +26,7 @@ class UserController extends AbstractController
      * @return Response A JSON response containing all users' id, name, and ban status.
      */
     #[Route('/todos', name: 'app_usuarios_todos', methods: ['GET'])]
-    public function todosj(UserRepository $usuariosRepository, Request $request): Response
+    public function todos(UserRepository $usuariosRepository, Request $request): Response
     {
         // Fetch all users from the database
         $usuarios = $usuariosRepository->findAll();
@@ -39,7 +39,7 @@ class UserController extends AbstractController
             $usuariosArray[] = [
                 'id' => $usuario->getId(),
                 'nombre' => $usuario->getUsername(),
-                'ban' => $usuario->isBan()
+                'ban' => $usuario->isBan(),
             ];
         }
 
@@ -78,7 +78,8 @@ class UserController extends AbstractController
                 'terminadas' => $user->getPartidasTerminadas(),
                 'perfil' => base64_encode(stream_get_contents($user->getFotoPerfil())),
                 'color' => $user->getColor(),
-                'ban' => $user->isBan()
+                'ban' => $user->isBan(),
+                "rol" => $user->getRoles()
             ];
         } else {
             // If the user does not have a profile picture, add null to the user data array
@@ -91,7 +92,8 @@ class UserController extends AbstractController
                 'terminadas' => $user->getPartidasTerminadas(),
                 'perfil' => null,
                 'color' => $user->getColor(),
-                'ban' => $user->isBan()
+                'ban' => $user->isBan(),
+                "rol" => $user->getRoles()
             ];
         }
 
@@ -207,7 +209,7 @@ class UserController extends AbstractController
         
         // Prepare a response data array with a success message
         $responseData = [
-            'ensaje' => 'Datos actualizados correctamente'
+            'mensaje' => 'Datos actualizados correctamente'
         ];
 
         // Encode the response data to JSON format
@@ -265,7 +267,7 @@ class UserController extends AbstractController
         
         // Prepare a response data array with a success message
         $responseData = [
-            'ensaje' => 'Datos actualizados correctamente'
+            'mensaje' => 'Datos actualizados correctamente'
         ];
 
         // Encode the response data to JSON format
@@ -345,5 +347,89 @@ class UserController extends AbstractController
         // Return the JSON response
         return $response;
     }
+         /**
+     * This function retrieves all users from the database and returns them as a JSON response.
+     *
+     * @Route("/todos", name="app_usuarios_todos", methods={"GET"})
+     *
+     * @param UserRepository $usuariosRepository The repository for User entity.
+     * @param Request $request The request object.
+     *
+     * @return Response A JSON response containing all users' id, name, and ban status.
+     */
+    #[Route('/baneados', name: 'app_usuarios_baneados', methods: ['GET'])]
+    public function baneados(UserRepository $usuariosRepository, Request $request): Response
+    {
+        // Fetch all users from the database
+        $usuarios = $usuariosRepository->findAll();
 
+        // Prepare an array to store user data
+        $usuariosArray = [];
+
+        // Iterate over each user and add their data to the array
+        foreach ($usuarios as $usuario) {
+            if($usuario->isBan()){
+                $usuariosArray[] = [
+                    'id' => $usuario->getId(),
+                    'nombre' => $usuario->getUsername(),
+                    'ban' => $usuario->isBan()
+                ];
+            }
+        }
+
+        // Create a JSON response with the user data
+        $response = new JsonResponse();
+        $response->setData($usuariosArray);
+
+        // Return the JSON response
+        return $response;
+    }
+
+        /**
+     * This function updates the user's ban status in the database.
+     *
+     * @Route("/ban", name="app_usuarios_ban", methods={"GET", "POST", "PUT"})
+     *
+     * @param UserRepository $usuariosRepository The repository for User entity.
+     * @param Request $request The request object containing the user's id and new ban status.
+     * @param EntityManagerInterface $entityManager The entity manager for database operations.
+     *
+     * @return Response A JSON response indicating success or failure of the operation.
+     */
+    #[Route('/ban', name: 'app_usuarios_ban', methods: ['GET', 'POST', 'PUT'])]
+    public function ban(UserRepository $usuariosRepository, 
+    Request $request,
+    EntityManagerInterface $entityManager): Response
+    {
+        // Decode the request content to get the user's id and new ban status
+        $data = json_decode($request->getContent(), true);
+        $id = $data['id'];
+        $ban = $data['ban'];
+
+        // Find the user in the database using the provided id
+        $usuario=$entityManager->getRepository(User::class)->find($id);
+
+        // Update the user's ban status
+        $usuario->setBan($ban);
+
+        // Persist the changes in the database
+        $entityManager->flush();
+        
+        // Prepare a response data array with a success message
+        $responseData = [
+            'mensaje' => 'Datos actualizados correctamente'
+        ];
+
+        // Encode the response data to JSON format
+        $jsonResponse = json_encode($responseData);
+
+        // Create a new JSON response with the success message
+        $response = new Response($jsonResponse, Response::HTTP_OK);
+
+        // Set the content type of the response to JSON
+        $response->headers->set('Content-Type', 'application/json');
+
+        // Return the JSON response
+        return $response;
+    }
 }

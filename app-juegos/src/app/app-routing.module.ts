@@ -11,6 +11,8 @@ import { RankingComponent } from './componentes/ranking/ranking.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { AdminComponent } from './componentes/admin/admin.component';
+import { ReportesComponent } from './componentes/admin/reportes/reportes.component';
+import { BaneadosComponent } from './componentes/admin/baneados/baneados.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -25,7 +27,10 @@ const routes: Routes = [
   { path: 'partidas', component: PartidasComponent, canActivate: [loginGuard] },
   { path: 'partidas/:juego', component: PartidasComponent, canActivate: [loginGuard] },
   { path: 'perfil', component: PerfilComponent, canActivate: [loginGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [loginGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [loginGuard]},
+  { path: 'admin/reportes', component: ReportesComponent, canActivate: [loginGuard]},
+  { path: 'admin/baneados', component: BaneadosComponent, canActivate: [loginGuard]},
+  { path: '**', redirectTo: '/inicio', pathMatch: 'full' },
 ];
 
 @NgModule({

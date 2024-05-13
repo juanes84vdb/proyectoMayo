@@ -27,7 +27,7 @@ class JuegosController extends AbstractController
      * @return Response A JSON response containing an array of game objects.
      */
     #[Route('/todos', name: 'app_juegos_todos', methods: ['GET'])]
-    public function todosj(JuegosRepository $juegosRepository, Request $request): Response
+    public function todos(JuegosRepository $juegosRepository, Request $request): Response
     {
         // Fetch all games from the database
         $juegos = $juegosRepository->findAll();

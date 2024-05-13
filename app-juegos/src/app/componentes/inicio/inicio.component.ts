@@ -25,7 +25,7 @@ export class InicioComponent {
     private juegosService: JuegosService,
     private usuariosService: UsuariosService,
   ) {
-    window.close();
+    //window.close();
     this.usuario = "Elige usuario"
     this.recuperarJuegos();
     this.recuperarUsuarios()

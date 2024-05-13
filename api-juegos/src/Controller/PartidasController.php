@@ -31,7 +31,7 @@ class PartidasController extends AbstractController
      * @return Response A JSON response containing the game data or an error message.
      */
     #[Route('/partida', name: 'app_partidas_partida', methods: ['GET', 'POST', 'PUT'])]
-    public function todosj(PartidasRepository $partidasrepository, 
+    public function todos(PartidasRepository $partidasrepository, 
     Request $request,
     EntityManagerInterface $entityManager): Response
     {

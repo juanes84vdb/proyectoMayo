@@ -10,8 +10,10 @@ export class UsuariosService {
   private urlUsuario = "http://127.0.0.1:8000/usuarios/filtro";
   private urlYo = "http://localhost:8000/usuarios/perfil";
   private urlRanking = "http://localhost:8000/usuarios/ranking";
-  private urlColor= "http://localhost:8000/usuarios/newcolor"
-  private urlFoto= "http://localhost:8000/usuarios/newfoto"
+  private urlColor = "http://localhost:8000/usuarios/newcolor";
+  private urlFoto = "http://localhost:8000/usuarios/newfoto";
+  private urlBaneados = "http://127.0.0.1:8000/usuarios/baneados";
+  private urlBanear = "http://127.0.0.1:8000/usuarios/ban";
 
   constructor(private http: HttpClient) { }
 
@@ -27,9 +29,9 @@ export class UsuariosService {
  * });
  * ```
  */
-retornar() {
-  return this.http.get<any[]>(this.urlApi);
-}
+  retornar() {
+    return this.http.get<any[]>(this.urlApi);
+  }
   /**
  * This function is used to retrieve the logged in user's information from the API.
  * It sends an HTTP GET request with an Authorization header containing the JWT token.
@@ -46,16 +48,13 @@ retornar() {
  * @throws Will throw an error if the token is not found in localStorage.
  * @throws Will throw an error if the HTTP request fails.
  */
-retornarYo() {
+  retornarYo() {
     const token = localStorage.getItem("loggedInKey");
-    if (!token) {
-        throw new Error("Token not found in localStorage");
-    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
     return this.http.get<any[]>(this.urlYo, { headers });
-}
+  }
   /**
  * This function is used to retrieve the ranking of users from the API.
  * It sends an HTTP GET request to the specified URL.
@@ -72,9 +71,9 @@ retornarYo() {
  *
  * @throws Will throw an error if the HTTP request fails.
  */
-ranking() {
+  ranking() {
     return this.http.get<any[]>(this.urlRanking);
-}
+  }
 
   /**
  * This function is used to send a PUT request to the API to update the user's color preference.
@@ -94,10 +93,10 @@ ranking() {
  * @throws Will throw an error if the 'color' property is not provided in the input object.
  * @throws Will throw an error if the HTTP request fails.
  */
-newcolor(color:any){
+  newcolor(color: any) {
     let jsonData = JSON.stringify(color);
     return this.http.put<any[]>(this.urlColor, jsonData);
-}
+  }
 
   /**
  * This function is used to send a PUT request to the API to update the user's profile picture.
@@ -117,10 +116,10 @@ newcolor(color:any){
  * @throws Will throw an error if the 'foto' property is not provided in the input object.
  * @throws Will throw an error if the HTTP request fails.
  */
-newfoto(foto:any){
+  newfoto(foto: any) {
     let jsonData = JSON.stringify(foto);
     return this.http.put<any[]>(this.urlFoto, jsonData);
-}
+  }
   /**
  * This function is used to send a PUT request to the API to filter users based on certain criteria.
  * It takes an object containing the filter criteria as a parameter.
@@ -139,8 +138,15 @@ newfoto(foto:any){
  * @throws Will throw an error if the 'id' property is not provided in the input object.
  * @throws Will throw an error if the HTTP request fails.
  */
-usuario(id:any){
+  usuario(id: any) {
     let jsonData = JSON.stringify(id);
     return this.http.put<any[]>(this.urlUsuario, jsonData);
-}
+  }
+  getBanedos(){
+    return this.http.get<any[]>(this.urlBaneados);
+  }
+  setBan(data:any){
+    let jsonData = JSON.stringify(data);
+    return this.http.put<any[]>(this.urlBanear, jsonData);
+  }
 }

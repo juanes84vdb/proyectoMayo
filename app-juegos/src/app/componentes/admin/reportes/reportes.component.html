@@ -1,0 +1,22 @@
+<ng-container *ngIf="admin">
+    <div class="container mt-4">
+        <table class="table table-bordered text-center">
+          <thead class="table-dark">
+            <tr>
+              <th>Reportado</th>
+              <th>Motivo</th>
+              <th>Reportador</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let reporte of reportes">
+              <tr>
+                <td>{{ reporte.reportado }} <br> <button class="btn btn-danger">Banear</button></td>
+                <td>{{ reporte.descripcion }}</td>
+                <td>{{ reporte.reportador }} <br> <button class="btn btn-danger">Banear</button></td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+</ng-container>

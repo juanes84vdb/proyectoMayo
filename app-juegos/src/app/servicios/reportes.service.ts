@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ReportesService {
 
   private newUrl = "http://127.0.0.1:8000/reportes/reportenew";
+  private allUrl = "http://localhost:8000/reportes/all"
 
   constructor(private http: HttpClient) { }
 
@@ -41,8 +42,11 @@ export class ReportesService {
  * );
  * ```
  */
-newReporte(data: any): Observable<any> {
-  let jsonData = JSON.stringify(data);
-  return this.http.put<any>(this.newUrl, jsonData);
-}
+  newReporte(data: any): Observable<any> {
+    let jsonData = JSON.stringify(data);
+    return this.http.put<any>(this.newUrl, jsonData);
+  }
+  getReportes(): Observable<any> {
+    return this.http.get<any>(this.allUrl);
+  }
 }

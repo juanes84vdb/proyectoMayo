@@ -51,4 +51,28 @@ class ReportesController extends AbstractController
 
         return $response;
     }
+    #[Route('/all', name: 'app_reportes_all', methods: ['GET'])]
+    public function reportes(Request $request,
+    EntityManagerInterface $entityManager,
+    ReportesRepository $reportesRepository): Response
+    {
+        $reportes = $reportesRepository->findAll();
+
+        $reportesArray = [];
+
+        foreach ($reportes as $reporte) {
+            $reportesArray[] = [
+                'reportadoId' =>$entityManager->getRepository(User::class)->find($reporte->getReportado())->getId(),
+                'reportadorId' => $entityManager->getRepository(User::class)->find($reporte->getReportador())->getId(),
+                'reportado' =>$entityManager->getRepository(User::class)->find($reporte->getReportado())->getUsername(),
+                'reportador' => $entityManager->getRepository(User::class)->find($reporte->getReportador())->getUsername(),
+                'descripcion' => $reporte->getDescripcion()
+            ];
+        }
+
+        $response = new JsonResponse();
+        $response->setData($reportesArray);
+
+        return $response;
+    }
 }

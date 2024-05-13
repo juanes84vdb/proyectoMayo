@@ -23,9 +23,25 @@ import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { StyleClassModule as PrimeStyleClassModule } from 'primeng/styleclass';
+import { BadgeModule as PrimeBadgeModule } from 'primeng/badge';
+import { ButtonModule as PrimeButtonModule } from 'primeng/button';
+import { CardModule as PrimeCardModule } from 'primeng/card';
+import { ChipModule as PrimeChipModule } from 'primeng/chip';
+import { DialogModule as PrimeDialogModule } from 'primeng/dialog';
+import { DividerModule as PrimeDividerModule } from 'primeng/divider';
+import { FieldsetModule as PrimeFieldsetModule } from 'primeng/fieldset';
+import { InputNumberModule as PrimeInputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule as PrimeImputTextModule } from 'primeng/inputtext';
+import { MessageModule as PrimeMessageModule } from 'primeng/message';
+import { ProgressSpinnerModule as PrimeProgressSpinnerModule } from 'primeng/progressspinner';
 import { RippleModule as PrimeRippleModule } from 'primeng/ripple';
+import { ScrollPanelModule as PrimeScrollPanelModule } from 'primeng/scrollpanel';
+import { StyleClassModule as PrimeStyleClassModule } from 'primeng/styleclass';
+import { TableModule as PrimeTableModule } from 'primeng/table';
+import { TooltipModule as PrimeTooltipModule } from 'primeng/tooltip';;
 import { AdminComponent } from './componentes/admin/admin.component';
+import { ReportesComponent } from './componentes/admin/reportes/reportes.component';
+import { BaneadosComponent } from './componentes/admin/baneados/baneados.component';
 
 
 
@@ -43,6 +59,8 @@ import { AdminComponent } from './componentes/admin/admin.component';
     PerfilComponent,
     UsuariosComponent,
     AdminComponent,
+    ReportesComponent,
+    BaneadosComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +74,24 @@ import { AdminComponent } from './componentes/admin/admin.component';
     PasswordModule,
     PrimeStyleClassModule,
     PrimeRippleModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PrimeBadgeModule,
+    PrimeButtonModule,
+    PrimeCardModule,
+    PrimeChipModule,
+    PrimeDividerModule,
+    PrimeFieldsetModule,
+    PrimeInputNumberModule,
+    PrimeMessageModule,
+    PrimeProgressSpinnerModule,
+    PrimeRippleModule,
+    PrimeScrollPanelModule,
+    PrimeStyleClassModule,
+    PrimeTableModule,
+    PrimeTooltipModule,
+    PrimeDialogModule,
+    PrimeImputTextModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -74,8 +74,9 @@ export class PartidasComponent {
             text: 'Has sido banedo Hay que portarse bien',
             icon: 'info',
             confirmButtonText: '!De acuerdo!'
+          }).then(() => {
+            window.location.pathname = ""
           });
-          window.location.pathname = "";
         }
 
         this.yo = response[0].id;

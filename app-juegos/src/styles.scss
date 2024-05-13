@@ -12,5 +12,10 @@ body {
     height: 100%;
     margin: 0px;
 }
+
+.swal2-popup {
+    background-color: light-dark(white, black) !important;
+    color: light-dark(black, white) !important;
+  }
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";

@@ -170,6 +170,8 @@ recuperarYo() {
             text: 'Has sido banedo Hay que portarse bien',
             icon: 'info',
             confirmButtonText: '!De acuerdo!'
+          }).then(() => {
+            window.location.pathname = ""
           });
         }
         this.perfil = response;

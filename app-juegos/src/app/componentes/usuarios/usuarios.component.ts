@@ -42,6 +42,8 @@ export class UsuariosComponent {
             text: 'Has sido banedo Hay que portarse bien',
             icon: 'info',
             confirmButtonText: '!De acuerdo!'
+          }).then(() => {
+            window.location.pathname = ""
           });
         }
         this.yoId = response[0].id;
