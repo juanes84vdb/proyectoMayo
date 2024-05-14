@@ -31,10 +31,10 @@ export class PartidasService {
  * });
  * ```
  */
-retornarTablero(id: any[]) {
+  retornarTablero(id: any[]) {
     let jsonData = JSON.stringify(id);
     return this.http.put<any[]>(this.urlApiP, jsonData);
-}
+  }
 
   /**
  * This function is used to update a game partida in the database.
@@ -54,10 +54,10 @@ retornarTablero(id: any[]) {
  * });
  * ```
  */
-updatePartida(partida: any[]): Observable<any> {
+  updatePartida(partida: any[]): Observable<any> {
     let jsonData = JSON.stringify(partida);
     return this.http.put<any>(this.updateUrl, jsonData);
-}
+  }
   /**
  * This function is used to create a new game partida in the database.
  *
@@ -76,10 +76,10 @@ updatePartida(partida: any[]): Observable<any> {
  * });
  * ```
  */
-newPartida(data: any[]): Observable<any> {
+  newPartida(data: any[]): Observable<any> {
     let jsonData = JSON.stringify(data);
     return this.http.put<any>(this.newUrl, jsonData);
-}
+  }
   /**
  * This function is used to retrieve game partidas based on a filter.
  *
@@ -98,8 +98,8 @@ newPartida(data: any[]): Observable<any> {
  * });
  * ```
  */
-PartidasUsuario(filtro: any[]): Observable<any> {
+  PartidasUsuario(filtro: any[]): Observable<any> {
     let jsonData = JSON.stringify(filtro);
     return this.http.put<any>(this.userPartidas, jsonData);
-}
+  }
 }

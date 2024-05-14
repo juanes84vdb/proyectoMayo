@@ -13,6 +13,7 @@ import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { AdminComponent } from './componentes/admin/admin.component';
 import { ReportesComponent } from './componentes/admin/reportes/reportes.component';
 import { BaneadosComponent } from './componentes/admin/baneados/baneados.component';
+import { TresRayaComponent } from './componentes/tres-raya/tres-raya.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -21,8 +22,8 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'ranking', component: RankingComponent },
   { path: 'usuario/:usuario', component: UsuariosComponent },
-  { path: 'Ajedrez', component: AjedrezComponent, canActivate: [loginGuard] },
   { path: 'Ajedrez/:partida', component: AjedrezComponent, canActivate: [loginGuard] },
+  { path: 'Tres en Raya/:partida', component: TresRayaComponent, canActivate: [loginGuard] },
   { path: 'nuevo', component: NuevaComponent, canActivate: [loginGuard] },
   { path: 'partidas', component: PartidasComponent, canActivate: [loginGuard] },
   { path: 'partidas/:juego', component: PartidasComponent, canActivate: [loginGuard] },

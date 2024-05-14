@@ -155,20 +155,6 @@ class UserController extends AbstractController
             }
         }
 
-        // Calculate the ranking position for each user based on their winning percentage
-        usort($usuariosArray, function ($a, $b) {
-            $winningPercentageA = $a['ganadas'] / ($a['ganadas'] + $a['perdidas']);
-            $winningPercentageB = $b['ganadas'] / ($b['ganadas'] + $b['perdidas']);
-            return $winningPercentageB <=> $winningPercentageA;
-        });
-
-        // Assign ranking positions to each user
-        $rankingPosition = 1;
-        foreach ($usuariosArray as &$usuario) {
-            $usuario['posicion'] = $rankingPosition;
-            $rankingPosition++;
-        }
-
         // Create a JSON response with the user data
         $response = new JsonResponse();
         $response->setData($usuariosArray);

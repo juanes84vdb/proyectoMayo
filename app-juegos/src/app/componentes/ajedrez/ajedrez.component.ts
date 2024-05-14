@@ -499,23 +499,44 @@ export class AjedrezComponent {
   * It sets the 'ganador' flag to true, sets the 'tablas' flag to true, and displays a Swal alert with the appropriate message.
   * @param pedido - An optional boolean parameter that indicates whether the game is being declared in a stalemate due to a player's request.
   */
-  empate(pedido?: boolean) {
+  async empate(pedido?: boolean) {
     if (!this.ganador) {
       if (pedido) {
         if (this.turno) {
-          const tablas = confirm("Las blancas piden tablas");
-          if (tablas) {
+          const tablas = await Swal.fire({
+            title: 'Tablas',
+            text: 'Las blancas piden tablas',
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonAriaLabel: "Cancelar",
+            confirmButtonText: '!De acuerdo!'
+          })
+          if (tablas.isConfirmed) {
             this.empate();
           }
         } else {
-          const tablas = confirm("Las negras piden tablas");
-          if (tablas) {
+          const tablas =  await Swal.fire({
+            title: 'Tablas',
+            text: 'Las negras piden tablas',
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonAriaLabel: "Cancelar",
+            confirmButtonText: '!De acuerdo!'
+          })
+          if (tablas.isConfirmed) {
             this.empate();
           }
         }
       } else {
         this.ganador = true;
         this.tablas = true;
+        this.valores[0].filas = this.tablero;
+        this.valores[0].turno = this.turno;
+        this.valores[0].fichas = this.fichas;
+        this.valores[0].acabado = this.ganador;
+        this.valores[0].tablas = this.tablas;
+        // Send the updated game data to the server
+        this.partidasServices.updatePartida(this.valores).subscribe();
         Swal.fire({
           title: 'Terminada',
           text: 'La partida ha acabado en tablas',

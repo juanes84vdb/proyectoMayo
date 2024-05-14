@@ -116,7 +116,8 @@ async reportar(){
       inputAttributes: {
         "aria-label": "Type your message here"
       },
-      showCancelButton: true
+      showCancelButton: true,
+      cancelButtonAriaLabel:"Cancelar",
     });
     if (text) {
       const data={

@@ -44,8 +44,8 @@ export class JuegosService {
  * }
  * ```
  */
-retornar() {
-  return this.http.get<any[]>(this.urlApi);
-}
+  retornar() {
+    return this.http.get<any[]>(this.urlApi);
+  }
 
 }

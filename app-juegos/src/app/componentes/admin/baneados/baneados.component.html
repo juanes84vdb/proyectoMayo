@@ -1,3 +1,20 @@
 <ng-container *ngIf="admin">
-    
+  <div class="container mt-4">
+    <table class="table table-bordered text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Baneado</th>
+          <th>Desbanear</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let baneado of baneados">
+          <tr>
+            <td>{{ baneado.nombre }} </td>
+            <td><button class="btn btn-primary" (click)="desBanear(baneado.id)">Desbanear</button></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
 </ng-container>

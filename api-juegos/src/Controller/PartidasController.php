@@ -179,6 +179,9 @@ class PartidasController extends AbstractController
         if ($tipo->getNombre() == "Ajedrez") {
             $fichas = 30;
         }
+        else{
+            $fichas = 10;
+        }
 
         // Create a new Partidas entity
         $partida = new Partidas();

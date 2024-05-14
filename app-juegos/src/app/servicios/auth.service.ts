@@ -27,7 +27,7 @@ export class AuthService {
  *          The response will contain the user's data.
  * @throws Will throw an error if the registration fails, with the server's error message.
  */
-register(credentials: { username: string; password: string }): Observable<any> {
+  register(credentials: { username: string; password: string }): Observable<any> {
     return this.http.post(this.registerUrl, credentials);
-}
+  }
 }

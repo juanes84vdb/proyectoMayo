@@ -142,10 +142,44 @@ export class UsuariosService {
     let jsonData = JSON.stringify(id);
     return this.http.put<any[]>(this.urlUsuario, jsonData);
   }
-  getBanedos(){
+  /**
+ * This function is used to send an HTTP GET request to the API to retrieve a list of banned users.
+ *
+ * @returns {Observable<any[]>} An observable of an array of user objects.
+ * The array contains the information of all banned users.
+ *
+ * @example
+ * ```typescript
+ * usuariosService.getBanedos().subscribe(bannedUsers => {
+ *   console.log(bannedUsers);
+ * });
+ * ```
+ *
+ * @throws Will throw an error if the HTTP request fails.
+ */
+  getBanedos() {
     return this.http.get<any[]>(this.urlBaneados);
   }
-  setBan(data:any){
+  /**
+ * This function is used to send a PUT request to the API to ban a user.
+ * It takes an object containing the user's ID and the reason for the ban as parameters.
+ *
+ * @param data - An object containing the user's ID and the reason for the ban.
+ * The object should have 'id' and 'eason' properties.
+ * @returns {Observable<any[]>} An observable of an array of user objects.
+ *
+ * @example
+ * ```typescript
+ * const banData = { id: 123, reason: "Inappropriate behavior", ban: true };
+ * usuariosService.setBan(banData).subscribe(response => {
+ *   console.log(response);
+ * });
+ * ```
+ *
+ * @throws Will throw an error if the 'id' or 'eason' properties are not provided in the input object.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+  setBan(data: any) {
     let jsonData = JSON.stringify(data);
     return this.http.put<any[]>(this.urlBanear, jsonData);
   }

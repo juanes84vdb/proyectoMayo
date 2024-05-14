@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PartidasService } from 'src/app/servicios/partidas.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import Swal from 'sweetalert2';
@@ -10,11 +11,15 @@ import Swal from 'sweetalert2';
 })
 export class PartidasComponent {
   partidas: any[] = [];
-
+  juego:any=null
   yo: number = 0;
   constructor(private partidasServices: PartidasService,
-    private usuariosService: UsuariosService
+    private usuariosService: UsuariosService,
+    private route: ActivatedRoute
   ) {
+    this.route.paramMap.subscribe(params => {
+       this.juego = params.get('juego');
+    });
     //  const interval = Rx.Observable.interval(100).mapTo(this.recuperarYo()).take(3);
     this.recuperarYo();
   }

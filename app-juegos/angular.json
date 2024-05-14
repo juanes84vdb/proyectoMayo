@@ -69,7 +69,8 @@
               "browserTarget": "app-juegos:build:production"
             },
             "development": {
-              "browserTarget": "app-juegos:build:development"
+              "browserTarget": "app-juegos:build:development",
+              "host": "localhost"
             }
           },
           "defaultConfiguration": "development"

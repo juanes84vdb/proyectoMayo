@@ -25,7 +25,7 @@ import { CanActivateFn, Router } from '@angular/router';
  * ```
  */
 export const loginGuard: CanActivateFn = (route, state) => {
-  const loggedIn = localStorage.getItem('loggedInKey')!== null;
+  const loggedIn = localStorage.getItem('loggedInKey') !== null;
   const router = inject(Router);
   if (loggedIn) {
     return loggedIn;

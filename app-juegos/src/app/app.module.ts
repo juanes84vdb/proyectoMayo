@@ -42,6 +42,7 @@ import { TooltipModule as PrimeTooltipModule } from 'primeng/tooltip';;
 import { AdminComponent } from './componentes/admin/admin.component';
 import { ReportesComponent } from './componentes/admin/reportes/reportes.component';
 import { BaneadosComponent } from './componentes/admin/baneados/baneados.component';
+import { TresRayaComponent } from './componentes/tres-raya/tres-raya.component';
 
 
 
@@ -61,6 +62,7 @@ import { BaneadosComponent } from './componentes/admin/baneados/baneados.compone
     AdminComponent,
     ReportesComponent,
     BaneadosComponent,
+    TresRayaComponent,
   ],
   imports: [
     BrowserModule,
