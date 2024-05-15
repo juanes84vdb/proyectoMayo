@@ -1,37 +1,69 @@
-header{
-    font-size: 100%;
+header {
+  font-size: 100%;
 }
-h2{
-    cursor: pointer;
+h2 {
+  cursor: pointer;
 }
 
+:root {
+  color-scheme: light dark;
+
+  --light-bg: ghostwhite;
+  --light-color: darkslategray;
+  --light-code: tomato;
+
+  --dark-bg: rgb(255, 0, 0);
+  --dark-color: ghostwhite;
+  --dark-code: gold;
+}
+
+li,
+a,
+h2 {
+  color: light-dark(var(--light-color), var(--dark-color)) !important;
+  text-decoration: none;
+}
+header {
+  background-color: light-dark(var(--light-bg), var(--dark-bg)) !important;
+}
+img.logo {
+  content: url("../../../assets/img/logo.png");
+  width: 50px !important;
+  height: 50px;
+  background-size: cover;
+}
+
+@media (prefers-color-scheme: dark) {
+  img.logo {
+    content: url("../../../assets/img/logo-removebg-preview.png");
+  }
+}
 @media (max-width: 800px) {
-    header{
-        font-size: 90%;
-    }
+  header {
+    font-size: 90%;
+  }
 }
 
 @media (max-width: 720px) {
-    header{
-        font-size: 120%;
-    }
+  header {
+    font-size: 120%;
+  }
 }
 
 @media (max-width: 680px) {
-    header{
-        font-size: 100%;
-    }
+  header {
+    font-size: 100%;
+  }
 }
 
 @media (max-width: 620px) {
-    header{
-        font-size: 90%;
-    }
+  header {
+    font-size: 90%;
+  }
 }
 
-
 @media (max-width: 475px) {
-    header{
-        font-size: 80%;
-    }
+  header {
+    font-size: 80%;
+  }
 }

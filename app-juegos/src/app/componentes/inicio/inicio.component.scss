@@ -12,6 +12,23 @@
     opacity 0.5s ease-in-out;
   cursor: pointer;
 }
+:root {
+  color-scheme: light dark;
+
+  --light-bg: ghostwhite;
+  --light-color: darkslategray;
+  --light-code: tomato;
+
+  --dark-bg: rgb(255, 0, 0);
+  --dark-color: ghostwhite;
+  --dark-code: gold;
+}
+
+h1{
+  color: light-dark(var(--light-color), var(--dark-color)) !important;
+  text-decoration: none;
+  background-color: light-dark(var(--light-bg), var(--dark-bg)) !important;
+}
 
 #foto:hover {
   transform: translateY(-5px);

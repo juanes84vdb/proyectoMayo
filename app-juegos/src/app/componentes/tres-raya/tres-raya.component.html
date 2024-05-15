@@ -1,7 +1,7 @@
 <div class="board">
     <div 
         class="box" 
-        (click)="move(i, currentPlayer)" 
+        (click)="move(i, jugador)" 
         *ngFor="let square of board; let i = index" 
         [ngClass]="{'x': square === 'x', 'o': square === 'o'}">
     </div>

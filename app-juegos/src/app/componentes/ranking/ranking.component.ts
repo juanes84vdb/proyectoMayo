@@ -45,7 +45,7 @@ recuperarusuarios() {
     },
     (error) => {
       Swal.fire({
-        title: 'Ok',
+        title: 'Error',
         text: 'No se ha podido obtener el ranking Intentelo mas tarde',
         icon: 'warning',
         confirmButtonText: '¡De acuerdo!'
