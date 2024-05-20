@@ -43,6 +43,9 @@ import { AdminComponent } from './componentes/admin/admin.component';
 import { ReportesComponent } from './componentes/admin/reportes/reportes.component';
 import { BaneadosComponent } from './componentes/admin/baneados/baneados.component';
 import { TresRayaComponent } from './componentes/tres-raya/tres-raya.component';
+import { DamasComponent } from './componentes/damas/damas.component';
+import { HundirFlotaComponent } from './componentes/hundir-flota/hundir-flota.component';
+import { QuienEsQuienComponent } from './componentes/quien-es-quien/quien-es-quien.component';
 
 
 
@@ -63,6 +66,9 @@ import { TresRayaComponent } from './componentes/tres-raya/tres-raya.component';
     ReportesComponent,
     BaneadosComponent,
     TresRayaComponent,
+    DamasComponent,
+    HundirFlotaComponent,
+    QuienEsQuienComponent,
   ],
   imports: [
     BrowserModule,

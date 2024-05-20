@@ -4,6 +4,7 @@ import { PartidasService } from 'src/app/servicios/partidas.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-ajedrez',
@@ -21,16 +22,21 @@ export class AjedrezComponent {
   turno: boolean = true;
   color: any | null = null;
   coronado: boolean = false;
-  ganador: boolean = false;
+  ganador: boolean = true;
+  load: boolean = false;
   tablas: boolean = false;
-  fichas: any
-  colort: string = ""
-  valores: any
-  yo: any
+  fichas: any;
+  colort: string = "";
+  valores: any;
+  yo: any;
+  move: boolean = false;
+  moversiempre: any = false;
+  rival: any;
   constructor(private renderer: Renderer2,
     private partidasServices: PartidasService,
     private activatedRoute: ActivatedRoute,
-    private usuariosService: UsuariosService) {
+    private usuariosService: UsuariosService,
+    private authService: AuthService) {
     this.recuperarYo()
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
       this.id = param.get('partida')!;
@@ -46,7 +52,7 @@ export class AjedrezComponent {
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(
       (response) => {
-        if (response[0].ban==true){
+        if (response[0].ban == true) {
           localStorage.removeItem('loggedInKey');
           Swal.fire({
             title: 'Ban',
@@ -138,8 +144,10 @@ export class AjedrezComponent {
         }
         this.turno = response[0].turno
         this.ganador = response[0].acabado
+        this.move = response[0].mover
         this.id = response[0].id
         this.fichas = response[0].fichas
+        this.rival = response[0].rival
         this.valores = response
       },
       (error) => {
@@ -154,6 +162,40 @@ export class AjedrezComponent {
       }
     );
   }
+
+  async checkRival() {
+    const { value: password } = await Swal.fire({
+      title: "Contraseña",
+      input: "password",
+      inputLabel: "Introduce la contraseña de "+this.rival+" para continuar",
+      inputPlaceholder: "Escribe la contraseña",
+      inputAttributes: {
+        maxlength: "10",
+        autocapitalize: "off",
+        autocorrect: "off"
+      }
+    });
+    if (password) {
+      const credentials = { username: this.rival, password: password };
+      this.authService.login(credentials).subscribe(
+        (response) => {
+          Swal.fire({
+            icon: 'success',
+          })
+          this.moversiempre=true;
+        },
+        (error) => {
+            // Show a generic error message
+            Swal.fire({
+              title: 'Error',
+              text: 'Parece que la contraseña no es correcta',
+              icon: 'error',
+              confirmButtonText: '!De acuerdo!'
+            })
+        }
+      )
+    }
+  }
   /**
  * This function is responsible for drawing the chessboard on the screen.
  * It takes a 2D array representing the current state of the chessboard and generates the HTML structure to display it.
@@ -161,6 +203,7 @@ export class AjedrezComponent {
  * @param tablero - A 2D array representing the current state of the chessboard.
  */
   dibujarTabla(tablero: any[][]) {
+    this.load = true
     // Set the color of the current player
     if (this.turno === true) {
       this.colort = "Blancas"
@@ -196,7 +239,7 @@ export class AjedrezComponent {
           e.preventDefault();
         });
         celda.addEventListener('dragstart', (e: any) => {
-          if (!this.ganador) {
+          if (!this.ganador && (this.move || this.moversiempre)) {
             // Determine the color of the piece being dragged
             for (let i = 0; i < this.negras.length; i++) {
               if (celda.innerHTML == this.negras[i]) {
@@ -332,6 +375,7 @@ export class AjedrezComponent {
       }
     }
     // Update the game data
+    this.move = false
     this.valores[0].filas = this.tablero;
     this.valores[0].turno = this.turno;
     this.valores[0].fichas = this.fichas;
@@ -515,7 +559,7 @@ export class AjedrezComponent {
             this.empate();
           }
         } else {
-          const tablas =  await Swal.fire({
+          const tablas = await Swal.fire({
             title: 'Tablas',
             text: 'Las negras piden tablas',
             icon: 'question',

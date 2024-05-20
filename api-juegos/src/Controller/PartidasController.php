@@ -46,6 +46,21 @@ class PartidasController extends AbstractController
         // Check if the player is a participant in the game
         if ($partida->getJugador1()->getId()==$jugador || $partida->getJugador2()->getId()==$jugador){
             // Prepare the game data array
+            if($partida->getJugador1()->getId()==$jugador && $partida->isTurno()==true){
+                $mover=true;
+            }
+            else if($partida->getJugador2()->getId()==$jugador && $partida->isTurno()==false){
+                $mover=true;
+            }
+            else{
+                $mover=false;
+            }
+            if($partida->getJugador1()->getId()==$jugador){
+                $rival = $partida->getJugador2()->getUsername();
+            }
+            else{
+                $rival = $partida->getJugador1()->getUsername();
+            }
             $partidaArray=[];
             $partidaArray[]=[
                 'filas' =>$partida->getFilas(),
@@ -53,7 +68,9 @@ class PartidasController extends AbstractController
                 'turno'=>$partida->isTurno(),
                 'id'=>$partida->getId(),
                 'fichas'=>$partida->getFichas(),
-                'tablas'=>false
+                'tablas'=>false,
+                'mover'=>$mover,
+                'rival'=>$rival,
             ];
 
             // Create a JSON response with the game data
@@ -180,7 +197,7 @@ class PartidasController extends AbstractController
             $fichas = 30;
         }
         else{
-            $fichas = 10;
+            $fichas = 9;
         }
 
         // Create a new Partidas entity

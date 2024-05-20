@@ -20,10 +20,10 @@
     </div>
     <form class="form-group" (submit)="onSubmit()">
       <div class="card flex justify-content-center">
-      <p-dropdown [options]="UserInterfece" [(ngModel)]="selectedUsuario" placeholder="Busca Usuario"
-                [editable]="true" optionLabel="name" [ngModelOptions]="{standalone: true}">
-      </p-dropdown>
-    </div>
+        <p-dropdown [options]="UserInterfece" [(ngModel)]="selectedUsuario" placeholder="Busca Usuario"
+          [editable]="true" optionLabel="name" [ngModelOptions]="{standalone: true}">
+        </p-dropdown>
+      </div>
       <br>
       <button type="submit" class="btn btn-success form-control">Buscar Usuario</button>
     </form>
@@ -52,3 +52,47 @@
     </span>
   </ng-template>
 </div>
+<ng-container *ngIf="juegos && juegos.length > 0">
+  <h1 class="bg-dark p-3 rounded text-white text-center d-flex justify-content-center">Juegos diponibles en un futuro
+  </h1>
+  <div class="container py-2 text-center d-flex justify-content-center">
+    <div class="container mt-5">
+      <div class="col text-center d-flex justify-content-center">
+        <div class="col-7 py-2">
+          <div class="card h-100 hundir la flota" id="foto" routerLink="/Hundir la flota">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="m-4 text-light">
+                <h3>Hundir la flota</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center d-flex justify-content-center">
+        <div class="col-7 py-2">
+          <div class="card h-100 damas" id="foto" routerLink="/Damas">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="m-4 text-light">
+                <h3>Damas</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center d-flex justify-content-center">
+        <div class="col-7 py-2">
+          <div class="card h-100 quien es quien" id="foto" routerLink="/Quien es quien">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="m-4 text-light">
+                <h3>Quien es quien</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

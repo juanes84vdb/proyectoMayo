@@ -1,3 +1,14 @@
+:root {
+  color-scheme: light dark;
+
+  --light-bg: ghostwhite;
+  --light-color: darkslategray;
+  --light-code: tomato;
+
+  --dark-bg: rgb(255, 0, 0);
+  --dark-color: ghostwhite;
+  --dark-code: gold;
+}
 #foto {
   text-shadow: black 1px 0 3px;
   width: 100%;
@@ -7,7 +18,9 @@
   background-repeat: repeat;
   opacity: 90%;
   border-radius: 10px;
-  background-color: black;
+  color: light-dark(var(--light-color), var(--dark-color)) !important;
+  text-decoration: none;
+  background-color: light-dark(var(--light-bg), var(--dark-bg)) !important;
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
   cursor: pointer;

@@ -14,6 +14,9 @@ import { AdminComponent } from './componentes/admin/admin.component';
 import { ReportesComponent } from './componentes/admin/reportes/reportes.component';
 import { BaneadosComponent } from './componentes/admin/baneados/baneados.component';
 import { TresRayaComponent } from './componentes/tres-raya/tres-raya.component';
+import { DamasComponent } from './componentes/damas/damas.component';
+import { HundirFlotaComponent } from './componentes/hundir-flota/hundir-flota.component';
+import { QuienEsQuienComponent } from './componentes/quien-es-quien/quien-es-quien.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -31,6 +34,9 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [loginGuard]},
   { path: 'admin/reportes', component: ReportesComponent, canActivate: [loginGuard]},
   { path: 'admin/baneados', component: BaneadosComponent, canActivate: [loginGuard]},
+  { path: 'Damas', component: DamasComponent},
+  { path: 'Hundir la flota', component: HundirFlotaComponent},
+  { path: 'Quien es quien', component: QuienEsQuienComponent},
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' },
 ];
 

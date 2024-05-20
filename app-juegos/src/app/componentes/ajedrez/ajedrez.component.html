@@ -2,7 +2,9 @@
     <div id="cajatabla">
         <span>
             <button (click)="empate(true)" class="btn btn-light">Pedir tablas </button>
-            <p>Turno de {{colort}}</p>
+            <br><br>
+            <p *ngIf="!ganador; else acabada">Turno de {{colort}}</p>
+            <ng-template #acabada> <p *ngIf="load"> La partida a terminado </p></ng-template>
         </span>
         <table #tablero>
         </table>
@@ -11,3 +13,5 @@
     <article #cnegras></article>
     <article #cblancas></article>
 </section>
+
+<button (click)="checkRival()" class="btn btn-light juntos" *ngIf="load">Estamos Juntos</button>

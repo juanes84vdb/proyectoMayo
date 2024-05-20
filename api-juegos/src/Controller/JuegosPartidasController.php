@@ -58,7 +58,7 @@ class JuegosPartidasController extends AbstractController
                             $rivalId=$partida->getJugador1()->getId();
                         }
 
-                        // Determine if the match is won, lost, or ongoing.
+                        // Determine if the match is won, lost, or draw.
                         if($partida->getGanador()!=null){
                             if($partida->getGanador()->getId()==$id_usuario){
                                     $ganado=true;
@@ -66,9 +66,7 @@ class JuegosPartidasController extends AbstractController
                             else if($partida->getGanador()->getId()==$rivalId){
                                     $ganado=false;
                             }   
-                            else{
-                                $ganado=null;
-                            }
+                            
                         }
 
                         // Add the match data to the array.
@@ -79,61 +77,7 @@ class JuegosPartidasController extends AbstractController
                             'partida'=>$partida->getId(),
                             'rival'=>$rival
                         ];
-                    }
-                }
-            }
-        }
-        // If a game ID is provided, retrieve only the matches for that game.
-        else{
-            if($juego = $entityManager->getRepository(Juegos::class)->find($id_juego)){
-                $partidas=$juego->getPartidas();
-                foreach($partidas as $partida){
-                    // Check if the match is for the current user.
-                    if($partida->getJugador1()->getId()==$id_usuario || $partida->getJugador2()->getId()==$id_usuario){
-                        // Determine the rival's username and ID.
-                        if($partida->getJugador1()->getId()==$id_usuario){
-                            $rival=$partida->getJugador2()->getUsername();
-                            $rivalId=$partida->getJugador2()->getId();
-                        }
-                        else{
-                            $rival=$partida->getJugador1()->getUsername();
-                            $rivalId=$partida->getJugador1()->getId();
-                        }
-
-                        // Determine if the match is won, lost, or ongoing.
-                        if($partida->getGanador()!=null){
-                            if($partida->getGanador()->getId()==$id_usuario){
-                                    $ganado=true;
-                                }
-                            else if($partida->getGanador()->getId()==$rivalId){
-                                    $ganado=false;
-                            }   
-                            else{
-                                $ganado=null;
-                            }
-                        }
-
-                        // If the game has an image, add it to the match data.
-                        if($juego->getImagen()!==null){
-                            $partidasArray[]=[
-                                'acabado' => $partida->isAcabada(),
-                                'ganado'=> $ganado,
-                                'tipo'=> $juego->getNombre(),
-                                'imagen' => base64_encode(stream_get_contents($juego->getImagen())),
-                                'partida'=>$partida->getId(),
-                                'rival'=>$rival
-                            ];
-                        }
-                        // If the game does not have an image, add the match data without it.
-                        else{
-                            $partidasArray[]=[
-                                'acabado' => $partida->isAcabada(),
-                                'ganado'=> $ganado,
-                                'tipo'=> $juego->getNombre(),
-                                'partida'=>$partida->getId(),
-                                'rival'=>$rival
-                            ];
-                        }
+                        $ganado=null;
                     }
                 }
             }

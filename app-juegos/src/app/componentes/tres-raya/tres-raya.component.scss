@@ -1,16 +1,17 @@
-p {
-    font-family: Lato;
-  }
   .board {
       width: 220px;
       display: flex;
       flex-wrap: wrap;
+      position: absolute;
+      left: 15%;
+      top: 20%;
+      display: grid;
+      grid-template-columns: repeat(3, 100px); 
+      grid-template-rows: repeat(3, 100px);
+      gap: 10px; 
   }
   .box {
-    width: 60px;
-    height: 60px;
     background: #3d425077;
-    border: 1px solid;
     font-family: "FontAwesome";
     display: flex;
     justify-content: center;
@@ -18,7 +19,9 @@ p {
     font-size: 45px;
     border-radius: 10px;
     margin: 5px;
-    cursor: pointer;
+    width: 100px; 
+    height: 100px;
+
   }
   
   .box:hover {
@@ -34,4 +37,7 @@ p {
     content: "\25EF"; 
     color: #ff9d00;
   }
-  
+  .juntos{
+    position: absolute;
+    top: 40%;
+  }

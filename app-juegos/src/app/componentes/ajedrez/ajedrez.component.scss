@@ -11,6 +11,12 @@ table {
     border: 1px solid black;
 }
 
+.juntos{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
 table tr td {
     text-align: center;
     border: 1px solid black;
@@ -65,6 +71,7 @@ article:nth-child(2) {
     width: fit-content;
     cursor: default;
 }
+
 
 table tr:nth-child(2n+1) td:nth-child(2n) {
     background-color: rgba(139, 69, 19, 0.4);

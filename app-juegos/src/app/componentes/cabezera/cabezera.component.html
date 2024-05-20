@@ -6,7 +6,7 @@
             height="50px" style="border-radius: 50%;"></a></li>
       <li class="list-inline-item"><a routerLink="/ranking">Rankings</a></li>
       <ng-container *ngIf="inicio; else noLogin">
-        <li class="list-inline-item"><a routerLink="/partidas/todas">Tus Partidas</a></li>
+        <li class="list-inline-item"><a routerLink="/partidas">Tus Partidas</a></li>
         <li class="list-inline-item"><a routerLink="/nuevo">Nueva Partida</a></li>
         <li class="list-inline-item"><a (click)="cerrarSesion()" routerLink="">Cerrar sesion</a></li>
       </ng-container>
