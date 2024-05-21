@@ -70,7 +70,7 @@
             },
             "development": {
               "browserTarget": "app-juegos:build:development",
-              "host": "localhost"
+              "host": "www.tableroconecta.com"
             }
           },
           "defaultConfiguration": "development"
