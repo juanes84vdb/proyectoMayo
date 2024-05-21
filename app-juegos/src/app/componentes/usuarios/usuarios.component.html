@@ -23,7 +23,8 @@
                 </div>
                 <button class="btn py-3 mt-4 btn-danger" *ngIf="yoId!=id && yoId" (click)="reportar()">Reportar
                     Usuario</button> <br>
-                <button class="btn btn-danger py-3 mt-4" (click)="banear(usuario.id)" *ngIf="yoId!=id && yoId && admin">Banear</button>
+                <button class="btn btn-danger py-3 mt-4" (click)="banear(usuario.id)"
+                    *ngIf="yoId!=id && yoId && admin">Banear</button>
             </div>
         </div>
     </ng-container>

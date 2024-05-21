@@ -36,7 +36,7 @@ export class PerfilComponent {
  * newcolor(data);
  * ```
  */
-newcolor() {
+  newcolor() {
     const data = {
       color: this.color,
       id: this.perfil[0].id
@@ -60,32 +60,32 @@ newcolor() {
       }
     );
   }
-/**
- * Handles the preview of a new profile picture.
- *
- * @remarks
- * This function reads the selected image file and converts it to a data URL.
- * The data URL is then stored in the `foto` property of the component.
- *
- * @param {any} event - The event object containing the file input data.
- *
- * @returns {void}
- *
- * @throws Will throw an error if the FileReader API is not supported.
- *
- * @example
- * ```typescript
- * const event = {
- *   target: {
- *     files: [
- *       new File([''], 'example.jpg', { type: 'image/jpeg' })
- *     ]
- *   }
- * };
- * newfotopreview(event);
- * ```
- */
-newfotopreview(event: any) {
+  /**
+   * Handles the preview of a new profile picture.
+   *
+   * @remarks
+   * This function reads the selected image file and converts it to a data URL.
+   * The data URL is then stored in the `foto` property of the component.
+   *
+   * @param {any} event - The event object containing the file input data.
+   *
+   * @returns {void}
+   *
+   * @throws Will throw an error if the FileReader API is not supported.
+   *
+   * @example
+   * ```typescript
+   * const event = {
+   *   target: {
+   *     files: [
+   *       new File([''], 'example.jpg', { type: 'image/jpeg' })
+   *     ]
+   *   }
+   * };
+   * newfotopreview(event);
+   * ```
+   */
+  newfotopreview(event: any) {
     const reader = new FileReader();
     const file = event.target.files[0];
     reader.readAsDataURL(file);
@@ -114,7 +114,7 @@ newfotopreview(event: any) {
  * newfoto();
  * ```
  */
-newfoto() {
+  newfoto() {
     if (this.foto == null) {
       this.foto = false
     }
@@ -129,7 +129,7 @@ newfoto() {
           text: 'Foto actualizado correctamente',
           icon: 'success',
           confirmButtonText: '¡De acuerdo!'
-        }).then((result) => { 
+        }).then((result) => {
           window.location.reload();
         })
       },
@@ -160,10 +160,10 @@ newfoto() {
  * recuperarYo();
  * ```
  */
-recuperarYo() {
+  recuperarYo() {
     this.usuariosService.retornarYo().subscribe(
       (response) => {
-        if (response[0].ban==true){
+        if (response[0].ban == true) {
           localStorage.removeItem('loggedInKey');
           Swal.fire({
             title: 'Ban',

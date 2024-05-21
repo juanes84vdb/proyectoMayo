@@ -134,11 +134,11 @@ export class ReportesComponent {
             confirmButtonText: '!De acuerdo!'
           })
         },
-        (error) =>{
+        (error) => {
           Swal.fire({
             title: 'Error',
             text: 'No se ha podido llevar a cabo el ban',
-            icon:'error',
+            icon: 'error',
             confirmButtonText: '¡De acuerdo!'
           })
         }

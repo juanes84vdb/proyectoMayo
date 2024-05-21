@@ -1,26 +1,24 @@
-.posi1{
+.posi1 {
   background-color: gold;
 }
-.posi2{
+.posi2 {
   background-color: silver;
 }
-.posi3{
-  background-color:rgb(205, 127, 50) ;
+.posi3 {
+  background-color: rgb(205, 127, 50);
 }
-#posi{
+#posi {
   opacity: 90%;
   border-radius: 10px;
-  transition: transform 0.5s ease-in-out,
-    box-shadow 0.5s ease-in-out,
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
-    cursor: pointer;
+  cursor: pointer;
 }
 #posi:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 28px rgba(0, 0, 0, 0.87);
   opacity: 100%;
-  transition: transform 0.5s ease-in-out,
-    box-shadow 0.5s ease-in-out,
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
 }
 .wheel-and-hamster {
@@ -48,7 +46,11 @@
 }
 
 .wheel {
-  background: radial-gradient(100% 100% at center, hsla(0, 0%, 60%, 0) 47.8%, hsl(0, 0%, 60%) 48%);
+  background: radial-gradient(
+    100% 100% at center,
+    hsla(0, 0%, 60%, 0) 47.8%,
+    hsl(0, 0%, 60%) 48%
+  );
   z-index: 2;
 }
 
@@ -146,7 +148,16 @@
 .hamster__limb--br,
 .hamster__limb--bl {
   border-radius: 0.75em 0.75em 0 0;
-  clip-path: polygon(0 0, 100% 0, 100% 30%, 70% 90%, 70% 100%, 30% 100%, 40% 90%, 0% 30%);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 30%,
+    70% 90%,
+    70% 100%,
+    30% 100%,
+    40% 90%,
+    0% 30%
+  );
   top: 1em;
   left: 2.8em;
   width: 1.5em;
@@ -181,13 +192,21 @@
 
 .spoke {
   animation: spoke var(--dur) linear infinite;
-  background: radial-gradient(100% 100% at center, hsl(0, 0%, 60%) 4.8%, hsla(0, 0%, 60%, 0) 5%),
-    linear-gradient(hsla(0, 0%, 55%, 0) 46.9%, hsl(0, 0%, 65%) 47% 52.9%, hsla(0, 0%, 65%, 0) 53%) 50% 50% / 99% 99% no-repeat;
+  background: radial-gradient(
+      100% 100% at center,
+      hsl(0, 0%, 60%) 4.8%,
+      hsla(0, 0%, 60%, 0) 5%
+    ),
+    linear-gradient(
+        hsla(0, 0%, 55%, 0) 46.9%,
+        hsl(0, 0%, 65%) 47% 52.9%,
+        hsla(0, 0%, 65%, 0) 53%
+      )
+      50% 50% / 99% 99% no-repeat;
 }
 
 /* Animations */
 @keyframes hamster {
-
   from,
   to {
     transform: rotate(4deg) translate(-0.8em, 1.85em);
@@ -199,7 +218,6 @@
 }
 
 @keyframes hamsterHead {
-
   from,
   25%,
   50%,
@@ -217,7 +235,6 @@
 }
 
 @keyframes hamsterEye {
-
   from,
   90%,
   to {
@@ -230,7 +247,6 @@
 }
 
 @keyframes hamsterEar {
-
   from,
   25%,
   50%,
@@ -248,7 +264,6 @@
 }
 
 @keyframes hamsterBody {
-
   from,
   25%,
   50%,
@@ -266,7 +281,6 @@
 }
 
 @keyframes hamsterFRLimb {
-
   from,
   25%,
   50%,
@@ -284,7 +298,6 @@
 }
 
 @keyframes hamsterFLLimb {
-
   from,
   25%,
   50%,
@@ -302,7 +315,6 @@
 }
 
 @keyframes hamsterBRLimb {
-
   from,
   25%,
   50%,
@@ -320,7 +332,6 @@
 }
 
 @keyframes hamsterBLLimb {
-
   from,
   25%,
   50%,
@@ -338,7 +349,6 @@
 }
 
 @keyframes hamsterTail {
-
   from,
   25%,
   50%,

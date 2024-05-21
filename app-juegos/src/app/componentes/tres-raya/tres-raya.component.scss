@@ -1,52 +1,51 @@
-  .board {
-      width: 220px;
-      display: flex;
-      flex-wrap: wrap;
-      position: absolute;
-      left: 15%;
-      top: 20%;
-      display: grid;
-      grid-template-columns: repeat(3, 100px); 
-      grid-template-rows: repeat(3, 100px);
-      gap: 10px; 
-  }
-  .box {
-    background: #3d425077;
-    font-family: "FontAwesome";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 45px;
-    border-radius: 10px;
-    margin: 5px;
-    width: 100px; 
-    height: 100px;
+.board {
+  width: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  left: 15%;
+  top: 20%;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+}
+.box {
+  background: #3d425077;
+  font-family: "FontAwesome";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  border-radius: 10px;
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+}
 
-  }
-  
-  .box:hover {
-    background: #78bec5;
-  }
-  
-  .x::after {
-    content: "\2715";
-    color: #ff1900;
-  }
-  
-  .o::after {
-    content: "\25EF"; 
-    color: #ff9d00;
-  }
-  .juntos{
-    position: absolute;
-    top: 40%;
-  }
+.box:hover {
+  background: #78bec5;
+}
 
-  button{
-    margin-left: 20px;
-  }
-  p{
-    margin-left: 20px;
-    position: absolute;
-    top: 50%
-  }
+.x::after {
+  content: "\2715";
+  color: #ff1900;
+}
+
+.o::after {
+  content: "\25EF";
+  color: #ff9d00;
+}
+.juntos {
+  position: absolute;
+  top: 40%;
+}
+
+button {
+  margin-left: 20px;
+}
+p {
+  margin-left: 20px;
+  position: absolute;
+  top: 50%;
+}

@@ -14,8 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\DBAL\Types\Types;
 
 #[Route('/juegos')]
-class JuegosController extends AbstractController
-{
+class JuegosController extends AbstractController {
     /**
      * This function retrieves all games from the database and returns them as a JSON response.
      *
@@ -27,26 +26,25 @@ class JuegosController extends AbstractController
      * @return Response A JSON response containing an array of game objects.
      */
     #[Route('/todos', name: 'app_juegos_todos', methods: ['GET'])]
-    public function todos(JuegosRepository $juegosRepository, Request $request): Response
-    {
+    public function todos(JuegosRepository $juegosRepository, Request $request): Response {
         // Fetch all games from the database
-        $juegos = $juegosRepository->findAll();
+        $juegos = $juegosRepository -> findAll();
 
         // Prepare an array to store the game data
         $juegosArray = [];
 
         // Iterate over the fetched games and prepare the game data for the response
-        foreach ($juegos as $juego) {
+        foreach($juegos as $juego) {
             $juegosArray[] = [
-                'id' => $juego->getId(),
-                'nombre' => $juego->getNombre(),
-                'descripcion' => $juego->getDescripcion(),
+                'id' => $juego -> getId(),
+                'nombre' => $juego -> getNombre(),
+                'descripcion' => $juego -> getDescripcion(),
             ];
         }
 
         // Create a JSON response with the game data
         $response = new JsonResponse();
-        $response->setData($juegosArray);
+        $response -> setData($juegosArray);
 
         // Return the JSON response
         return $response;

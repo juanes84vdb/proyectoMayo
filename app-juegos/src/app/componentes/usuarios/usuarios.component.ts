@@ -11,35 +11,51 @@ import Swal from 'sweetalert2';
 })
 export class UsuariosComponent {
 
-  perfil:any[]=[]
-  load=false;
-  color:any
-  foto:any
-  id:any|null=null;
+  perfil: any[] = []
+  load = false;
+  color: any
+  foto: any
+  id: any | null = null;
   yoId: number = 0;
-  admin=false;
-  constructor( private activatedRoute: ActivatedRoute,
-    private usuariosService:UsuariosService,
-    private reportesService: ReportesService){
+  admin = false;
+  constructor(private activatedRoute: ActivatedRoute,
+    private usuariosService: UsuariosService,
+    private reportesService: ReportesService) {
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
       this.id = param.get('usuario')!;
     });
-    const data={
-      id:this.id
+    const data = {
+      id: this.id
     }
     this.recuperarYo();
     this.recuperarUsuario(data);
   }
 
+  /**
+ * Retrieves the current logged-in user's information.
+ *
+ * @returns {void}
+ *
+ * @remarks
+ * This method subscribes to the `retornarYo` method of the `usuariosService` to retrieve the logged-in user's information.
+ * It checks if the user is an admin and sets the `admin` property accordingly.
+ * If the user is banned, it removes the login key from local storage and shows a SweetAlert2 message.
+ * It assigns the user's ID to the `yoId` property.
+ *
+ * @example
+ * ```typescript
+ * recuperarYo();
+ * ```
+ */
   recuperarYo() {
     // Subscribe to the `retornarYo` method of the `usuariosService`
     this.usuariosService.retornarYo().subscribe(
       // On successful response, assign the user's name and id to the `yo` and `yoId` properties respectively
       (response) => {
-        if(response[0].rol[0]==="ROLE_ADMIN"){
-          this.admin=true;
+        if (response[0].rol[0] === "ROLE_ADMIN") {
+          this.admin = true;
         }
-        if (response[0].ban==true){
+        if (response[0].ban == true) {
           localStorage.removeItem('loggedInKey');
           Swal.fire({
             title: 'Ban',
@@ -58,7 +74,7 @@ export class UsuariosComponent {
       }
     );
   };
- 
+
   /**
  * Retrieves a user's profile information based on the provided data.
  *
@@ -78,27 +94,27 @@ export class UsuariosComponent {
  * recuperarUsuario(data);
  * ```
  */
-recuperarUsuario(data: any): void {
-  this.usuariosService.usuario(data).subscribe(
-    (response) => {
-      if (response[0].ban==true){
-        Swal.fire({
-          title: 'Ban',
-          text: 'Este usuario esta betado',
-          icon: 'info',
-          confirmButtonText: '!De acuerdo!',
-        }).then(() => {
-          window.location.pathname = ""
-        });
+  recuperarUsuario(data: any): void {
+    this.usuariosService.usuario(data).subscribe(
+      (response) => {
+        if (response[0].ban == true) {
+          Swal.fire({
+            title: 'Ban',
+            text: 'Este usuario esta betado',
+            icon: 'info',
+            confirmButtonText: '!De acuerdo!',
+          }).then(() => {
+            window.location.pathname = ""
+          });
+        }
+        this.perfil = response;
+        this.color = response[0].color;
+      },
+      (error) => {
+        this.load = true;
       }
-      this.perfil = response;
-      this.color = response[0].color;
-    },
-    (error) => {
-      this.load = true;
-    }
-  );
-}
+    );
+  }
 
   /**
  * Method to report a user.
@@ -122,7 +138,7 @@ recuperarUsuario(data: any): void {
  * await reportar();
  * ```
  */
-async reportar(){
+  async reportar() {
     const { value: text } = await Swal.fire({
       input: "textarea",
       inputLabel: "Motivo",
@@ -131,33 +147,56 @@ async reportar(){
         "aria-label": "Type your message here"
       },
       showCancelButton: true,
-      cancelButtonAriaLabel:"Cancelar",
+      cancelButtonAriaLabel: "Cancelar",
     });
     if (text) {
-      const data={
-        motivo:text,
-        reportado:this.id,
-        reportador:this.yoId
+      const data = {
+        motivo: text,
+        reportado: this.id,
+        reportador: this.yoId
       }
-      this.reportesService.newReporte(data).subscribe((response:any) => {
+      this.reportesService.newReporte(data).subscribe((response: any) => {
         Swal.fire({
           title: 'Reporte enviado',
           text: 'El reporte ha sido enviado correctamente',
-          icon:'success',
+          icon: 'success',
           confirmButtonText: '¡De acuerdo!'
         })
       },
-      (error) => {
-        Swal.fire({
-          title: 'Reporte Fallido',
-          text: 'Ha habido un problema con el reporte',
-          icon:'error',
-          confirmButtonText: '¡De acuerdo!'
+        (error) => {
+          Swal.fire({
+            title: 'Reporte Fallido',
+            text: 'Ha habido un problema con el reporte',
+            icon: 'error',
+            confirmButtonText: '¡De acuerdo!'
+          })
         })
-      })
     }
   }
 
+  /**
+ * Method to ban a user.
+ * It uses SweetAlert2 to prompt the user for confirmation before banning.
+ * Then it sends a request to the server to ban the user with the provided ID.
+ * It shows a success message if the ban is successful, and an error message if there is a problem.
+ *
+ * @param id - The ID of the user to be banned.
+ * @returns {Promise<void>} - A promise that resolves when the ban is successful or rejects if there is an error.
+ *
+ * @throws Will throw an error if there is a problem with the SweetAlert2 prompt or the API request.
+ *
+ * @remarks
+ * This method uses the `Swal.fire` function from SweetAlert2 to prompt the user for confirmation before banning.
+ * It then constructs a ban data object with the provided ID and sets the `ban` property to `true`.
+ * It subscribes to the `setBan` method of the `usuariosService` to send the ban request to the server.
+ * If the ban is successful, it shows a success message using `Swal.fire`.
+ * If there is a problem with the ban, it shows an error message using `Swal.fire`.
+ *
+ * @example
+ * ```typescript
+ * await banear(123);
+ * ```
+ */
   async banear(id: any) {
     const data = {
       id: id,
@@ -181,11 +220,11 @@ async reportar(){
             confirmButtonText: '!De acuerdo!'
           })
         },
-        (error) =>{
+        (error) => {
           Swal.fire({
             title: 'Error',
             text: 'No se ha podido llevar a cabo el ban',
-            icon:'error',
+            icon: 'error',
             confirmButtonText: '¡De acuerdo!'
           })
         }

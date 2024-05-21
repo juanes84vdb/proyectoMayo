@@ -20,36 +20,36 @@ export class RankingComponent {
  *
  * @returns {void}
  */
-recuperarusuarios() {
-  this.usuariosService.ranking().subscribe(
-    (response) => {
-      this.usuario = response;
+  recuperarusuarios() {
+    this.usuariosService.ranking().subscribe(
+      (response) => {
+        this.usuario = response;
 
-      // Filter out banned users
-      for(let i=0; i<this.usuario.length;i++){
-        if(this.usuario[i].ban!=true){
-          this.usuarios.push(this.usuario[i]);
+        // Filter out banned users
+        for (let i = 0; i < this.usuario.length; i++) {
+          if (this.usuario[i].ban != true) {
+            this.usuarios.push(this.usuario[i]);
+          }
         }
-      }
 
-      // Sort users by the difference between wins and losses
-      this.usuarios.sort((a, b) => (b.ganadas - b.perdidas) - (a.ganadas - a.perdidas));
+        // Sort users by the difference between wins and losses
+        this.usuarios.sort((a, b) => (b.ganadas - b.perdidas) - (a.ganadas - a.perdidas));
 
-      // Limit the result to the top 3 users
-      this.usuarios.splice(3, this.usuarios.length - 3);
+        // Limit the result to the top 3 users
+        this.usuarios.splice(3, this.usuarios.length - 3);
 
-      // Assign positions to the top 3 users
-      this.usuarios[0].posicion = 1;
-      this.usuarios[1].posicion = 2;
-      this.usuarios[2].posicion = 3;
-    },
-    (error) => {
-      Swal.fire({
-        title: 'Error',
-        text: 'No se ha podido obtener el ranking Intentelo mas tarde',
-        icon: 'warning',
-        confirmButtonText: '¡De acuerdo!'
+        // Assign positions to the top 3 users
+        this.usuarios[0].posicion = 1;
+        this.usuarios[1].posicion = 2;
+        this.usuarios[2].posicion = 3;
+      },
+      (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: 'No se ha podido obtener el ranking Intentelo mas tarde',
+          icon: 'warning',
+          confirmButtonText: '¡De acuerdo!'
+        });
       });
-    });
-}
+  }
 }

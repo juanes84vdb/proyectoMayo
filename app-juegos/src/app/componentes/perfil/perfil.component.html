@@ -7,7 +7,8 @@
           <div class="card h-100" id="targeta" [ngStyle]="{'background-color':color}">
             <div class="card-body d-flex flex-column justify-content-between">
               <div class="m-4">
-                <h1> {{ usuario.usuario }} <img *ngIf="usuario.perfil" [src]="'data:image;base64,' + usuario.perfil" alt="foto_perfil" width="50px" height="50px" style="border-radius: 50%;"> </h1>
+                <h1> {{ usuario.usuario }} <img *ngIf="usuario.perfil" [src]="'data:image;base64,' + usuario.perfil"
+                    alt="foto_perfil" width="50px" height="50px" style="border-radius: 50%;"> </h1>
                 <h2> Partidas que has empezado: {{ usuario.empezadas }} </h2>
                 <p> Partidas que has terminado: {{ usuario.terminadas }} </p>
                 <p> De las que has Ganado: {{ usuario.ganadas }} </p>
@@ -19,28 +20,29 @@
       </div>
     </div>
     <div class="form-group">
-    <form (submit)="newcolor()" class="mt-4">
-      <div class="form-group">
-        <label for="color">Elije tu color</label>
-        <input type="color" value="#ffffff" id="color" (change)="newcolor" [(ngModel)]="color" name="color"
-          class="form-control">
-      </div>
+      <form (submit)="newcolor()" class="mt-4">
+        <div class="form-group">
+          <label for="color">Elije tu color</label>
+          <input type="color" value="#ffffff" id="color" (change)="newcolor" [(ngModel)]="color" name="color"
+            class="form-control">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Actualizar Color</button>
+      </form>
       <br>
-      <button type="submit" class="btn btn-success">Actualizar Color</button>
-    </form>
-    <br>
-    <form (submit)="newfoto()" class="mt-4">
-      <div class="form-group">
-        <label for="foto">Sube tu Foto de perfil</label>
-        <input type="file" id="username" (change)="newfotopreview($event)" name="foto" class="form-control">
-      </div>
-      <br>
-      <button type="submit" class="btn btn-success">Actualizar Foto</button>
+      <form (submit)="newfoto()" class="mt-4">
+        <div class="form-group">
+          <label for="foto">Sube tu Foto de perfil</label>
+          <input type="file" id="username" (change)="newfotopreview($event)" name="foto" class="form-control">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Actualizar Foto</button>
       </form>
 
       <p>Preview Nueva Foto</p>
       <img *ngIf="foto" [src]="foto" alt="previw Cambiada" width="50px" height="50px" style="border-radius: 50%;">
-      <img *ngIf="!foto" src="../../../assets/img/perfil.jfif" alt="previw Cambiada" width="50px" height="50px" style="border-radius: 50%;">
+      <img *ngIf="!foto" src="../../../assets/img/perfil.jfif" alt="previw Cambiada" width="50px" height="50px"
+        style="border-radius: 50%;">
       <p *ngIf="!foto">Si no añades foto la actual sera eliminada y no tendras foto</p>
     </div>
   </ng-container>

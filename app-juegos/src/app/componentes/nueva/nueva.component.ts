@@ -70,7 +70,7 @@ export class NuevaComponent {
         for (let i = 0; i < this.usuarios.length; i++) {
           // If the user's name is not the same as the current user,
           // push an object with `name` and `id` properties to the `UserInterfece` array
-          if (this.usuarios[i].nombre !== this.yo && this.usuarios[i].ban!==true ){
+          if (this.usuarios[i].nombre !== this.yo && this.usuarios[i].ban !== true) {
             this.UserInterfece.push({ name: this.usuarios[i].nombre, id: this.usuarios[i].id });
           }
         }
@@ -103,7 +103,7 @@ export class NuevaComponent {
     this.usuariosService.retornarYo().subscribe(
       // On successful response, assign the user's name and id to the `yo` and `yoId` properties respectively
       (response) => {
-        if (response[0].ban==true){
+        if (response[0].ban == true) {
           localStorage.removeItem('loggedInKey');
           Swal.fire({
             title: 'Ban',

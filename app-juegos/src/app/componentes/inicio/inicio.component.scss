@@ -7,8 +7,7 @@
   background-repeat: repeat;
   opacity: 90%;
   border-radius: 10px;
-  transition: transform 0.5s ease-in-out,
-    box-shadow 0.5s ease-in-out,
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
   cursor: pointer;
 }
@@ -16,8 +15,7 @@
   transform: translateY(-5px);
   box-shadow: 0 15px 28px rgba(0, 0, 0, 0.87);
   opacity: 100%;
-  transition: transform 0.5s ease-in-out,
-    box-shadow 0.5s ease-in-out,
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
 }
 :root {
@@ -32,33 +30,34 @@
   --dark-code: gold;
 }
 
-form{
+form {
   margin-top: 58px;
 }
-h1{
+h1 {
   color: light-dark(var(--light-color), var(--dark-color)) !important;
   text-decoration: none;
   background-color: light-dark(var(--light-bg), var(--dark-bg)) !important;
 }
 
-
-.Ajedrez{
-  background-image:url("../../../assets/img/tablero_ajedrez.jpg")
+.Ajedrez {
+  background-image: url("../../../assets/img/tablero_ajedrez.jpg");
 }
-.Tres{
-  background-image:url("../../../assets/img/Tablero_tresenraya.jpg")
+.Tres {
+  background-image: url("../../../assets/img/Tablero_tresenraya.jpg");
 }
-.flota{
-  background-image:url("../../../assets/img/Hundir_flota.jpg")
+.flota {
+  background-image: url("../../../assets/img/Hundir_flota.jpg");
 }
-.damas{
-  background-image:url("../../../assets/img/damas.jpg")
+.damas {
+  background-image: url("../../../assets/img/damas.jpg");
 }
-.quien{
-  background-image:url("../../../assets/img/quien\ es\ quine.jpg")
+.quien {
+  background-image: url("../../../assets/img/quien\ es\ quine.jpg");
 }
 @media (max-width: 800px) {
-  select,input, button{
+  select,
+  input,
+  button {
     width: 100%;
     font-size: 80%;
   }
@@ -88,7 +87,11 @@ h1{
 }
 
 .wheel {
-  background: radial-gradient(100% 100% at center, hsla(0, 0%, 60%, 0) 47.8%, hsl(0, 0%, 60%) 48%);
+  background: radial-gradient(
+    100% 100% at center,
+    hsla(0, 0%, 60%, 0) 47.8%,
+    hsl(0, 0%, 60%) 48%
+  );
   z-index: 2;
 }
 
@@ -186,7 +189,16 @@ h1{
 .hamster__limb--br,
 .hamster__limb--bl {
   border-radius: 0.75em 0.75em 0 0;
-  clip-path: polygon(0 0, 100% 0, 100% 30%, 70% 90%, 70% 100%, 30% 100%, 40% 90%, 0% 30%);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 30%,
+    70% 90%,
+    70% 100%,
+    30% 100%,
+    40% 90%,
+    0% 30%
+  );
   top: 1em;
   left: 2.8em;
   width: 1.5em;
@@ -221,13 +233,21 @@ h1{
 
 .spoke {
   animation: spoke var(--dur) linear infinite;
-  background: radial-gradient(100% 100% at center, hsl(0, 0%, 60%) 4.8%, hsla(0, 0%, 60%, 0) 5%),
-    linear-gradient(hsla(0, 0%, 55%, 0) 46.9%, hsl(0, 0%, 65%) 47% 52.9%, hsla(0, 0%, 65%, 0) 53%) 50% 50% / 99% 99% no-repeat;
+  background: radial-gradient(
+      100% 100% at center,
+      hsl(0, 0%, 60%) 4.8%,
+      hsla(0, 0%, 60%, 0) 5%
+    ),
+    linear-gradient(
+        hsla(0, 0%, 55%, 0) 46.9%,
+        hsl(0, 0%, 65%) 47% 52.9%,
+        hsla(0, 0%, 65%, 0) 53%
+      )
+      50% 50% / 99% 99% no-repeat;
 }
 
 /* Animations */
 @keyframes hamster {
-
   from,
   to {
     transform: rotate(4deg) translate(-0.8em, 1.85em);
@@ -239,7 +259,6 @@ h1{
 }
 
 @keyframes hamsterHead {
-
   from,
   25%,
   50%,
@@ -257,7 +276,6 @@ h1{
 }
 
 @keyframes hamsterEye {
-
   from,
   90%,
   to {
@@ -270,7 +288,6 @@ h1{
 }
 
 @keyframes hamsterEar {
-
   from,
   25%,
   50%,
@@ -288,7 +305,6 @@ h1{
 }
 
 @keyframes hamsterBody {
-
   from,
   25%,
   50%,
@@ -306,7 +322,6 @@ h1{
 }
 
 @keyframes hamsterFRLimb {
-
   from,
   25%,
   50%,
@@ -324,7 +339,6 @@ h1{
 }
 
 @keyframes hamsterFLLimb {
-
   from,
   25%,
   50%,
@@ -342,7 +356,6 @@ h1{
 }
 
 @keyframes hamsterBRLimb {
-
   from,
   25%,
   50%,
@@ -360,7 +373,6 @@ h1{
 }
 
 @keyframes hamsterBLLimb {
-
   from,
   25%,
   50%,
@@ -378,7 +390,6 @@ h1{
 }
 
 @keyframes hamsterTail {
-
   from,
   25%,
   50%,

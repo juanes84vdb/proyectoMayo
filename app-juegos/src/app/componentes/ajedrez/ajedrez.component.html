@@ -4,7 +4,9 @@
             <button (click)="empate(true)" class="btn btn-light">Pedir tablas </button>
             <br><br>
             <p *ngIf="!ganador; else acabada">Turno de {{colort}}</p>
-            <ng-template #acabada> <p *ngIf="load"> La partida a terminado </p></ng-template>
+            <ng-template #acabada>
+                <p *ngIf="load"> La partida a terminado </p>
+            </ng-template>
         </span>
         <table #tablero>
         </table>

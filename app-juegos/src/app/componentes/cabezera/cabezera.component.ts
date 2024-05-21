@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class CabezeraComponent {
   inicio: boolean = false;
   yo: any = null;
-  admin=false
+  admin = false
   constructor(private usuariosService: UsuariosService) {
     this.recuperarYo();
     if (localStorage.getItem('loggedInKey')) {
@@ -41,10 +41,10 @@ export class CabezeraComponent {
     if (localStorage.getItem("loggedInKey") !== null) {
       this.usuariosService.retornarYo().subscribe(response => {
         this.yo = response[0].perfil;
-        if(response[0].rol[0]==="ROLE_ADMIN"){
-          this.admin=true;
+        if (response[0].rol[0] === "ROLE_ADMIN") {
+          this.admin = true;
         }
-        if (response[0].ban==true){
+        if (response[0].ban == true) {
           localStorage.removeItem('loggedInKey');
           Swal.fire({
             title: 'Ban',

@@ -24,7 +24,8 @@
     opacity 0.5s ease-in-out;
   cursor: pointer;
 }
-h3, p{
+h3,
+p {
   color: light-dark(var(--light-color), var(--dark-color)) !important;
 }
 
@@ -55,7 +56,7 @@ body {
   position: relative;
   width: 50px;
   height: 200px;
-  margin: 0 120px; 
+  margin: 0 120px;
 }
 
 #miner1 .arm {
@@ -73,7 +74,7 @@ body {
 }
 
 #miner2 {
-  transform: scaleX(-1); 
+  transform: scaleX(-1);
 }
 
 .head {
@@ -163,19 +164,19 @@ body {
 }
 
 .rock {
-  width: 120px; 
-  height: 80px; 
+  width: 120px;
+  height: 80px;
   background-color: #555;
   position: absolute;
-  animation: rock-hit 1s infinite 0.5s;;
+  animation: rock-hit 1s infinite 0.5s;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   transition: all 0.2s ease;
 }
 .rock1 {
-  width: 120px; 
-  height: 80px; 
+  width: 120px;
+  height: 80px;
   background-color: #555;
   position: absolute;
   animation: rock-hit 1s infinite;
@@ -186,7 +187,8 @@ body {
 }
 
 @keyframes swing-left {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(-45deg);
   }
   50% {
@@ -194,10 +196,11 @@ body {
   }
 }
 @keyframes rock-hit {
-  0%, 100%{
+  0%,
+  100% {
     transform: scale(1);
   }
-  50%{
+  50% {
     transform: scale(0.5);
   }
 }

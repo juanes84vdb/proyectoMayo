@@ -46,8 +46,12 @@ export class AjedrezComponent {
     };
   }
 
+
   /**
- * Recupera el usuario
+ * This function is responsible for retrieving the user's ID from the server.
+ * It subscribes to the observable returned by the `retornarYo` method of the `usuariosService`.
+ * If the user is banned, it removes the 'loggedInKey' from local storage and displays a Swal alert.
+ * It then retrieves the user's ID and calls the `recuperarJuegos` method with the user's ID and the game ID.
  */
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(
@@ -79,7 +83,8 @@ export class AjedrezComponent {
         })
         localStorage.removeItem('loggedInKey');
         window.location.pathname = "/login"
-      });
+      }
+    );
   }
 
   /**
@@ -163,11 +168,16 @@ export class AjedrezComponent {
     );
   }
 
+  /**
+   * This function is responsible for handling the game logic when a player requests to check the rival's credentials.
+   * It prompts the player to enter the rival's password and sends the credentials to the server for verification.
+   * If the credentials are correct, it allows the player to request a checkmate.
+   */
   async checkRival() {
     const { value: password } = await Swal.fire({
       title: "Contraseña",
       input: "password",
-      inputLabel: "Introduce la contraseña de "+this.rival+" para continuar",
+      inputLabel: "Introduce la contraseña de " + this.rival + " para continuar",
       inputPlaceholder: "Escribe la contraseña",
       inputAttributes: {
         maxlength: "10",
@@ -182,16 +192,15 @@ export class AjedrezComponent {
           Swal.fire({
             icon: 'success',
           })
-          this.moversiempre=true;
+          this.moversiempre = true;
         },
         (error) => {
-            // Show a generic error message
-            Swal.fire({
-              title: 'Error',
-              text: 'Parece que la contraseña no es correcta',
-              icon: 'error',
-              confirmButtonText: '!De acuerdo!'
-            })
+          Swal.fire({
+            title: 'Error',
+            text: 'Parece que la contraseña no es correcta',
+            icon: 'error',
+            confirmButtonText: '!De acuerdo!'
+          })
         }
       )
     }

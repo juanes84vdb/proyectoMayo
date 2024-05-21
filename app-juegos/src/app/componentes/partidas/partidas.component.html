@@ -3,7 +3,8 @@
     <div class="container mt-5">
       <div *ngIf="juego!=null" class="btn bg-primary " routerLink="/partidas">Ver partidas de Todos los juegos</div>
       <div *ngFor="let partida of partidas" class="col text-center d-flex justify-content-center">
-        <div class="col-6 py-2" *ngIf="(juego==null || juego==partida.tipo) && (filtro(partida) && filtroBusqueda(partida))">
+        <div class="col-6 py-2"
+          *ngIf="(juego==null || juego==partida.tipo) && (filtro(partida) && filtroBusqueda(partida))">
           <div class="card h-100 {{ partida.tipo }}" routerLink="/{{ partida.tipo }}/{{partida.partida}}" id="foto">
             <div class="card-body d-flex flex-column justify-content-between">
               <div class="mb-4 text-light">
@@ -24,9 +25,11 @@
         </div>
       </div>
     </div>
-    <form >
-      <button class="btn btn-success" (click)="setRecientes(true)" *ngIf="!recientes">Ver las mas recientes</button> <br *ngIf="!recientes">
-      <button class="btn btn-success" (click)="setRecientes(false)" *ngIf="recientes">Ver las mas antiguas</button> <br *ngIf="recientes">
+    <form>
+      <button class="btn btn-success" (click)="setRecientes(true)" *ngIf="!recientes">Ver las mas recientes</button> <br
+        *ngIf="!recientes">
+      <button class="btn btn-success" (click)="setRecientes(false)" *ngIf="recientes">Ver las mas antiguas</button> <br
+        *ngIf="recientes">
       <input type="checkbox" [(ngModel)]="ganadas" name="ganadas"> Ganadas <br>
       <input type="checkbox" [(ngModel)]="perdidas" name="perdidas"> Perdidas <br>
       <input type="checkbox" [(ngModel)]="empatadas" name="empatadas"> Empatada <br>

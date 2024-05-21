@@ -46,6 +46,30 @@ export class ReportesService {
     let jsonData = JSON.stringify(data);
     return this.http.put<any>(this.newUrl, jsonData);
   }
+
+  /**
+ * Sends a GET request to the server to retrieve all reports.
+ *
+ * @returns An Observable that emits the server response. The response will be of type `any`.
+ *
+ * @throws Will throw an error if the server returns a status code outside the 200-299 range.
+ *
+ * @remarks
+ * This method uses the `HttpClient` module from `@angular/common/http` to send the request.
+ * The response is expected to be an array of report objects.
+ *
+ * @example
+ * ```typescript
+ * reportesService.getReportes().subscribe(
+ *   (response) => {
+ *     console.log('All reports retrieved successfully:', response);
+ *   },
+ *   (error) => {
+ *     console.error('Error retrieving reports:', error);
+ *   }
+ * );
+ * ```
+ */
   getReportes(): Observable<any> {
     return this.http.get<any>(this.allUrl);
   }
