@@ -1,32 +1,32 @@
 html {
-    margin: 0px;
+  margin: 0px;
 }
 
 body {
-    font-family: Arial;
-    align-items: center;
-    align-content: center;
-    align-self: center;
-    background-image: url("assets/img/wood.jpg");
-    width: 100%;
-    height: 100%;
-    margin: 0px;
+  font-family: Arial;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  background-image: url("assets/img/wood.jpg");
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }
 :root {
-    color-scheme: light dark;
-  
-    --light-bg: ghostwhite;
-    --light-color: darkslategray;
-    --light-code: tomato;
-  
-    --dark-bg: rgb(49, 49, 49);
-    --dark-color: ghostwhite;
-    --dark-code: gold;
-  }
+  color-scheme: light dark;
+
+  --light-bg: ghostwhite;
+  --light-color: darkslategray;
+  --light-code: tomato;
+
+  --dark-bg: rgb(49, 49, 49);
+  --dark-color: ghostwhite;
+  --dark-code: gold;
+}
 
 .swal2-popup {
-    background-color: light-dark(var(--light-bg), var(--dark-bg)) !important;
-    color: light-dark(var(--light-color), var(--dark-color)) !important; 
-  }
+  background-color: light-dark(var(--light-bg), var(--dark-bg)) !important;
+  color: light-dark(var(--light-color), var(--dark-color)) !important;
+}
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";

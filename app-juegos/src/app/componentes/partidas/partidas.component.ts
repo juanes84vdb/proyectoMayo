@@ -236,8 +236,6 @@ export class PartidasComponent {
  * // The function will return true, as `this.oponente` is empty
  */
   filtroBusqueda(partida: any) {
-    console.log(this.oponente)
-    console.log(partida.rival)
     if (partida.rival.toLowerCase().includes(this.oponente.toLowerCase())) {
       return true
     }

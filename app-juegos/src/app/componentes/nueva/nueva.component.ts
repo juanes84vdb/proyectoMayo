@@ -179,7 +179,9 @@ export class NuevaComponent {
         icon: 'success',
         confirmButtonText: '¡De acuerdo!'
       }).then((result) => {
-        window.location.pathname = ""
+        if(this.selectedJuego){
+          window.location.pathname = "partidas/"+this.selectedJuego.name
+        }
       })
     });
   }
