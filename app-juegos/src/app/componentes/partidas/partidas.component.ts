@@ -11,14 +11,20 @@ import Swal from 'sweetalert2';
 })
 export class PartidasComponent {
   partidas: any[] = [];
-  juego:any=null
+  juego: any = null
   yo: number = 0;
-  constructor(private partidasServices: PartidasService,
+  recientes: any
+  ganadas=false;
+  perdidas=false;
+  empatadas=false;
+  jugando=true;
+  oponente="";
+    constructor(private partidasServices: PartidasService,
     private usuariosService: UsuariosService,
     private route: ActivatedRoute
   ) {
     this.route.paramMap.subscribe(params => {
-       this.juego = params.get('juego');
+      this.juego = params.get('juego');
     });
     //  const interval = Rx.Observable.interval(100).mapTo(this.recuperarYo()).take(3);
     this.recuperarYo();
@@ -72,7 +78,7 @@ export class PartidasComponent {
   recuperarYo() {
     this.usuariosService.retornarYo().subscribe(
       (response) => {
-        if (response[0].ban==true){
+        if (response[0].ban == true) {
           localStorage.removeItem('loggedInKey');
           Swal.fire({
             title: 'Ban',
@@ -103,5 +109,48 @@ export class PartidasComponent {
         window.location.pathname = ""
       }
     );
+  }
+  setRecientes(reciente: boolean) {
+    this.recientes = reciente;
+    if (this.recientes){
+      console.log(this.partidas)
+      this.partidas = this.partidas.sort((b, a) => a.partida - b.partida);
+      console.log(this.partidas)
+    }
+    else {
+        console.log(this.partidas)
+      this.partidas = this.partidas.sort((a, b) => a.partida - b.partida);
+        console.log(this.partidas)
+    }
+  }
+
+  filtro(partida:any){
+    if(this.ganadas && partida.ganado==true){
+      return true
+    }
+    if(this.perdidas && partida.ganado==false){
+      return true
+    }
+    if(this.empatadas && partida.ganado==null){
+      return true
+    }
+    if(this.jugando && !partida.acabado){
+      return true
+    }    
+    if(!this.jugando && !this.ganadas && !this.perdidas && !this.empatadas ){
+      return true
+    }
+    return false
+  }
+  filtroBusqueda(partida:any){
+    console.log(this.oponente)
+    console.log(partida.rival)
+    if(partida.rival.toLowerCase().includes(this.oponente.toLowerCase())){
+      return true
+    }
+    if(!this.oponente && this.oponente==""){
+      return true
+    }
+    return false
   }
 }

@@ -129,7 +129,6 @@ export class TresRayaComponent {
         this.mover = response[0].mover
         this.load=true
         this.valores = response
-        console.log(this.valores)
       },
       (error) => {
         Swal.fire({

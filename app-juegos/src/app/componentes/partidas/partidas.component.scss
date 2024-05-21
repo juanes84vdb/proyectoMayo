@@ -1,6 +1,6 @@
 #foto {
-  width: 100%;
   text-shadow: black 1px 0 3px;
+  width: 100%;
   height: 100%;
   margin: 0px;
   padding: 0px;
@@ -12,10 +12,9 @@
     opacity 0.5s ease-in-out;
   cursor: pointer;
 }
-
 #foto:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.87);
+  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.87);
   opacity: 100%;
   transition: transform 0.5s ease-in-out,
     box-shadow 0.5s ease-in-out,
@@ -26,6 +25,19 @@
 }
 .Tres{
   background-image:url("../../../assets/img/Tablero_tresenraya.jpg")
+}
+.flota{
+  background-image:url("../../../assets/img/Hundir_flota.jpg")
+}
+.damas{
+  background-image:url("../../../assets/img/damas.jpg")
+}
+.quien{
+  background-image:url("../../../assets/img/quien\ es\ quine.jpg")
+}
+
+form{
+  margin-top: 58px;
 }
 .wheel-and-hamster {
   --dur: 1s;
