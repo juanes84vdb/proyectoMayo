@@ -308,7 +308,8 @@ class UserController extends AbstractController
                 'color'=>$usuario->getColor(),
                 'posicion'=>0,
                 'foto'=>base64_encode(stream_get_contents($usuario->getFotoPerfil())),
-                'id'=>$usuario->getId()
+                'id'=>$usuario->getId(),
+                'ban'=>$usuario->isBan()
             ];
         }
         else{
@@ -322,7 +323,8 @@ class UserController extends AbstractController
                 'color'=>$usuario->getColor(),
                 'posicion'=>0,
                 'foto'=>null,
-                'id'=>$usuario->getId()
+                'id'=>$usuario->getId(),
+                'ban'=>$usuario->isBan()
             ];
         }
 

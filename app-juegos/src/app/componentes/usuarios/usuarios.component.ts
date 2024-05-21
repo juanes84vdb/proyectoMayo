@@ -81,7 +81,16 @@ export class UsuariosComponent {
 recuperarUsuario(data: any): void {
   this.usuariosService.usuario(data).subscribe(
     (response) => {
-      console.log(response)
+      if (response[0].ban==true){
+        Swal.fire({
+          title: 'Ban',
+          text: 'Este usuario esta betado',
+          icon: 'info',
+          confirmButtonText: '!De acuerdo!',
+        }).then(() => {
+          window.location.pathname = ""
+        });
+      }
       this.perfil = response;
       this.color = response[0].color;
     },
