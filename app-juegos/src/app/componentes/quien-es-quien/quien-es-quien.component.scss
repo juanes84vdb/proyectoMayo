@@ -138,13 +138,15 @@ body {
 }
 
 .pickaxe-head {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 45px;
   background-color: #333;
   position: absolute;
-  top: -7px;
+  top: -20px;
+  border-radius: 4px;
   left: 50px;
 }
+
 
 .leg {
   position: absolute;
