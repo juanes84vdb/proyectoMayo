@@ -1,8 +1,13 @@
 
 ###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
+
+#   archivo env necesario con toda la configuracion 
+#   para desplegar la aplicacion
+#   /.env.local
+#   /.env.local.php
+#   /.env.*.local
+
+
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
@@ -25,5 +30,11 @@
 ###< symfony/asset-mapper ###
 
 ###> lexik/jwt-authentication-bundle ###
+
+
+#  configuracion del token neceasria para el despliegue 
+#  en otro dispositivo
 #      /config/jwt/*.pem
+
+
 ###< lexik/jwt-authentication-bundle ###

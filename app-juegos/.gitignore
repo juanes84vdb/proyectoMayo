@@ -1,6 +1,4 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# Compiled output
+# Salida compilada
 /dist
 /tmp
 /out-tsc
@@ -11,7 +9,7 @@
 npm-debug.log
 yarn-error.log
 
-# IDEs and editors
+# IDEs y editores
 .idea/
 .project
 .classpath
@@ -37,6 +35,6 @@ yarn-error.log
 testem.log
 /typings
 
-# System files
+# Archivos del sistema
 .DS_Store
 Thumbs.db
