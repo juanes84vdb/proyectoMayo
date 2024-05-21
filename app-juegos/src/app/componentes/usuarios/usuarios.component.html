@@ -3,24 +3,28 @@
 <div class="container py-2 text-center d-flex justify-content-center">
     <ng-container *ngIf="perfil && perfil.length > 0; else noperfil">
         <div class="container mt-5">
-            <div *ngFor="let usuario of perfil" class="col text-center d-flex justify-content-center">
-                <div class="col-lg-8 col-md-12 py-2">
-                    <div class="card h-100" id="targeta" [ngStyle]="{'background-color':color}">
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <div class="m-4">
-                                <h1> {{ usuario.nombre }} <img *ngIf="usuario.foto"
-                                        [src]="'data:image;base64,' + usuario.foto" alt="foto_perfil" width="50px"
-                                        height="50px" style="border-radius: 50%;"> </h1>
-                                <h2> Partidas que ha empezado: {{ usuario.empezadas }} </h2>
-                                <p> Partidas que ha terminado: {{ usuario.terminadas }} </p>
-                                <p> De las que ha Ganado: {{ usuario.ganadas }} </p>
-                                <p> Y ha perdido: {{ usuario.perdidas }} </p>
+            <div *ngFor="let usuario of perfil">
+                <div class="col text-center d-flex justify-content-center">
+                    <div class="col-lg-8 col-md-12 py-2">
+                        <div class="card h-100" id="targeta" [ngStyle]="{'background-color':color}">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div class="m-4">
+                                    <h1> {{ usuario.nombre }} <img *ngIf="usuario.foto"
+                                            [src]="'data:image;base64,' + usuario.foto" alt="foto_perfil" width="50px"
+                                            height="50px" style="border-radius: 50%;"> </h1>
+                                    <h2> Partidas que ha empezado: {{ usuario.empezadas }} </h2>
+                                    <p> Partidas que ha terminado: {{ usuario.terminadas }} </p>
+                                    <p> De las que ha Ganado: {{ usuario.ganadas }} </p>
+                                    <p> Y ha perdido: {{ usuario.perdidas }} </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <button class="btn py-3 mt-4 btn-danger" *ngIf="yoId!=id && yoId" (click)="reportar()">Reportar
+                    Usuario</button> <br> <br>
+                <button class="btn btn-danger" (click)="banear(usuario.id)" *ngIf="yoId!=id && yoId && admin">Banear</button>
             </div>
-            <button class="btn py-3 mt-4 btn-danger" *ngIf="yoId!=id && yoId" (click)="reportar()">Reportar Usuario</button>
         </div>
     </ng-container>
     <ng-template #noperfil>

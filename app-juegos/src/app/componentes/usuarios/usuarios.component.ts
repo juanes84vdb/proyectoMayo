@@ -17,6 +17,7 @@ export class UsuariosComponent {
   foto:any
   id:any|null=null;
   yoId: number = 0;
+  admin=false;
   constructor( private activatedRoute: ActivatedRoute,
     private usuariosService:UsuariosService,
     private reportesService: ReportesService){
@@ -35,6 +36,9 @@ export class UsuariosComponent {
     this.usuariosService.retornarYo().subscribe(
       // On successful response, assign the user's name and id to the `yo` and `yoId` properties respectively
       (response) => {
+        if(response[0].rol[0]==="ROLE_ADMIN"){
+          this.admin=true;
+        }
         if (response[0].ban==true){
           localStorage.removeItem('loggedInKey');
           Swal.fire({
@@ -77,6 +81,7 @@ export class UsuariosComponent {
 recuperarUsuario(data: any): void {
   this.usuariosService.usuario(data).subscribe(
     (response) => {
+      console.log(response)
       this.perfil = response;
       this.color = response[0].color;
     },
@@ -141,6 +146,41 @@ async reportar(){
           confirmButtonText: '¡De acuerdo!'
         })
       })
+    }
+  }
+
+  async banear(id: any) {
+    const data = {
+      id: id,
+      ban: true
+    }
+    const ban = await Swal.fire({
+      title: 'Banear',
+      text: 'Quieres Banear el usuario',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonAriaLabel: "Cancelar",
+      confirmButtonText: '!De acuerdo!'
+    })
+    if (ban.isConfirmed) {
+      this.usuariosService.setBan(data).subscribe(
+        (response) => {
+          Swal.fire({
+            title: 'Baneado',
+            text: 'El usuario ha sido baneado',
+            icon: 'success',
+            confirmButtonText: '!De acuerdo!'
+          })
+        },
+        (error) =>{
+          Swal.fire({
+            title: 'Error',
+            text: 'No se ha podido llevar a cabo el ban',
+            icon:'error',
+            confirmButtonText: '¡De acuerdo!'
+          })
+        }
+      )
     }
   }
 }
