@@ -7,3 +7,5 @@
     </div>
 </div>
 <button (click)="checkRival()" class="btn btn-light juntos" *ngIf="load">Estamos Juntos</button>
+<p *ngIf="!turno && load">Turno de las O</p>
+<p *ngIf="turno && load">Turno de las X</p>
